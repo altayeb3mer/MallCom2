@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.PaymentActivity">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_margin="@dimen/margin_normal_size"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_marginLeft="@dimen/margin_normal_size"
+                android:layout_marginRight="@dimen/margin_normal_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/txt_large_size"
+                android:textStyle="bold"
+                android:text="قم باضافة عنوان جديد"
+                android:textColor="@android:color/black"
+                />
+
+            <TextView
+                android:layout_marginTop="50dp"
+                android:layout_marginLeft="@dimen/margin_normal_size"
+                android:layout_marginRight="@dimen/margin_normal_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/txt_large_size"
+                android:textStyle="bold"
+                android:text="المجموع"
+                android:textColor="@android:color/black"
+                />
+
+            <androidx.cardview.widget.CardView
+                android:layout_marginTop="@dimen/margin_small_size"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                app:cardCornerRadius="@dimen/margin_normal_size">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/transparent"/>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_marginTop="@dimen/margin_small_size"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                app:cardCornerRadius="@dimen/margin_normal_size">
+                <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_marginTop="@dimen/margin_small_size"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                app:cardCornerRadius="@dimen/margin_normal_size">
+                <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:layout_marginTop="@dimen/margin_normal_size"
+                android:layout_marginLeft="@dimen/margin_normal_size"
+                android:layout_marginRight="@dimen/margin_normal_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/txt_large_size"
+                android:textStyle="bold"
+                android:text="تفاصيل العنوان"
+                android:textColor="@android:color/black"
+                />
+
+            <androidx.cardview.widget.CardView
+                android:layout_marginTop="@dimen/margin_small_size"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                app:cardCornerRadius="@dimen/margin_normal_size">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/transparent"/>
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:layout_marginTop="@dimen/margin_normal_size"
+                android:layout_marginLeft="@dimen/margin_normal_size"
+                android:layout_marginRight="@dimen/margin_normal_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/txt_large_size"
+                android:textStyle="bold"
+                android:text="رقم الهاتف"
+                android:textColor="@android:color/black"
+                />
+
+            <androidx.cardview.widget.CardView
+                android:layout_marginTop="@dimen/margin_small_size"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                app:cardCornerRadius="@dimen/margin_normal_size">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/transparent"/>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_gravity="center"
+                android:minWidth="200dp"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_marginTop="@dimen/margin_large_size"
+                android:background="@drawable/shape_btn_bg"
+                android:text="شحن الى هذا العنوان"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/txt_normal_size"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

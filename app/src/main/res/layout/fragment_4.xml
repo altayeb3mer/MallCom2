@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.CartActivity">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_cart_item_bg"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/margin_large_size">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_small_size"
+                    android:orientation="vertical"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/headerLay"
+                    app:spanCount="1"
+                    tools:itemCount="2"
+                    tools:listitem="@layout/cart_item" />
+
+                <RelativeLayout
+                    android:background="@drawable/shape_kobon_bg"
+                    android:layout_margin="@dimen/margin_large_size"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp">
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/apply"
+                        android:layout_marginLeft="@dimen/margin_small_size"
+                        android:layout_marginRight="@dimen/margin_small_size"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:text="تطبيق"
+                        android:textSize="@dimen/txt_normal_size"
+                        android:textStyle="bold"
+                        android:layout_alignParentRight="true"
+                        android:background="@android:color/transparent"/>
+
+                    <View
+                        android:id="@+id/_view"
+                        android:layout_width="1.5dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/colorAccent"
+                        android:layout_toStartOf="@+id/apply"
+                        android:layout_toLeftOf="@+id/apply" />
+                    <EditText
+                        android:layout_marginRight="@dimen/txt_normal_size"
+                        android:layout_marginLeft="@dimen/txt_normal_size"
+                        android:layout_toStartOf="@+id/_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@android:color/transparent"
+                        android:hint="ادخل الكوبون"
+                        android:layout_toLeftOf="@+id/_view" />
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_margin="@dimen/margin_large_size"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/txt_extra_large_size"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/white"
+                        android:text="700000SDG"/>
+                    <TextView
+                        android:layout_marginLeft="@dimen/margin_normal_size"
+                        android:layout_marginRight="@dimen/margin_normal_size"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/txt_normal_size"
+                        android:textStyle="bold"
+                        android:text="المجموع"
+                        />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_margin="@dimen/margin_large_size">
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginRight="@dimen/margin_small_size"
+                        android:layout_marginLeft="@dimen/margin_small_size"
+                        android:src="@drawable/ic_launcher_foreground"/>
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginRight="@dimen/margin_small_size"
+                        android:layout_marginLeft="@dimen/margin_small_size"
+                        android:src="@drawable/ic_launcher_foreground"/>
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginRight="@dimen/margin_small_size"
+                        android:layout_marginLeft="@dimen/margin_small_size"
+                        android:src="@drawable/ic_launcher_foreground"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="200dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="@dimen/margin_large_size"
+                android:background="@drawable/shape_btn_bg"
+                android:text="اتمام الشراء"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/txt_normal_size"
+                android:textStyle="bold" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="50dp"/>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

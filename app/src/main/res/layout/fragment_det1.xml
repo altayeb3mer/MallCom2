@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragment.FragmentDet1">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TableLayout
+                android:layout_margin="@dimen/margin_normal_size"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TableRow >
+                    <TextView
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/txt_normal_size"
+                        android:gravity="center"
+                        android:layout_weight="0.5"
+                        android:layout_height="50dp"
+                        android:text="رقم القطعة"
+                        />
+                    <TextView
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/txt_normal_size"
+                        android:gravity="center"
+                        android:layout_weight="0.5"
+                        android:layout_height="50dp"
+                        android:text="رقم القطعة"
+                        />
+                </TableRow>
+                <TableRow >
+                    <TextView
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/txt_normal_size"
+                        android:gravity="center"
+                        android:layout_weight="0.5"
+                        android:layout_height="50dp"
+                        android:text="نوع الفستان"
+                        />
+                    <TextView
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/txt_normal_size"
+                        android:gravity="center"
+                        android:layout_weight="0.5"
+                        android:layout_height="50dp"
+                        android:text="رقم القطعة"
+                        />
+                </TableRow>
+                <TableRow >
+                    <TextView
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/txt_normal_size"
+                        android:gravity="center"
+                        android:layout_weight="0.5"
+                        android:layout_height="50dp"
+                        android:text="محيط الخصر"
+                        />
+                    <TextView
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/txt_normal_size"
+                        android:gravity="center"
+                        android:layout_weight="0.5"
+                        android:layout_height="50dp"
+                        android:text="رقم القطعة"
+                        />
+                </TableRow>
+                <TableRow >
+                    <TextView
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/txt_normal_size"
+                        android:gravity="center"
+                        android:layout_weight="0.5"
+                        android:layout_height="50dp"
+                        android:text="الموديل"
+                        />
+                    <TextView
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/txt_normal_size"
+                        android:gravity="center"
+                        android:layout_weight="0.5"
+                        android:layout_height="50dp"
+                        android:text="رقم القطعة"
+                        />
+                </TableRow>
+                <TableRow >
+                    <TextView
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/txt_normal_size"
+                        android:gravity="center"
+                        android:layout_weight="0.5"
+                        android:layout_height="50dp"
+                        android:text="الاكمام"
+                        />
+                    <TextView
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/txt_normal_size"
+                        android:gravity="center"
+                        android:layout_weight="0.5"
+                        android:layout_height="50dp"
+                        android:text="رقم القطعة"
+                        />
+                </TableRow>
+                <TableRow >
+                    <TextView
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/txt_normal_size"
+                        android:gravity="center"
+                        android:layout_weight="0.5"
+                        android:layout_height="50dp"
+                        android:text="طول الاكمام"
+                        />
+                    <TextView
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/txt_normal_size"
+                        android:gravity="center"
+                        android:layout_weight="0.5"
+                        android:layout_height="50dp"
+                        android:text="رقم القطعة"
+                        />
+                </TableRow>
+                <TableRow >
+                    <TextView
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/txt_normal_size"
+                        android:gravity="center"
+                        android:layout_weight="0.5"
+                        android:layout_height="50dp"
+                        android:text="المناسبة"
+                        />
+                    <TextView
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/txt_normal_size"
+                        android:gravity="center"
+                        android:layout_weight="0.5"
+                        android:layout_height="50dp"
+                        android:text="رقم القطعة"
+                        />
+                </TableRow>
+                <TableRow >
+                    <TextView
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/txt_normal_size"
+                        android:gravity="center"
+                        android:layout_weight="0.5"
+                        android:layout_height="50dp"
+                        android:text="الخامة"
+                        />
+                    <TextView
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/txt_normal_size"
+                        android:gravity="center"
+                        android:layout_weight="0.5"
+                        android:layout_height="50dp"
+                        android:text="رقم القطعة"
+                        />
+                </TableRow>
+                <TableRow >
+                    <TextView
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/txt_normal_size"
+                        android:gravity="center"
+                        android:layout_weight="0.5"
+                        android:layout_height="50dp"
+                        android:text="القصة"
+                        />
+                    <TextView
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/txt_normal_size"
+                        android:gravity="center"
+                        android:layout_weight="0.5"
+                        android:layout_height="50dp"
+                        android:text="رقم القطعة"
+                        />
+                </TableRow>
+                <TableRow >
+                    <TextView
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/txt_normal_size"
+                        android:gravity="center"
+                        android:layout_weight="0.5"
+                        android:layout_height="50dp"
+                        android:text="سرعة الموضة"
+                        />
+                    <TextView
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/txt_normal_size"
+                        android:gravity="center"
+                        android:layout_weight="0.5"
+                        android:layout_height="50dp"
+                        android:text="رقم القطعة"
+                        />
+                </TableRow>
+                <TableRow >
+                    <TextView
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/txt_normal_size"
+                        android:gravity="center"
+                        android:layout_weight="0.5"
+                        android:layout_height="50dp"
+                        android:text="مرونة"
+                        />
+                    <TextView
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/txt_normal_size"
+                        android:gravity="center"
+                        android:layout_weight="0.5"
+                        android:layout_height="50dp"
+                        android:text="رقم القطعة"
+                        />
+                </TableRow>
+                <TableRow >
+                    <TextView
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/txt_normal_size"
+                        android:gravity="center"
+                        android:layout_weight="0.5"
+                        android:layout_height="50dp"
+                        android:text="التفاصيل"
+                        />
+                    <TextView
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/txt_normal_size"
+                        android:gravity="center"
+                        android:layout_weight="0.5"
+                        android:layout_height="50dp"
+                        android:text="رقم القطعة"
+                        />
+                </TableRow>
+                <TableRow >
+                    <TextView
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/txt_normal_size"
+                        android:gravity="center"
+                        android:layout_weight="0.5"
+                        android:layout_height="50dp"
+                        android:text="الياقة"
+                        />
+                    <TextView
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/txt_normal_size"
+                        android:gravity="center"
+                        android:layout_weight="0.5"
+                        android:layout_height="50dp"
+                        android:text="رقم القطعة"
+                        />
+                </TableRow>
+                <TableRow >
+                    <TextView
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/txt_normal_size"
+                        android:gravity="center"
+                        android:layout_weight="0.5"
+                        android:layout_height="50dp"
+                        android:text="احزمة"
+                        />
+                    <TextView
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/txt_normal_size"
+                        android:gravity="center"
+                        android:layout_weight="0.5"
+                        android:layout_height="50dp"
+                        android:text="رقم القطعة"
+                        />
+                </TableRow>
+
+            </TableLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</RelativeLayout>

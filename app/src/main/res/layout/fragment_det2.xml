@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Fragment.FragmentDet2"
+    android:layoutDirection="rtl">
+
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_margin="@dimen/margin_normal_size"
+                android:textColor="@android:color/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/txt_large_size"
+                android:text="جدول المقاسات"
+                android:textStyle="bold"/>
+
+            <TableLayout
+                android:background="#808080"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TableRow >
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_marginTop="1dp"
+                        android:background="#F2F2F2"
+                        android:layout_marginLeft="1dp"
+                        android:layout_height="50dp"
+                        android:textSize="@dimen/txt_small_size"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/black"
+                        android:text="المقاس"
+                        android:gravity="center"
+                        android:layout_weight="1"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_marginTop="1dp"
+                        android:background="#F2F2F2"
+                        android:layout_marginLeft="1dp"
+                        android:layout_height="50dp"
+                        android:textSize="@dimen/txt_small_size"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/black"
+                        android:text="الصدر(cm)"
+                        android:gravity="center"
+                        android:layout_weight="1"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_marginTop="1dp"
+                        android:background="#F2F2F2"
+                        android:layout_marginLeft="1dp"
+                        android:layout_height="50dp"
+                        android:textSize="@dimen/txt_small_size"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/black"
+                        android:text="الخصر(cm)"
+                        android:gravity="center"
+                        android:layout_weight="1"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_marginTop="1dp"
+                        android:background="#F2F2F2"
+                        android:layout_height="50dp"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/black"
+                        android:text="طول الملابس(cm)"
+                        android:gravity="center"
+                        android:layout_weight="1"/>
+                </TableRow>
+            </TableLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/table_det1"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="1"
+                android:orientation="vertical"
+                tools:itemCount="5"/>
+
+
+            <TextView
+                android:layout_marginLeft="@dimen/margin_normal_size"
+                android:layout_marginRight="@dimen/margin_normal_size"
+                android:layout_marginTop="50dp"
+                android:textColor="@android:color/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/txt_large_size"
+                android:text="جدول تحويل المقاسات"
+                android:textStyle="bold"/>
+
+            <TableLayout
+                android:background="#808080"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TableRow >
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_marginTop="1dp"
+                        android:background="#F2F2F2"
+                        android:layout_marginLeft="1dp"
+                        android:layout_height="50dp"
+                        android:textSize="@dimen/txt_small_size"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/black"
+                        android:text="US"
+                        android:gravity="center"
+                        android:layout_weight="1"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_marginTop="1dp"
+                        android:background="#F2F2F2"
+                        android:layout_marginLeft="1dp"
+                        android:layout_height="50dp"
+                        android:textSize="@dimen/txt_small_size"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/black"
+                        android:text="UK"
+                        android:gravity="center"
+                        android:layout_weight="1"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_marginTop="1dp"
+                        android:background="#F2F2F2"
+                        android:layout_marginLeft="1dp"
+                        android:layout_height="50dp"
+                        android:textSize="@dimen/txt_small_size"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/black"
+                        android:text="EU"
+                        android:gravity="center"
+                        android:layout_weight="1"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_marginTop="1dp"
+                        android:background="#F2F2F2"
+                        android:layout_height="50dp"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/black"
+                        android:text="INT"
+                        android:gravity="center"
+                        android:layout_weight="1"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_marginTop="1dp"
+                        android:background="#F2F2F2"
+                        android:layout_height="50dp"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/black"
+                        android:text="المقاس المكتوب على القطعة"
+                        android:gravity="center"
+                        android:layout_weight="1"/>
+                </TableRow>
+            </TableLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/table_det2"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="1"
+                android:orientation="vertical"
+                tools:itemCount="5"/>
+
+
+
+
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

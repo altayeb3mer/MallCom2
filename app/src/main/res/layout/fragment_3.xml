@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Fragment.Fragment3"
+    android:padding="@dimen/margin_normal_size">
+
+    <RelativeLayout
+        android:id="@+id/headerLay"
+        android:layout_height="60dp"
+        android:layout_margin="@dimen/margin_small_size"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent">
+
+        <TextView
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+            android:textSize="@dimen/txt_normal_size"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="عروض ساخنة"
+            />
+        <TextView
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+            android:textSize="@dimen/txt_normal_size"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="تنتهي خلال"
+            />
+        <TextView
+            android:gravity="center"
+            android:padding="@dimen/margin_small_size"
+            android:background="@drawable/shape_dept_item_bg"
+            android:layout_alignParentEnd="true"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:textSize="@dimen/txt_normal_size"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="10 : 50 : 08"
+            android:layout_alignParentRight="true" />
+
+    </RelativeLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/headerLay"
+        android:id="@+id/recycler"
+        android:layout_marginTop="@dimen/margin_small_size"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        tools:listitem="@layout/hot_offer_item"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="1"
+        android:orientation="vertical"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

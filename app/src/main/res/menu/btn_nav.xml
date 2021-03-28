@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/btn_nav1"
+        android:title="الرئيسية"
+        android:orderInCategory="1"
+        android:icon="@drawable/ic_home"
+        />
+    <item android:id="@+id/btn_nav2"
+        android:title="الفئات"
+        android:orderInCategory="2"
+        android:icon="@drawable/ic_list"
+        />
+    <item android:id="@+id/btn_nav3"
+        android:title="جديدنا"
+        android:orderInCategory="3"
+        android:icon="@drawable/label_variant"
+        />
+    <item android:id="@+id/btn_nav4"
+        android:title="السلة"
+        android:orderInCategory="4"
+        android:icon="@drawable/ic_cart"
+        />
+    <item android:id="@+id/btn_nav5"
+        android:title="الحساب"
+        android:orderInCategory="5"
+        android:icon="@drawable/ic_account"
+        />
+
+</menu>
