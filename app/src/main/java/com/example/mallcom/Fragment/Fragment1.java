@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mallcom.Adapter.AdapterDepts;
 import com.example.mallcom.Adapter.AdapterProducts;
+import com.example.mallcom.Adapter.SlideShow_adapter;
 import com.example.mallcom.Models.ModelDept;
 import com.example.mallcom.Models.ModelProducts;
 import com.example.mallcom.R;
@@ -32,6 +33,8 @@ public class Fragment1 extends Fragment {
     RecyclerView recyclerViewWomenDept,recyclerViewMenProduct;
 
     Context context;
+    SlideShow_adapter slideShow_adapter;
+    ArrayList<String> arrayListImg;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -54,7 +57,7 @@ public class Fragment1 extends Fragment {
 
     private void initAdapterWomen() {
         productsArrayList = new ArrayList<>();
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(context, 1, GridLayoutManager.HORIZONTAL, true);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(context, 1, GridLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(gridLayoutManager);
         for (int i = 0; i < 5; i++) {
             ModelProducts  modelProducts = new ModelProducts();

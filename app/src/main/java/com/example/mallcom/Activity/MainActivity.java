@@ -47,10 +47,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         Fragment5 fragment5 = new Fragment5();
 
         adapter.addFragment(fragment1, "الرئيسية");
-        adapter.addFragment(fragment2, "المحادثات");
-        adapter.addFragment(fragment3, "اضف اعلانك");
-        adapter.addFragment(fragment4, "المفضلة");
-        adapter.addFragment(fragment5, "الحساب");
+        adapter.addFragment(fragment2, "اشعارات");
+        adapter.addFragment(fragment3, "اقسام");
+        adapter.addFragment(fragment4, "الحساب");
+//        adapter.addFragment(fragment5, "الحساب");
         viewPager.setAdapter(adapter);
     }
 
@@ -74,10 +74,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 switchToFragment(4);
                 break;
             }
-            case R.id.btn_nav5:{
-                switchToFragment(5);
-                break;
-            }
+//            case R.id.btn_nav5:{
+//                switchToFragment(5);
+//                break;
+//            }
         }
         return true;
     }
@@ -108,11 +108,11 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 SetNavigationItemSelected(R.id.btn_nav4);
                 break;
             }
-            case 5: {
-                viewPager.setCurrentItem(4);
-                SetNavigationItemSelected(R.id.btn_nav5);
-                break;
-            }
+//            case 5: {
+//                viewPager.setCurrentItem(4);
+//                SetNavigationItemSelected(R.id.btn_nav5);
+//                break;
+//            }
 
         }
     }
