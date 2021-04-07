@@ -9,17 +9,17 @@
     <item android:id="@+id/btn_nav2"
         android:title="اشعارات"
         android:orderInCategory="2"
-        android:icon="@drawable/ic_list"
+        android:icon="@drawable/ic_notifications"
         />
     <item android:id="@+id/btn_nav3"
         android:title="اقسام"
         android:orderInCategory="3"
-        android:icon="@drawable/label_variant"
+        android:icon="@drawable/ic_apps"
         />
     <item android:id="@+id/btn_nav4"
         android:title="الحساب"
         android:orderInCategory="4"
-        android:icon="@drawable/ic_cart"
+        android:icon="@drawable/ic_account"
         />
 <!--    <item android:id="@+id/btn_nav5"-->
 <!--        android:title="الحساب"-->

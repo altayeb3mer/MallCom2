@@ -8,6 +8,7 @@
     android:padding="@dimen/margin_normal_size">
 
     <RelativeLayout
+        android:visibility="invisible"
         android:id="@+id/headerLay"
         android:layout_height="60dp"
         android:layout_margin="@dimen/margin_small_size"
@@ -49,6 +50,7 @@
 
     </RelativeLayout>
     <androidx.recyclerview.widget.RecyclerView
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/headerLay"
         android:id="@+id/recycler"

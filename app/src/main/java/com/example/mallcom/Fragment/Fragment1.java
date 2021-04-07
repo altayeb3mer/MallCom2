@@ -2,6 +2,7 @@ package com.example.mallcom.Fragment;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
 import com.example.mallcom.Adapter.AdapterDepts;
 import com.example.mallcom.Adapter.AdapterProducts;
@@ -19,6 +21,10 @@ import com.example.mallcom.Models.ModelProducts;
 import com.example.mallcom.R;
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import me.relex.circleindicator.CircleIndicator;
 
 
 public class Fragment1 extends Fragment {
@@ -35,6 +41,8 @@ public class Fragment1 extends Fragment {
     Context context;
     SlideShow_adapter slideShow_adapter;
     ArrayList<String> arrayListImg;
+    ViewPager viewPager;
+    CircleIndicator circleIndicator;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -42,7 +50,53 @@ public class Fragment1 extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_1, container, false);
         init();
+        initSlider();
         return view;
+    }
+
+    private void initSlider() {
+        arrayListImg = new ArrayList<>();
+        viewPager = view.findViewById(R.id.viewpager);
+        for (int i = 0; i < 5; i++) {
+            arrayListImg.add(""+i);
+        }
+        slideShow_adapter = new SlideShow_adapter(getActivity(),arrayListImg);
+        viewPager.setAdapter(slideShow_adapter);
+        circleIndicator = view.findViewById(R.id.indicator);
+        circleIndicator.setViewPager(viewPager);
+        AutoSwipingImg();
+    }
+
+    Handler handler;
+    Runnable runnable;
+    Timer timer;
+    private void AutoSwipingImg() {
+        handler = new Handler();
+        runnable = new Runnable() {
+            @Override
+            public void run() {
+
+                SwipImg();
+
+            }
+        };
+        timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                handler.post(runnable);
+            }
+        }, 0, 3000);
+    }
+    private void SwipImg() {
+        int i = viewPager.getCurrentItem();
+
+        if (i == slideShow_adapter.urls.size() - 1) {
+            i = 0;
+        } else {
+            i++;
+        }
+        viewPager.setCurrentItem(i, true);
     }
 
     private void init() {

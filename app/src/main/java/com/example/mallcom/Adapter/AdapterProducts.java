@@ -2,6 +2,7 @@ package com.example.mallcom.Adapter;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,9 +51,12 @@ public class AdapterProducts extends RecyclerView.Adapter<AdapterProducts.ViewHo
         holder.container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                activity.startActivity(new Intent(activity, ItemDetails.class));
+//                activity.startActivity(new Intent(activity, ItemDetails.class));
             }
         });
+
+        holder.textViewPriceCross.setPaintFlags( holder.textViewPriceCross.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+
 
 
     }
@@ -77,7 +81,7 @@ public class AdapterProducts extends RecyclerView.Adapter<AdapterProducts.ViewHo
 
         ImageView imageView;
         LinearLayout container;
-        TextView textViewTitle, textViewPrice;
+        TextView textViewTitle, textViewPriceCross;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -85,7 +89,7 @@ public class AdapterProducts extends RecyclerView.Adapter<AdapterProducts.ViewHo
 //            imageView = itemView.findViewById(R.id.img);
             container = itemView.findViewById(R.id.container);
 //            textViewTitle = itemView.findViewById(R.id.title);
-//            textViewPrice = itemView.findViewById(R.id.price);
+            textViewPriceCross = itemView.findViewById(R.id.txtCross);
 
         }
 

@@ -31,10 +31,13 @@
             android:layout_width="match_parent"
             android:layout_height="150dp">
             <androidx.viewpager.widget.ViewPager
+                android:scrollbarStyle="outsideInset"
+                android:id="@+id/viewpager"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 />
             <me.relex.circleindicator.CircleIndicator
+                android:id="@+id/indicator"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:layout_centerHorizontal="true"
@@ -80,29 +83,82 @@
             android:orientation="horizontal"/>
 
         <RelativeLayout
-            android:layout_marginTop="@dimen/margin_normal_size"
+            android:visibility="visible"
+            android:layout_margin="@dimen/margin_normal_size"
             android:layout_width="match_parent"
-            android:layout_height="50dp">
-            <TextView
-                android:textColor="@android:color/black"
+            android:layout_height="wrap_content">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/img1s"
+                android:src="@drawable/hhhhh"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                app:civ_border_overlay="true"
+                />
+
+            <LinearLayout
+                android:layout_marginRight="@dimen/margin_normal_size"
+                android:layout_marginLeft="@dimen/margin_normal_size"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/txt_large_size"
-                android:text="القسم الرجالي"
-                android:layout_centerVertical="true"
-                android:textStyle="bold"/>
-            <TextView
-                android:layout_alignParentLeft="true"
-                android:textColor="@android:color/black"
+                android:layout_toEndOf="@+id/img1s"
+                android:orientation="vertical"
+                android:layout_toRightOf="@+id/img1s"
+                android:layout_centerVertical="true">
+                <TextView
+
+                    android:textColor="@android:color/black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/txt_normal_size"
+                    android:text="مقترح لك"
+                    android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/txt_small_size"
+                    android:text="مقترح لك" />
+
+            </LinearLayout>
+
+            <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/txt_normal_size"
-                android:text="عرض الكل"
-                android:layout_centerVertical="true"
-                android:textStyle="bold" />
+                android:layout_height="45dp"
+                app:cardCornerRadius="@dimen/margin_small_size"
+                app:cardBackgroundColor="@color/colorPrimary"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true">
+                <LinearLayout
+                    android:layout_marginLeft="@dimen/margin_small_size"
+                    android:layout_marginRight="@dimen/margin_small_size"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    >
+                    <TextView
+                        android:textColor="@android:color/white"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/txt_normal_size"
+                        android:text="مشاهدة الكل"
+                        android:textStyle="bold"/>
+                    <ImageView
+                        android:id="@+id/showAll"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="@dimen/margin_small_size"
+                        android:layout_marginRight="@dimen/margin_small_size"
+                        android:src="@drawable/ic_arrow_left" />
+
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
         </RelativeLayout>
 
         <androidx.recyclerview.widget.RecyclerView
+            android:visibility="gone"
             android:id="@+id/recyclerMen"
             android:layout_marginTop="@dimen/margin_small_size"
             android:layout_width="match_parent"

@@ -7,6 +7,7 @@
     tools:context=".Activity.CartActivity">
 
     <androidx.core.widget.NestedScrollView
+        android:visibility="invisible"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

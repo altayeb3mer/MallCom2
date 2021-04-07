@@ -18,12 +18,12 @@
         <ImageView
             android:layout_margin="@dimen/margin_small_size"
             android:scaleType="centerCrop"
-            android:layout_width="130dp"
-            android:layout_height="100dp"
+            android:layout_width="110dp"
+            android:layout_height="90dp"
             android:src="@drawable/eeeee"/>
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp">
+            android:layout_height="45dp">
             <androidx.constraintlayout.widget.Guideline
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -64,6 +64,7 @@
                 android:orientation="vertical"
                 android:gravity="center">
                 <TextView
+                    android:id="@+id/txtCross"
                     android:layout_marginTop="@dimen/margin_small_size"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
