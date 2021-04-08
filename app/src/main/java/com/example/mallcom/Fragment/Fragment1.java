@@ -15,9 +15,11 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.mallcom.Adapter.AdapterDepts;
 import com.example.mallcom.Adapter.AdapterProducts;
+import com.example.mallcom.Adapter.AdapterStagger;
 import com.example.mallcom.Adapter.SlideShow_adapter;
 import com.example.mallcom.Models.ModelDept;
 import com.example.mallcom.Models.ModelProducts;
+import com.example.mallcom.Models.ModelStagger;
 import com.example.mallcom.R;
 
 import java.util.ArrayList;
@@ -34,9 +36,11 @@ public class Fragment1 extends Fragment {
     ArrayList<ModelDept> arrayList;
     RecyclerView recyclerView;
 
+    AdapterStagger adapterStagger;
+    ArrayList<ModelStagger> staggerArrayList;
     AdapterProducts adapterProducts;
     ArrayList<ModelProducts> productsArrayList;
-    RecyclerView recyclerViewWomenDept,recyclerViewMenProduct;
+    RecyclerView recyclerProduct, recyclerStagger;
 
     Context context;
     SlideShow_adapter slideShow_adapter;
@@ -101,27 +105,41 @@ public class Fragment1 extends Fragment {
 
     private void init() {
         recyclerView = view.findViewById(R.id.recyclerDept);
-        recyclerViewWomenDept = view.findViewById(R.id.recyclerProductWomen);
-        recyclerViewMenProduct = view.findViewById(R.id.recyclerMen);
+        recyclerProduct = view.findViewById(R.id.recyclerProduct);
+        recyclerStagger = view.findViewById(R.id.recyclerStagger);
 
 
         initAdapterDept();
-        initAdapterWomen();
+        initAdapterProduct();
+        initAdapterSagger();
     }
 
-    private void initAdapterWomen() {
+    private void initAdapterSagger() {
+        staggerArrayList = new ArrayList<>();
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(context, 1, GridLayoutManager.VERTICAL, false);
+        recyclerStagger.setLayoutManager(gridLayoutManager);
+        for (int i = 0; i < 5; i++) {
+            ModelStagger  modelProducts = new ModelStagger();
+            modelProducts.setId(i+"");
+            staggerArrayList.add(modelProducts);
+        }
+
+        adapterStagger = new AdapterStagger(getActivity(), staggerArrayList);
+        recyclerStagger.setAdapter(adapterStagger);
+
+    }
+    private void initAdapterProduct() {
         productsArrayList = new ArrayList<>();
         GridLayoutManager gridLayoutManager = new GridLayoutManager(context, 1, GridLayoutManager.HORIZONTAL, false);
-        recyclerView.setLayoutManager(gridLayoutManager);
+        recyclerStagger.setLayoutManager(gridLayoutManager);
         for (int i = 0; i < 5; i++) {
             ModelProducts  modelProducts = new ModelProducts();
             modelProducts.setId(i+"");
             productsArrayList.add(modelProducts);
         }
 
-        adapterProducts = new AdapterProducts(getActivity(),productsArrayList);
-        recyclerViewWomenDept.setAdapter(adapterProducts);
-        recyclerViewMenProduct.setAdapter(adapterProducts);
+        adapterProducts = new AdapterProducts(getActivity(), productsArrayList);
+        recyclerProduct.setAdapter(adapterProducts);
 
     }
 
