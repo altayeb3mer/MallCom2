@@ -8,4 +8,5 @@
 
 
     <color name="productActivityColor">#293377</color>
+    <color name="cardBg">#F1F2F4</color>
 </resources>
