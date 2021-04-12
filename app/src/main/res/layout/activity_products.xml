@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.ProductsActivity"
+    android:layoutDirection="rtl"
+    >
+
+    <RelativeLayout
+        android:id="@+id/layHeader"
+        android:background="@color/productActivityColor"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+        <ImageView
+            android:id="@+id/imgBack"
+            android:layout_alignParentEnd="true"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/margin_normal_size"
+            android:layout_marginRight="@dimen/margin_normal_size"
+            android:src="@drawable/ic_arrow_left"
+            android:layout_alignParentRight="true" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="@dimen/txt_large_size"
+            android:textColor="@android:color/white"
+            android:layout_toStartOf="@+id/imgBack"
+            android:layout_centerVertical="true"
+            android:text="موبايلات"
+            android:layout_toLeftOf="@+id/imgBack" />
+
+        <ImageView
+            android:id="@+id/imgCart"
+            android:layout_alignParentStart="true"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/margin_normal_size"
+            android:layout_marginRight="@dimen/margin_normal_size"
+            android:src="@drawable/ic_cart"
+            android:layout_alignParentLeft="true" />
+        <ImageView
+            android:layout_toEndOf="@+id/imgCart"
+            android:id="@+id/imgMicrophone"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/margin_normal_size"
+            android:layout_marginRight="@dimen/margin_normal_size"
+            android:src="@drawable/ic_microphone"
+            android:layout_toRightOf="@+id/imgCart" />
+        <ImageView
+            android:layout_toEndOf="@+id/imgMicrophone"
+            android:id="@+id/imgSearch"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/margin_normal_size"
+            android:layout_marginRight="@dimen/margin_normal_size"
+            android:src="@drawable/ic_search_white"
+            android:layout_toRightOf="@+id/imgMicrophone" />
+
+    </RelativeLayout>
+    <androidx.core.widget.NestedScrollView
+        android:background="@color/productActivityColor"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/layHeader"
+        app:layout_constraintBottom_toBottomOf="parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <RelativeLayout
+                android:background="@android:color/white"
+                android:layout_width="match_parent"
+                android:layout_height="150dp">
+                <androidx.viewpager.widget.ViewPager
+                    android:scrollbarStyle="outsideInset"
+                    android:id="@+id/viewpager"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    />
+                <me.relex.circleindicator.CircleIndicator
+                    android:id="@+id/indicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_margin="@dimen/margin_normal_size"/>
+            </RelativeLayout>
+            <TextView
+                android:layout_marginLeft="@dimen/margin_normal_size"
+                android:layout_marginRight="@dimen/margin_normal_size"
+                android:layout_marginTop="@dimen/margin_large_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="@dimen/txt_large_size"
+                android:textColor="@android:color/white"
+                android:text="من افضل المبيعات" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerProduct"
+                android:layout_marginTop="@dimen/margin_normal_size"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/product_item_with_rate"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="3"
+                android:orientation="vertical"/>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

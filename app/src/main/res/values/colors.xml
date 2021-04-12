@@ -5,4 +5,7 @@
     <color name="colorAccent">#40FB49</color>
     <color name="searchCardBg">#F7F7F7</color>
     <color name="new_price_bg">#D8EDFA</color>
+
+
+    <color name="productActivityColor">#293377</color>
 </resources>

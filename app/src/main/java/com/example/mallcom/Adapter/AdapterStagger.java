@@ -1,6 +1,7 @@
 package com.example.mallcom.Adapter;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,9 +13,11 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.mallcom.Activity.ProductsActivity;
 import com.example.mallcom.Models.ModelCart;
 import com.example.mallcom.Models.ModelStagger;
 import com.example.mallcom.R;
@@ -49,6 +52,14 @@ public class AdapterStagger extends RecyclerView.Adapter<AdapterStagger.ViewHold
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
         final ModelStagger item = arrayList.get(position);
+
+
+        holder.cardShowMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                activity.startActivity(new Intent(activity, ProductsActivity.class));
+            }
+        });
 
 //        try {
 //            Glide.with(activity).load(Api.ROOT_URL+item.getImage())
@@ -133,6 +144,7 @@ public class AdapterStagger extends RecyclerView.Adapter<AdapterStagger.ViewHold
         ConstraintLayout container;
         TextView textViewTitle, textViewPrice;
 //        Spinner spinner;
+        CardView cardShowMore;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -141,7 +153,7 @@ public class AdapterStagger extends RecyclerView.Adapter<AdapterStagger.ViewHold
 //            container = itemView.findViewById(R.id.container);
 //            textViewTitle = itemView.findViewById(R.id.title);
 //            textViewPrice = itemView.findViewById(R.id.price);
-//            spinner = itemView.findViewById(R.id.spinner);
+            cardShowMore = itemView.findViewById(R.id.cardShowMore);
 //            initSpinner();
 
         }

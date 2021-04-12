@@ -1,7 +1,7 @@
 package com.example.mallcom.Adapter;
 
 import android.app.Activity;
-import android.content.Intent;
+import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,26 +9,24 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.mallcom.Activity.ProductsActivity;
-import com.example.mallcom.Models.ModelDept;
+import com.example.mallcom.Models.ModelProducts;
 import com.example.mallcom.R;
 
 import java.util.ArrayList;
 
 
-public class AdapterDepts extends RecyclerView.Adapter<AdapterDepts.ViewHolder> {
+public class AdapterProductsWithRate extends RecyclerView.Adapter<AdapterProductsWithRate.ViewHolder> {
 
 //    Typeface tf;
     int current_page, last_page;
-    private ArrayList<ModelDept> arrayList;
+    private ArrayList<ModelProducts> arrayList;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
     private Activity activity;
 //    RelativeLayout container;
-    public AdapterDepts(Activity activity, ArrayList<ModelDept> r) {
+    public AdapterProductsWithRate(Activity activity, ArrayList<ModelProducts> r) {
         this.mInflater = LayoutInflater.from(activity);
         this.arrayList = r;
         this.activity = activity;
@@ -36,7 +34,7 @@ public class AdapterDepts extends RecyclerView.Adapter<AdapterDepts.ViewHolder> 
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.main_cat, parent, false);
+        View view = mInflater.inflate(R.layout.product_item_with_rate, parent, false);
 
         return new ViewHolder(view);
     }
@@ -44,33 +42,18 @@ public class AdapterDepts extends RecyclerView.Adapter<AdapterDepts.ViewHolder> 
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-        final ModelDept item = arrayList.get(position);
-//        try {
-//            Glide.with(activity).load(Api.ROOT_URL+item.getImage())
-//                    .into(holder.imageView);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+        final ModelProducts item = arrayList.get(position);
 //
-        holder.container.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(activity, ProductsActivity.class);
-                activity.startActivity(intent);
-            }
-        });
-//        holder.textViewTitle.setText(item.getTitle());
-//        holder.textViewPrice.setText(item.getPrice()+" "+"جنيه سوداني");
-//
-//
-//
-//        holder.layDel.setOnClickListener(new View.OnClickListener() {
+//        holder.container.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
-//                deleteAds(item.getType(),item.getId(),position);
+////                activity.startActivity(new Intent(activity, ItemDetails.class));
 //            }
 //        });
-
+//
+//        holder.textViewPriceCross.setPaintFlags( holder.textViewPriceCross.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+//
+//
 
     }
 
@@ -94,15 +77,15 @@ public class AdapterDepts extends RecyclerView.Adapter<AdapterDepts.ViewHolder> 
 
         ImageView imageView;
         LinearLayout container;
-        TextView textViewTitle, textViewPrice;
+        TextView textViewTitle, textViewPriceCross;
 
         ViewHolder(View itemView) {
             super(itemView);
 //            layDel = itemView.findViewById(R.id.layDel);
 //            imageView = itemView.findViewById(R.id.img);
-            container = itemView.findViewById(R.id.container);
+//            container = itemView.findViewById(R.id.container);
 //            textViewTitle = itemView.findViewById(R.id.title);
-//            textViewPrice = itemView.findViewById(R.id.price);
+//            textViewPriceCross = itemView.findViewById(R.id.txtCross);
 
         }
 
