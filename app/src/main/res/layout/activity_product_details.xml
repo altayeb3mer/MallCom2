@@ -24,16 +24,6 @@
             android:layout_marginRight="@dimen/margin_normal_size"
             android:src="@drawable/ic_arrow_left"
             android:layout_alignParentRight="true" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:textSize="@dimen/txt_large_size"
-            android:textColor="@android:color/white"
-            android:layout_toStartOf="@+id/imgBack"
-            android:layout_centerVertical="true"
-            android:text="موبايلات"
-            android:layout_toLeftOf="@+id/imgBack" />
 
         <ImageView
             android:id="@+id/imgCart"
@@ -79,12 +69,12 @@
             <RelativeLayout
                 android:background="@android:color/white"
                 android:layout_width="match_parent"
-                android:layout_height="150dp">
+                android:layout_height="200dp">
                 <androidx.viewpager.widget.ViewPager
                     android:scrollbarStyle="outsideInset"
                     android:id="@+id/viewpager"
                     android:layout_width="match_parent"
-                    android:layout_height="150dp"
+                    android:layout_height="match_parent"
                     />
                 <me.relex.circleindicator.CircleIndicator
                     android:id="@+id/indicator"

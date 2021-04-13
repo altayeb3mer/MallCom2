@@ -61,6 +61,8 @@
                 />
 
             <androidx.cardview.widget.CardView
+                android:layout_marginRight="@dimen/margin_small_size"
+                android:layout_marginLeft="@dimen/margin_small_size"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 app:cardCornerRadius="@dimen/margin_small_size"
@@ -81,6 +83,8 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:layout_marginRight="@dimen/margin_small_size"
+                android:layout_marginLeft="@dimen/margin_small_size"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 app:cardCornerRadius="@dimen/margin_small_size"
@@ -110,6 +114,8 @@
                 />
 
             <androidx.cardview.widget.CardView
+                android:layout_marginRight="@dimen/margin_small_size"
+                android:layout_marginLeft="@dimen/margin_small_size"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 app:cardCornerRadius="@dimen/margin_small_size"
@@ -137,6 +143,8 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:layout_marginRight="@dimen/margin_small_size"
+                android:layout_marginLeft="@dimen/margin_small_size"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 app:cardCornerRadius="@dimen/margin_small_size"
@@ -163,6 +171,8 @@
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
             <androidx.cardview.widget.CardView
+                android:layout_marginRight="@dimen/margin_small_size"
+                android:layout_marginLeft="@dimen/margin_small_size"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 app:cardCornerRadius="@dimen/margin_small_size"
@@ -184,6 +194,7 @@
 
 
                 <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn"
                     android:layout_marginRight="@dimen/margin_large_size"
                     android:layout_marginLeft="@dimen/margin_large_size"
                     android:layout_marginTop="30dp"

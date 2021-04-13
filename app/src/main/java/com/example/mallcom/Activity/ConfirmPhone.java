@@ -9,25 +9,27 @@ import android.view.View;
 
 import com.example.mallcom.R;
 
-public class Registration extends AppCompatActivity  implements View.OnClickListener {
+public class ConfirmPhone extends AppCompatActivity  implements View.OnClickListener {
     AppCompatButton button;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.registraton);
+        setContentView(R.layout.activity_confirm_phone);
         init();
     }
     private void init() {
         button = findViewById(R.id.btn);
         button.setOnClickListener(this);
     }
+
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn: {
-//                startActivity(new Intent(getApplicationContext(),ConfirmPhone.class));
+                startActivity(new Intent(getApplicationContext(),Registration.class));
                 break;
             }
         }
     }
+
 }
