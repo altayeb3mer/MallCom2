@@ -1,6 +1,7 @@
 package com.example.mallcom.Adapter;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.mallcom.Activity.ProductDetails;
 import com.example.mallcom.Models.ModelProducts;
 import com.example.mallcom.R;
 
@@ -44,12 +46,12 @@ public class AdapterProductsWithRate extends RecyclerView.Adapter<AdapterProduct
     public void onBindViewHolder(ViewHolder holder, final int position) {
         final ModelProducts item = arrayList.get(position);
 //
-//        holder.container.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-////                activity.startActivity(new Intent(activity, ItemDetails.class));
-//            }
-//        });
+        holder.container.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                activity.startActivity(new Intent(activity, ProductDetails.class));
+            }
+        });
 //
 //        holder.textViewPriceCross.setPaintFlags( holder.textViewPriceCross.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 //
@@ -83,7 +85,7 @@ public class AdapterProductsWithRate extends RecyclerView.Adapter<AdapterProduct
             super(itemView);
 //            layDel = itemView.findViewById(R.id.layDel);
 //            imageView = itemView.findViewById(R.id.img);
-//            container = itemView.findViewById(R.id.container);
+            container = itemView.findViewById(R.id.container);
 //            textViewTitle = itemView.findViewById(R.id.title);
 //            textViewPriceCross = itemView.findViewById(R.id.txtCross);
 
