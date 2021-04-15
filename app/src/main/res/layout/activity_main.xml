@@ -38,6 +38,7 @@
                 android:layout_marginRight="@dimen/margin_small_size"
                 android:src="@drawable/ic_launcher_foreground" />
             <ImageView
+                android:id="@+id/imgCart"
                 android:layout_alignParentEnd="true"
                 android:layout_width="35dp"
                 android:layout_height="35dp"

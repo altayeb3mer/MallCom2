@@ -4,24 +4,26 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.widget.Toolbar;
 
 import com.example.mallcom.Adapter.AdapterCart;
 import com.example.mallcom.Models.ModelCart;
 import com.example.mallcom.R;
+import com.example.mallcom.Utils.Global;
+import com.example.mallcom.Utils.ToolbarClass;
 
 import java.util.ArrayList;
 
-public class CartActivity extends AppCompatActivity {
+public class CartActivity extends ToolbarClass {
 
     RecyclerView recyclerView;
     AdapterCart adapterCart;
     ArrayList<ModelCart> arrayList;
 
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected final void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cart);
+        super.onCreate(R.layout.activity_cart, "السلة");
+        new Global().changeStatusBarColor(this,getResources().getColor(R.color.productActivityColor));
         init();
     }
 

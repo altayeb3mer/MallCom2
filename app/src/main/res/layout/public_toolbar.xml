@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="0dp"
+    app:cardBackgroundColor="@color/productActivityColor">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/public_toolbar"
+        android:minHeight="80dp"
+        android:gravity="center_vertical"
+        app:navigationIcon="@drawable/ic_arrow_left"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:title="مولكوم"
+        app:titleTextColor="@android:color/white"
+        />
+</androidx.cardview.widget.CardView>

@@ -1,6 +1,7 @@
 package com.example.mallcom.Adapter;
 
 import android.app.Activity;
+import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,6 +49,8 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.ViewHolder> {
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
         final ModelCart item = arrayList.get(position);
+
+        holder.textViewOldPrice.setPaintFlags( holder.textViewOldPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 
 //        try {
 //            Glide.with(activity).load(Api.ROOT_URL+item.getImage())
@@ -130,7 +133,7 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.ViewHolder> {
 
         ImageView imageView;
         ConstraintLayout container;
-        TextView textViewTitle, textViewPrice;
+        TextView textViewOldPrice, textViewPrice;
 //        Spinner spinner;
 
         ViewHolder(View itemView) {
@@ -139,9 +142,9 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.ViewHolder> {
 //            imageView = itemView.findViewById(R.id.img);
 //            container = itemView.findViewById(R.id.container);
 //            textViewTitle = itemView.findViewById(R.id.title);
-//            textViewPrice = itemView.findViewById(R.id.price);
-            spinner = itemView.findViewById(R.id.spinner);
-            initSpinner();
+            textViewOldPrice = itemView.findViewById(R.id.oldPrice);
+//            spinner = itemView.findViewById(R.id.spinner);
+//            initSpinner();
 
         }
 
