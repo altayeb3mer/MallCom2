@@ -8,14 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.mallcom.Activity.ItemDetails;
-import com.example.mallcom.Models.ModelDept;
-import com.example.mallcom.Models.ModelProducts;
+import com.example.mallcom.Activity.ProductDetails;
+import com.example.mallcom.Models.ModelItems;
 import com.example.mallcom.R;
 
 import java.util.ArrayList;
@@ -25,12 +24,13 @@ public class AdapterProducts extends RecyclerView.Adapter<AdapterProducts.ViewHo
 
 //    Typeface tf;
     int current_page, last_page;
-    private ArrayList<ModelProducts> arrayList;
+    private ArrayList<ModelItems> arrayList;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
     private Activity activity;
+    Spinner spinner;
 //    RelativeLayout container;
-    public AdapterProducts(Activity activity, ArrayList<ModelProducts> r) {
+    public AdapterProducts(Activity activity, ArrayList<ModelItems> r) {
         this.mInflater = LayoutInflater.from(activity);
         this.arrayList = r;
         this.activity = activity;
@@ -38,7 +38,7 @@ public class AdapterProducts extends RecyclerView.Adapter<AdapterProducts.ViewHo
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.product_item, parent, false);
+        View view = mInflater.inflate(R.layout.product_item_adapter, parent, false);
 
         return new ViewHolder(view);
     }
@@ -46,20 +46,39 @@ public class AdapterProducts extends RecyclerView.Adapter<AdapterProducts.ViewHo
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-        final ModelProducts item = arrayList.get(position);
+        final ModelItems item = arrayList.get(position);
 
+        holder.textViewOldPrice.setPaintFlags( holder.textViewOldPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+
+//        try {
+//            Glide.with(activity).load(Api.ROOT_URL+item.getImage())
+//                    .into(holder.imageView);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//
         holder.container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                activity.startActivity(new Intent(activity, ItemDetails.class));
+                Intent intent = new Intent(activity, ProductDetails.class);
+                activity.startActivity(intent);
             }
         });
-
-        holder.textViewPriceCross.setPaintFlags( holder.textViewPriceCross.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-
+//        holder.textViewTitle.setText(item.getTitle());
+//        holder.textViewPrice.setText(item.getPrice()+" "+"جنيه سوداني");
+//
+//
+//
+//        holder.layDel.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                deleteAds(item.getType(),item.getId(),position);
+//            }
+//        });
 
 
     }
+
 
     @Override
     public int getItemCount() {
@@ -81,7 +100,8 @@ public class AdapterProducts extends RecyclerView.Adapter<AdapterProducts.ViewHo
 
         ImageView imageView;
         LinearLayout container;
-        TextView textViewTitle, textViewPriceCross;
+        TextView textViewOldPrice, textViewPrice;
+//        Spinner spinner;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -89,7 +109,9 @@ public class AdapterProducts extends RecyclerView.Adapter<AdapterProducts.ViewHo
 //            imageView = itemView.findViewById(R.id.img);
             container = itemView.findViewById(R.id.container);
 //            textViewTitle = itemView.findViewById(R.id.title);
-            textViewPriceCross = itemView.findViewById(R.id.txtCross);
+            textViewOldPrice = itemView.findViewById(R.id.oldPrice);
+//            spinner = itemView.findViewById(R.id.spinner);
+//            initSpinner();
 
         }
 
@@ -98,6 +120,7 @@ public class AdapterProducts extends RecyclerView.Adapter<AdapterProducts.ViewHo
             if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
         }
     }
+
 
 
 }

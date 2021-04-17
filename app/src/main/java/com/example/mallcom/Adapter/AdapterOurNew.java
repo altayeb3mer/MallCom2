@@ -9,11 +9,8 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.mallcom.Activity.ItemDetails;
-import com.example.mallcom.Models.ModelDept;
 import com.example.mallcom.Models.ModelOurNew;
 import com.example.mallcom.R;
 
@@ -53,13 +50,13 @@ public class AdapterOurNew extends RecyclerView.Adapter<AdapterOurNew.ViewHolder
 //            e.printStackTrace();
 //        }
 //
-        holder.container.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(activity, ItemDetails.class);
-                activity.startActivity(intent);
-            }
-        });
+//        holder.container.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(activity, ItemDetails.class);
+//                activity.startActivity(intent);
+//            }
+//        });
 //        holder.textViewTitle.setText(item.getTitle());
 //        holder.textViewPrice.setText(item.getPrice()+" "+"جنيه سوداني");
 //

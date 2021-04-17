@@ -9,10 +9,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.mallcom.Activity.ProductsActivity;
+import com.example.mallcom.Activity.SubDept;
 import com.example.mallcom.Models.ModelDept;
 import com.example.mallcom.R;
 
@@ -55,7 +54,7 @@ public class AdapterDepts extends RecyclerView.Adapter<AdapterDepts.ViewHolder> 
         holder.container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(activity, ProductsActivity.class);
+                Intent intent = new Intent(activity, SubDept.class);
                 activity.startActivity(intent);
             }
         });

@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.mallcom.Adapter.AdapterDepts;
-import com.example.mallcom.Adapter.AdapterProducts;
+import com.example.mallcom.Adapter.AdapterOffer;
 import com.example.mallcom.Adapter.AdapterStagger;
 import com.example.mallcom.Adapter.SlideShow_adapter;
 import com.example.mallcom.Models.ModelDept;
@@ -38,7 +38,7 @@ public class Fragment1 extends Fragment {
 
     AdapterStagger adapterStagger;
     ArrayList<ModelStagger> staggerArrayList;
-    AdapterProducts adapterProducts;
+    AdapterOffer adapterProducts;
     ArrayList<ModelProducts> productsArrayList;
     RecyclerView recyclerProduct, recyclerStagger;
 
@@ -138,7 +138,7 @@ public class Fragment1 extends Fragment {
             productsArrayList.add(modelProducts);
         }
 
-        adapterProducts = new AdapterProducts(getActivity(), productsArrayList);
+        adapterProducts = new AdapterOffer(getActivity(), productsArrayList);
         recyclerProduct.setAdapter(adapterProducts);
 
     }

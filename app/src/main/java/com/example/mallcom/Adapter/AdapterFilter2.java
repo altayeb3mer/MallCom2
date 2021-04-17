@@ -1,35 +1,34 @@
 package com.example.mallcom.Adapter;
 
 import android.app.Activity;
-import android.content.Intent;
-import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.mallcom.Activity.ProductDetails;
-import com.example.mallcom.Activity.Products;
-import com.example.mallcom.Models.ModelProducts;
+import com.example.mallcom.Models.ModelFilter1;
+import com.example.mallcom.Models.ModelFilter2;
 import com.example.mallcom.R;
 
 import java.util.ArrayList;
 
 
-public class AdapterProductsWithRate extends RecyclerView.Adapter<AdapterProductsWithRate.ViewHolder> {
+public class AdapterFilter2 extends RecyclerView.Adapter<AdapterFilter2.ViewHolder> {
 
 //    Typeface tf;
     int current_page, last_page;
-    private ArrayList<ModelProducts> arrayList;
+    private ArrayList<ModelFilter2> arrayList;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
     private Activity activity;
+    Spinner spinner;
 //    RelativeLayout container;
-    public AdapterProductsWithRate(Activity activity, ArrayList<ModelProducts> r) {
+    public AdapterFilter2(Activity activity, ArrayList<ModelFilter2> r) {
         this.mInflater = LayoutInflater.from(activity);
         this.arrayList = r;
         this.activity = activity;
@@ -37,7 +36,7 @@ public class AdapterProductsWithRate extends RecyclerView.Adapter<AdapterProduct
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.product_item_with_rate, parent, false);
+        View view = mInflater.inflate(R.layout.filter_item2, parent, false);
 
         return new ViewHolder(view);
     }
@@ -45,20 +44,39 @@ public class AdapterProductsWithRate extends RecyclerView.Adapter<AdapterProduct
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-        final ModelProducts item = arrayList.get(position);
+        final ModelFilter2 item = arrayList.get(position);
+
+//        holder.textViewOldPrice.setPaintFlags( holder.textViewOldPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+
+//        try {
+//            Glide.with(activity).load(Api.ROOT_URL+item.getImage())
+//                    .into(holder.imageView);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
 //
-        holder.container.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                activity.startActivity(new Intent(activity, Products.class));
-            }
-        });
+//        holder.container.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(activity, ProductDetails.class);
+//                activity.startActivity(intent);
+//            }
+//        });
+//        holder.textViewTitle.setText(item.getTitle());
+//        holder.textViewPrice.setText(item.getPrice()+" "+"جنيه سوداني");
 //
-//        holder.textViewPriceCross.setPaintFlags( holder.textViewPriceCross.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 //
 //
+//        holder.layDel.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                deleteAds(item.getType(),item.getId(),position);
+//            }
+//        });
+
 
     }
+
 
     @Override
     public int getItemCount() {
@@ -80,15 +98,18 @@ public class AdapterProductsWithRate extends RecyclerView.Adapter<AdapterProduct
 
         ImageView imageView;
         LinearLayout container;
-        TextView textViewTitle, textViewPriceCross;
+        TextView textViewOldPrice, textViewPrice;
+//        Spinner spinner;
 
         ViewHolder(View itemView) {
             super(itemView);
 //            layDel = itemView.findViewById(R.id.layDel);
 //            imageView = itemView.findViewById(R.id.img);
-            container = itemView.findViewById(R.id.container);
+//            container = itemView.findViewById(R.id.container);
 //            textViewTitle = itemView.findViewById(R.id.title);
-//            textViewPriceCross = itemView.findViewById(R.id.txtCross);
+//            textViewOldPrice = itemView.findViewById(R.id.oldPrice);
+//            spinner = itemView.findViewById(R.id.spinner);
+//            initSpinner();
 
         }
 
@@ -97,6 +118,7 @@ public class AdapterProductsWithRate extends RecyclerView.Adapter<AdapterProduct
             if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
         }
     }
+
 
 
 }

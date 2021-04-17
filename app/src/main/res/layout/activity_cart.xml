@@ -5,11 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activity.CartActivity"
-    android:layoutDirection="rtl">
+    android:layoutDirection="ltr">
 
 
     <include
-        layout="@layout/public_toolbar"
+        layout="@layout/public_toolbar_cart"
         android:id="@+id/toolbar"/>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler"
@@ -25,6 +25,7 @@
         tools:listitem="@layout/cart_item" />
 
     <LinearLayout
+        android:layoutDirection="rtl"
         android:id="@+id/btnLay"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_width="match_parent"

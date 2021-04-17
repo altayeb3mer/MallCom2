@@ -9,10 +9,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 
-import com.example.mallcom.Adapter.AdapterDepts;
 import com.example.mallcom.Adapter.AdapterProductsWithRate;
 import com.example.mallcom.Adapter.SlideShow_adapter;
-import com.example.mallcom.Models.ModelDept;
 import com.example.mallcom.Models.ModelProducts;
 import com.example.mallcom.R;
 
@@ -22,7 +20,7 @@ import java.util.TimerTask;
 
 import me.relex.circleindicator.CircleIndicator;
 
-public class ProductsActivity extends AppCompatActivity {
+public class SubDept extends AppCompatActivity {
 
     SlideShow_adapter slideShow_adapter;
     ArrayList<String> arrayListImg;
@@ -39,7 +37,7 @@ public class ProductsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_products);
+        setContentView(R.layout.sub_dept);
         initSlider();
         initAdapter();
     }

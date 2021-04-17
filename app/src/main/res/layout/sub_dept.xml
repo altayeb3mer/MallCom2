@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.ProductsActivity"
+    tools:context=".Activity.SubDept"
     android:layoutDirection="rtl"
     >
 
@@ -15,6 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="100dp">
         <ImageView
+            android:layoutDirection="ltr"
             android:id="@+id/imgBack"
             android:layout_alignParentEnd="true"
             android:layout_width="30dp"

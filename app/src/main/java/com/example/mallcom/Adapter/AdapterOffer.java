@@ -1,7 +1,6 @@
 package com.example.mallcom.Adapter;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,15 +11,13 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.mallcom.Activity.ProductDetails;
-import com.example.mallcom.Activity.Products;
 import com.example.mallcom.Models.ModelProducts;
 import com.example.mallcom.R;
 
 import java.util.ArrayList;
 
 
-public class AdapterProductsWithRate extends RecyclerView.Adapter<AdapterProductsWithRate.ViewHolder> {
+public class AdapterOffer extends RecyclerView.Adapter<AdapterOffer.ViewHolder> {
 
 //    Typeface tf;
     int current_page, last_page;
@@ -29,7 +26,7 @@ public class AdapterProductsWithRate extends RecyclerView.Adapter<AdapterProduct
     private ItemClickListener mClickListener;
     private Activity activity;
 //    RelativeLayout container;
-    public AdapterProductsWithRate(Activity activity, ArrayList<ModelProducts> r) {
+    public AdapterOffer(Activity activity, ArrayList<ModelProducts> r) {
         this.mInflater = LayoutInflater.from(activity);
         this.arrayList = r;
         this.activity = activity;
@@ -37,7 +34,7 @@ public class AdapterProductsWithRate extends RecyclerView.Adapter<AdapterProduct
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.product_item_with_rate, parent, false);
+        View view = mInflater.inflate(R.layout.offer_item, parent, false);
 
         return new ViewHolder(view);
     }
@@ -46,17 +43,17 @@ public class AdapterProductsWithRate extends RecyclerView.Adapter<AdapterProduct
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
         final ModelProducts item = arrayList.get(position);
-//
+
         holder.container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                activity.startActivity(new Intent(activity, Products.class));
+//                activity.startActivity(new Intent(activity, ItemDetails.class));
             }
         });
-//
-//        holder.textViewPriceCross.setPaintFlags( holder.textViewPriceCross.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-//
-//
+
+        holder.textViewPriceCross.setPaintFlags( holder.textViewPriceCross.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+
+
 
     }
 
@@ -88,7 +85,7 @@ public class AdapterProductsWithRate extends RecyclerView.Adapter<AdapterProduct
 //            imageView = itemView.findViewById(R.id.img);
             container = itemView.findViewById(R.id.container);
 //            textViewTitle = itemView.findViewById(R.id.title);
-//            textViewPriceCross = itemView.findViewById(R.id.txtCross);
+            textViewPriceCross = itemView.findViewById(R.id.txtCross);
 
         }
 

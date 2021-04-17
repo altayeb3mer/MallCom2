@@ -77,7 +77,7 @@
             android:layout_marginTop="@dimen/margin_normal_size"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:listitem="@layout/product_item"
+            tools:listitem="@layout/offer_item"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:spanCount="1"
             android:orientation="horizontal"/>

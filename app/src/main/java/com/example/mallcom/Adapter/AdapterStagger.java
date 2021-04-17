@@ -17,8 +17,7 @@ import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.mallcom.Activity.ProductsActivity;
-import com.example.mallcom.Models.ModelCart;
+import com.example.mallcom.Activity.SubDept;
 import com.example.mallcom.Models.ModelStagger;
 import com.example.mallcom.R;
 
@@ -57,7 +56,7 @@ public class AdapterStagger extends RecyclerView.Adapter<AdapterStagger.ViewHold
         holder.cardShowMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                activity.startActivity(new Intent(activity, ProductsActivity.class));
+                activity.startActivity(new Intent(activity, SubDept.class));
             }
         });
 
