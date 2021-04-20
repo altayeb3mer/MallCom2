@@ -47,7 +47,7 @@ public class Products extends AppCompatActivity {
         final BottomSheetDialog dialog = new BottomSheetDialog(this);
 //      final Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setCancelable(false);
+        dialog.setCancelable(true);
         dialog.setContentView(R.layout.dialog_sort);
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         RadioGroup radioGroup = dialog.findViewById(R.id.radioGroup);

@@ -20,31 +20,33 @@
             android:layout_width="match_parent"
             android:layout_height="60dp">
             <ImageView
+                android:padding="@dimen/margin_small_size"
                 android:id="@+id/ic_menu"
                 android:layout_alignParentStart="true"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/margin_small_size"
-                android:layout_marginRight="@dimen/margin_small_size"
-                android:src="@drawable/ic_menu2"
+                android:layout_marginLeft="@dimen/margin_normal_size"
+                android:layout_marginRight="@dimen/margin_normal_size"
+                android:src="@drawable/menu"
                 android:layout_alignParentLeft="true" />
             <ImageView
                 android:layout_toLeftOf="@+id/ic_menu"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/margin_small_size"
-                android:layout_marginRight="@dimen/margin_small_size"
-                android:src="@drawable/ic_launcher_foreground" />
+                android:layout_marginLeft="@dimen/margin_normal_size"
+                android:layout_marginRight="@dimen/margin_normal_size"
+                android:src="@drawable/logo" />
             <ImageView
+                android:padding="@dimen/margin_small_size"
                 android:id="@+id/imgCart"
                 android:layout_alignParentEnd="true"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/margin_small_size"
-                android:layout_marginRight="@dimen/margin_small_size"
+                android:layout_marginLeft="@dimen/margin_normal_size"
+                android:layout_marginRight="@dimen/margin_normal_size"
                 android:src="@drawable/ic_cart"
                 android:layout_alignParentRight="true" />
         </RelativeLayout>
@@ -58,8 +60,8 @@
                 <ImageView
                     android:id="@+id/ic_search"
                     android:layout_alignParentStart="true"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/margin_small_size"
                     android:layout_marginRight="@dimen/margin_small_size"
@@ -70,7 +72,19 @@
                     android:hint="ابحث عن منتج"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_toLeftOf="@+id/ic_search"/>
+                    android:layout_toLeftOf="@+id/ic_search"
+                    android:textSize="@dimen/txt_small_size"/>
+                <ImageView
+                    android:id="@+id/ic_search2"
+                    android:layout_alignParentEnd="true"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/margin_small_size"
+                    android:layout_marginRight="@dimen/margin_small_size"
+                    android:src="@drawable/ic_outline_keyboard_voice"
+                    android:layout_alignParentRight="true" />
+
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
 

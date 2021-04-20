@@ -121,7 +121,7 @@
                 android:scaleType="centerCrop"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:src="@drawable/eeeee"/>
+                android:src="@drawable/hhhhh"/>
             <ImageView
                 app:layout_constraintTop_toBottomOf="@+id/con2g2"
                 app:layout_constraintLeft_toRightOf="@+id/con2g1"
@@ -130,7 +130,7 @@
                 android:scaleType="centerCrop"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:src="@drawable/eeeee"/>
+                android:src="@drawable/honor"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>

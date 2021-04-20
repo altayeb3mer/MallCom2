@@ -15,6 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="100dp">
         <ImageView
+            android:layoutDirection="ltr"
             android:id="@+id/imgBack"
             android:layout_alignParentEnd="true"
             android:layout_width="30dp"
@@ -26,6 +27,7 @@
             android:layout_alignParentRight="true" />
 
         <ImageView
+            android:padding="@dimen/margin_small_size"
             android:id="@+id/imgCart"
             android:layout_alignParentStart="true"
             android:layout_width="30dp"

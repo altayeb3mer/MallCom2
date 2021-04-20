@@ -106,10 +106,19 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 switchToFragment(4);
                 break;
             }
-//            case R.id.btn_nav5:{
-//                switchToFragment(5);
-//                break;
-//            }
+            case R.id.login:{
+                startActivity(new Intent(getApplicationContext(),Login.class));
+                break;
+            }
+            case R.id.reg:{
+                startActivity(new Intent(getApplicationContext(),Registration.class));
+                break;
+            }
+            case R.id.pinCode:{
+                startActivity(new Intent(getApplicationContext(),ConfirmPhone.class));
+                break;
+            }
+
         }
         return true;
     }
