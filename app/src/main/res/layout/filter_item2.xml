@@ -5,6 +5,7 @@
     android:layout_height="45dp"
     android:layout_marginLeft="@dimen/margin_small_size"
     android:layout_marginRight="@dimen/margin_small_size">
+
     <androidx.appcompat.widget.AppCompatCheckBox
         android:id="@+id/checkbox"
         android:layout_centerVertical="true"
@@ -32,4 +33,5 @@
             android:text="ج س"/>
 
     </LinearLayout>
+
 </RelativeLayout>
