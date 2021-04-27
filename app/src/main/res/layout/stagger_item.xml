@@ -11,6 +11,17 @@
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent">
 
+        <TextView
+            android:layout_marginLeft="@dimen/margin_normal_size"
+            android:layout_marginRight="@dimen/margin_normal_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/txt_normal_size"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+            android:text="القسم الرجالي"/>
+
+
         <RelativeLayout
             android:visibility="visible"
             android:layout_margin="@dimen/margin_normal_size"
@@ -34,17 +45,16 @@
                 android:layout_toRightOf="@+id/img1s"
                 android:layout_centerVertical="true">
                 <TextView
-
                     android:textColor="@android:color/black"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/txt_normal_size"
+                    android:textSize="@dimen/txt_small_size"
                     android:text="مقترح لك"
                     android:textStyle="bold" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/txt_small_size"
+                    android:textSize="@dimen/txt_so_small_size"
                     android:text="مقترح لك" />
 
             </LinearLayout>
@@ -52,7 +62,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardShowMore"
                 android:layout_width="wrap_content"
-                android:layout_height="45dp"
+                android:layout_height="40dp"
                 app:cardCornerRadius="@dimen/margin_small_size"
                 app:cardBackgroundColor="@color/colorPrimary"
                 android:layout_alignParentEnd="true"
@@ -69,16 +79,14 @@
                         android:textColor="@android:color/white"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="@dimen/txt_normal_size"
+                        android:textSize="@dimen/txt_so_small_size"
                         android:text="مشاهدة الكل"
                         android:textStyle="bold"/>
                     <ImageView
                         android:layoutDirection="ltr"
                         android:id="@+id/showAll"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginLeft="@dimen/margin_small_size"
-                        android:layout_marginRight="@dimen/margin_small_size"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
                         android:src="@drawable/ic_arrow_left" />
 
 

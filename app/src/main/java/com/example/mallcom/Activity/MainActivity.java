@@ -118,6 +118,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 startActivity(new Intent(getApplicationContext(),ConfirmPhone.class));
                 break;
             }
+            case R.id.dept2:{
+                startActivity(new Intent(getApplicationContext(),MyOrder.class));
+                break;
+            }
 
         }
         return true;

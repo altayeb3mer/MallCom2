@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.DeliveryDetails"
+    android:layoutDirection="rtl">
+    <include
+        layout="@layout/public_toolbar"
+        android:id="@+id/toolbar"/>
+
+    <androidx.core.widget.NestedScrollView
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+        <LinearLayout
+            android:layout_margin="@dimen/margin_normal_size"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@+id/lay1"
+            app:layout_constraintBottom_toTopOf="@+id/lay2"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/checkbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="استخدام نفس معلومات العنوان التي ادخلتها مسبقاً "
+                android:textColor="@color/productActivityColor"
+                android:textStyle="bold"
+                android:textSize="@dimen/txt_normal_size"
+                />
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_marginRight="@dimen/margin_small_size"
+                android:layout_marginLeft="@dimen/margin_small_size"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                app:cardCornerRadius="@dimen/margin_small_size"
+                android:layout_marginTop="40dp"
+                app:cardBackgroundColor="@color/cardBg">
+                    <EditText
+                        android:paddingLeft="@dimen/margin_normal_size"
+                        android:paddingRight="@dimen/margin_normal_size"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@android:color/transparent"
+                        android:hint="0116774943"
+                        />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_marginRight="@dimen/margin_small_size"
+                android:layout_marginLeft="@dimen/margin_small_size"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                app:cardCornerRadius="@dimen/margin_small_size"
+                android:layout_marginTop="40dp"
+                app:cardBackgroundColor="@color/cardBg">
+                    <EditText
+                        android:paddingLeft="@dimen/margin_normal_size"
+                        android:paddingRight="@dimen/margin_normal_size"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@android:color/transparent"
+                        android:hint="الخرطوم"
+                        />
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_marginRight="@dimen/margin_small_size"
+                android:layout_marginLeft="@dimen/margin_small_size"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                app:cardCornerRadius="@dimen/margin_small_size"
+                android:layout_marginTop="40dp"
+                app:cardBackgroundColor="@color/cardBg">
+                    <EditText
+                        android:paddingLeft="@dimen/margin_normal_size"
+                        android:paddingRight="@dimen/margin_normal_size"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@android:color/transparent"
+                        android:hint="الخرطوم"
+                        />
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_marginRight="@dimen/margin_small_size"
+                android:layout_marginLeft="@dimen/margin_small_size"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                app:cardCornerRadius="@dimen/margin_small_size"
+                android:layout_marginTop="40dp"
+                app:cardBackgroundColor="@color/cardBg">
+                    <EditText
+                        android:paddingLeft="@dimen/margin_normal_size"
+                        android:paddingRight="@dimen/margin_normal_size"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@android:color/transparent"
+                        android:hint="اركويت مربع 1"
+                        />
+            </androidx.cardview.widget.CardView>
+            <TextView
+                android:layout_marginTop="40dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textSize="@dimen/txt_large_size"
+                android:textStyle="bold"
+                android:text="أو"/>
+            <RelativeLayout
+                android:layout_marginRight="@dimen/margin_small_size"
+                android:layout_marginLeft="@dimen/margin_small_size"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/shape_google_map_bg">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/ic_star_24"
+                        android:layout_marginRight="@dimen/margin_small_size"
+                        android:layout_marginLeft="@dimen/margin_small_size"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="التحديد من خرائط قوقل"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/txt_large_size"/>
+                </LinearLayout>
+            </RelativeLayout>
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:paddingLeft="@dimen/margin_large_size"
+                android:paddingRight="@dimen/margin_large_size"
+                android:id="@+id/btn"
+                android:layout_marginRight="@dimen/margin_large_size"
+                android:layout_marginLeft="@dimen/margin_large_size"
+                android:layout_marginTop="40dp"
+                android:textSize="@dimen/txt_large_size"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                android:background="@drawable/shape_btn_bg2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="التالي"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -14,7 +14,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-
         <androidx.recyclerview.widget.RecyclerView
             android:layout_margin="@dimen/margin_normal_size"
             android:id="@+id/recyclerDept"
@@ -44,9 +43,6 @@
                 android:layout_alignParentBottom="true"
                 android:layout_margin="@dimen/margin_normal_size"/>
         </RelativeLayout>
-
-
-
 
         <RelativeLayout
             android:visibility="gone"
@@ -82,21 +78,16 @@
             app:spanCount="1"
             android:orientation="horizontal"/>
 
-
-
-
-
-
         <androidx.recyclerview.widget.RecyclerView
-            android:visibility="visible"
             android:id="@+id/recyclerStagger"
-            android:layout_marginTop="@dimen/margin_small_size"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:listitem="@layout/stagger_item"
+            android:layout_marginTop="@dimen/margin_small_size"
+            android:orientation="vertical"
+            android:visibility="visible"
             app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
             app:spanCount="1"
-            android:orientation="vertical"/>
+            tools:listitem="@layout/stagger_item" />
 
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

@@ -1,9 +1,12 @@
 package com.example.mallcom.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toolbar;
 
 import com.example.mallcom.Adapter.AdapterCart;
@@ -19,6 +22,7 @@ public class CartActivity extends ToolbarClass {
     RecyclerView recyclerView;
     AdapterCart adapterCart;
     ArrayList<ModelCart> arrayList;
+    AppCompatButton button;
 
     protected final void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +32,13 @@ public class CartActivity extends ToolbarClass {
     }
 
     private void init() {
+        button = findViewById(R.id.btn);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(),DeliveryDetails.class));
+            }
+        });
         recyclerView = findViewById(R.id.recycler);
         arrayList = new ArrayList<>();
         for (int i = 0; i < 5; i++) {

@@ -9,7 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity.FilterActivity"></activity>
+        <activity android:name=".Activity.PaymentDone"></activity>
+        <activity android:name=".Activity.MyOrder" />
+        <activity android:name=".Activity.Payment2" />
+        <activity android:name=".Activity.Payment1" />
+        <activity android:name=".Activity.DeliveryDetails" />
+        <activity android:name=".Activity.FilterActivity" />
         <activity android:name=".Activity.Products" />
         <activity android:name=".Activity.ProductDetails" />
         <activity android:name=".Activity.ConfirmPhone" />

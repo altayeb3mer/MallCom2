@@ -152,6 +152,7 @@
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
+
     <LinearLayout
         android:background="#808080"
         android:layout_width="match_parent"
