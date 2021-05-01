@@ -10,6 +10,7 @@
     android:id="@+id/container"
     android:layout_margin="@dimen/margin_small_size">
     <TextView
+        android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Apr 23, 2021"
@@ -42,29 +43,14 @@
 
             </androidx.cardview.widget.CardView>
         </LinearLayout>
-        <RelativeLayout
+
+        <LinearLayout
             android:layout_margin="@dimen/margin_normal_size"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="2">
-            <androidx.appcompat.widget.AppCompatButton
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:text="وصل"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentBottom="true"
-                android:layout_margin="@dimen/margin_small_size"
-                android:textColor="@android:color/white"
-                android:textSize="@dimen/txt_small_size"
-                android:background="@drawable/shape_btn_bg_my_order_item"
-                />
-        <LinearLayout
-            android:layout_margin="@dimen/margin_normal_size"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
             android:layout_weight="2"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:gravity="center_vertical">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -73,6 +59,11 @@
                 android:textSize="@dimen/txt_large_size"
                 android:textStyle="bold"
                 />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="رام 6 قيقا"
+                android:textSize="@dimen/txt_small_size"/>
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -91,12 +82,61 @@
                     android:layout_height="wrap_content"
                     android:text="ج س"
                     android:textSize="@dimen/txt_small_size"/>
+                <TextView
+                    android:layout_marginLeft="@dimen/margin_small_size"
+                    android:layout_marginRight="@dimen/margin_small_size"
+                    android:id="@+id/oldPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="60.000"
+                    android:textSize="@dimen/txt_small_size"/>
 
             </LinearLayout>
+            <LinearLayout
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_marginLeft="@dimen/margin_small_size"
+                    android:layout_marginRight="@dimen/margin_small_size"
+                    android:gravity="center_vertical"
+                    android:layout_gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/txt_normal_size14"
+                    android:text="4.0"
+                    />
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:src="@drawable/ic_star"
+                    android:scaleType="centerInside"/>
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:src="@drawable/ic_star"
+                    android:scaleType="centerInside"/>
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:src="@drawable/ic_star"
+                    android:scaleType="centerInside"/>
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:src="@drawable/ic_star"
+                    android:scaleType="centerInside"/>
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:src="@drawable/ic_star"
+                    android:scaleType="centerInside"/>
+
+            </LinearLayout>
+
         </LinearLayout>
-
-
-        </RelativeLayout>
     </LinearLayout>
 
 

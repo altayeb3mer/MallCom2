@@ -5,7 +5,7 @@ import android.os.Bundle;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.mallcom.Adapter.AdapterMyOrder;
+import com.example.mallcom.Adapter.AdapterMyOrderDetails;
 import com.example.mallcom.Models.ModelMyOrder;
 import com.example.mallcom.R;
 import com.example.mallcom.Utils.Global;
@@ -18,11 +18,11 @@ public class MyOrderDetails extends ToolbarClass {
 
     RecyclerView recyclerView;
     ArrayList<ModelMyOrder> arrayList;
-    AdapterMyOrder adapterMyOrder;
+    AdapterMyOrderDetails adapterMyOrder;
 
     protected final void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        super.onCreate(R.layout.my_order, "طلباتي");
+        super.onCreate(R.layout.my_order_details, "تفاصيل طلب");
         new Global().changeStatusBarColor(this,getResources().getColor(R.color.colorPrimary));
         init();
     }
@@ -35,7 +35,7 @@ public class MyOrderDetails extends ToolbarClass {
             modelMyOrder.setId(""+i);
             arrayList.add(modelMyOrder);
         }
-        adapterMyOrder = new AdapterMyOrder(this,arrayList);
+        adapterMyOrder = new AdapterMyOrderDetails(this,arrayList);
         recyclerView.setAdapter(adapterMyOrder);
     }
 }

@@ -1,29 +1,23 @@
 package com.example.mallcom.Adapter;
 
 import android.app.Activity;
-import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.mallcom.Models.ModelCart;
 import com.example.mallcom.Models.ModelMyOrder;
 import com.example.mallcom.R;
 
 import java.util.ArrayList;
 
 
-public class AdapterMyOrder extends RecyclerView.Adapter<AdapterMyOrder.ViewHolder> {
+public class AdapterMyOrderDetails extends RecyclerView.Adapter<AdapterMyOrderDetails.ViewHolder> {
 
 //    Typeface tf;
     int current_page, last_page;
@@ -33,7 +27,7 @@ public class AdapterMyOrder extends RecyclerView.Adapter<AdapterMyOrder.ViewHold
     private Activity activity;
     Spinner spinner;
 //    RelativeLayout container;
-    public AdapterMyOrder(Activity activity, ArrayList<ModelMyOrder> r) {
+    public AdapterMyOrderDetails(Activity activity, ArrayList<ModelMyOrder> r) {
         this.mInflater = LayoutInflater.from(activity);
         this.arrayList = r;
         this.activity = activity;
@@ -41,7 +35,7 @@ public class AdapterMyOrder extends RecyclerView.Adapter<AdapterMyOrder.ViewHold
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.my_order_item, parent, false);
+        View view = mInflater.inflate(R.layout.my_order_item_details, parent, false);
 
         return new ViewHolder(view);
     }
