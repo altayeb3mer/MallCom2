@@ -1,109 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+<androidx.cardview.widget.CardView android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="@dimen/margin_small_size"
-    android:layoutDirection="rtl"
-    >
-
-    <TableLayout
-        app:layout_constraintTop_toTopOf="parent"
+    android:layout_margin="@dimen/margin_normal_size"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_margin="@dimen/margin_small_size"
+        android:layoutDirection="rtl"
+        >
 
-        <LinearLayout
-            android:layout_marginTop="@dimen/margin_normal_size"
+        <TableLayout
+            app:layout_constraintTop_toTopOf="parent"
             android:layout_width="match_parent"
-            android:weightSum="3">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="تاريخ الطلب : "
-                android:textStyle="bold"
-                android:textSize="@dimen/txt_normal_size"/>
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:text="12-2-2021"
-                android:textSize="@dimen/txt_normal_size"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_marginTop="@dimen/margin_normal_size"
-            android:layout_width="match_parent"
-            android:weightSum="3">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="عدد العناصر : "
-                android:textStyle="bold"
-                android:textSize="@dimen/txt_normal_size"/>
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:text="2 عصر"
-                android:textSize="@dimen/txt_normal_size"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_marginTop="@dimen/margin_normal_size"
-            android:layout_width="match_parent"
-            android:weightSum="3">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="رقم الطلب : "
-                android:textStyle="bold"
-                android:textSize="@dimen/txt_normal_size"/>
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:text="12-2-2021"
-                android:textSize="@dimen/txt_normal_size"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_marginTop="@dimen/margin_normal_size"
-            android:layout_width="match_parent"
-            android:weightSum="3">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="الاجمالي : "
-                android:textStyle="bold"
-                android:textSize="@dimen/txt_normal_size"/>
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:text="90.000  ج س"
-                android:textSize="@dimen/txt_normal_size"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_marginTop="@dimen/margin_normal_size"
-            android:layout_width="match_parent"
-            android:weightSum="3">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.5"
-                android:text="الزمن المتوقع للتوصيل : "
-                android:textStyle="bold"
-                android:textSize="@dimen/txt_normal_size"/>
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.5"
-                android:text="ساعة"
-                android:textSize="@dimen/txt_normal_size"/>
-        </LinearLayout>
+            android:layout_height="wrap_content">
 
-    </TableLayout>
+            <LinearLayout
+                android:layout_marginTop="@dimen/margin_normal_size"
+                android:layout_width="match_parent"
+                android:weightSum="3">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="تاريخ الطلب : "
+                    android:textStyle="bold"
+                    android:textSize="@dimen/txt_normal_size"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="12-2-2021"
+                    android:textSize="@dimen/txt_normal_size"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="@dimen/margin_normal_size"
+                android:layout_width="match_parent"
+                android:weightSum="3">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="عدد العناصر : "
+                    android:textStyle="bold"
+                    android:textSize="@dimen/txt_normal_size"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="2 عصر"
+                    android:textSize="@dimen/txt_normal_size"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="@dimen/margin_normal_size"
+                android:layout_width="match_parent"
+                android:weightSum="3">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="رقم الطلب : "
+                    android:textStyle="bold"
+                    android:textSize="@dimen/txt_normal_size"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="12-2-2021"
+                    android:textSize="@dimen/txt_normal_size"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="@dimen/margin_normal_size"
+                android:layout_width="match_parent"
+                android:weightSum="3">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="الاجمالي : "
+                    android:textStyle="bold"
+                    android:textSize="@dimen/txt_normal_size"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="90.000  ج س"
+                    android:textSize="@dimen/txt_normal_size"/>
+            </LinearLayout>
+            <LinearLayout
+                android:gravity="center_vertical"
+                android:layout_marginTop="@dimen/margin_normal_size"
+                android:layout_width="match_parent"
+                android:weightSum="3">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="حالة الطلب : "
+                    android:textStyle="bold"
+                    android:textSize="@dimen/txt_normal_size"/>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:background="@drawable/shape_btn_bg_my_order_item"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/txt_normal_size"
+                        android:textColor="@android:color/white"
+                        android:paddingRight="@dimen/margin_normal_size"
+                        android:paddingLeft="@dimen/margin_normal_size"
+                        android:text="في الطريق"
+                        />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:visibility="gone"
+                android:layout_marginTop="@dimen/margin_normal_size"
+                android:layout_width="match_parent"
+                android:weightSum="3">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5"
+                    android:text="الزمن المتوقع للتوصيل : "
+                    android:textStyle="bold"
+                    android:textSize="@dimen/txt_normal_size"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5"
+                    android:text="ساعة"
+                    android:textSize="@dimen/txt_normal_size"/>
+            </LinearLayout>
+
+        </TableLayout>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
