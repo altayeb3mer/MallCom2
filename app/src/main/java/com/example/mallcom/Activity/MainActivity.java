@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 break;
             }
             case R.id.dept2:{
-                startActivity(new Intent(getApplicationContext(),MyOrder.class));
+                startActivity(new Intent(getApplicationContext(), MyOrderDetails.class));
                 break;
             }
 

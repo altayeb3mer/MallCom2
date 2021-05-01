@@ -13,7 +13,7 @@ import com.example.mallcom.Utils.ToolbarClass;
 
 import java.util.ArrayList;
 
-public class MyOrder extends ToolbarClass {
+public class MyOrderDetails extends ToolbarClass {
 
 
     RecyclerView recyclerView;
