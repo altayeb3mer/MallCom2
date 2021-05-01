@@ -3,12 +3,105 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="@dimen/margin_small_size">
+    android:layout_margin="@dimen/margin_small_size"
+    android:layoutDirection="rtl"
+    >
 
     <TableLayout
         app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_marginTop="@dimen/margin_normal_size"
+            android:layout_width="match_parent"
+            android:weightSum="3">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="تاريخ الطلب : "
+                android:textStyle="bold"
+                android:textSize="@dimen/txt_normal_size"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="12-2-2021"
+                android:textSize="@dimen/txt_normal_size"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="@dimen/margin_normal_size"
+            android:layout_width="match_parent"
+            android:weightSum="3">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="عدد العناصر : "
+                android:textStyle="bold"
+                android:textSize="@dimen/txt_normal_size"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="2 عصر"
+                android:textSize="@dimen/txt_normal_size"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="@dimen/margin_normal_size"
+            android:layout_width="match_parent"
+            android:weightSum="3">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="رقم الطلب : "
+                android:textStyle="bold"
+                android:textSize="@dimen/txt_normal_size"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="12-2-2021"
+                android:textSize="@dimen/txt_normal_size"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="@dimen/margin_normal_size"
+            android:layout_width="match_parent"
+            android:weightSum="3">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="الاجمالي : "
+                android:textStyle="bold"
+                android:textSize="@dimen/txt_normal_size"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="90.000  ج س"
+                android:textSize="@dimen/txt_normal_size"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="@dimen/margin_normal_size"
+            android:layout_width="match_parent"
+            android:weightSum="3">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.5"
+                android:text="الزمن المتوقع للتوصيل : "
+                android:textStyle="bold"
+                android:textSize="@dimen/txt_normal_size"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.5"
+                android:text="ساعة"
+                android:textSize="@dimen/txt_normal_size"/>
+        </LinearLayout>
 
     </TableLayout>
 
