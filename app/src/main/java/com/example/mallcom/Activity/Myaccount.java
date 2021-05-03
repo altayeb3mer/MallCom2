@@ -33,7 +33,6 @@ public class Myaccount extends AppCompatActivity{
     }
     public void showDialoag()
     {
-        Toast.makeText(Myaccount.this,"more", Toast.LENGTH_LONG).show();
         LayoutInflater factory = LayoutInflater.from(getApplicationContext());
         final View deleteDialogView = factory.inflate(R.layout.dialog_deliev, null);
         final AlertDialog deleteDialog = new AlertDialog.Builder(getApplicationContext()).create();
