@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link Fragment4#newInstance} factory method to
+ * Use the  factory method to
  * create an instance of this fragment.
  */
 public class Fragment4 extends Fragment {
@@ -39,7 +39,7 @@ public class Fragment4 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_4, container, false);
+       view = inflater.inflate(R.layout.fragment_3, container, false);
         init();
         return view;
     }

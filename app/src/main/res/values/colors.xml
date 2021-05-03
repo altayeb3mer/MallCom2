@@ -5,8 +5,13 @@
     <color name="colorAccent">#2A3683</color>
     <color name="searchCardBg">#F7F7F7</color>
     <color name="new_price_bg">#D8EDFA</color>
+    <color name="textcolor">#67a0c4</color>
+    <color name="textcolorblack">#000000</color>
 
 
     <color name="productActivityColor">#293377</color>
     <color name="cardBg">#F1F2F4</color>
+    <color name="white">#ffffff</color>
+    <color name="gray_dialog">#D8D8D8</color>
+    <color name="grayColor">#7A7777</color>
 </resources>

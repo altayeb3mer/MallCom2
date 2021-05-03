@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.Myaccount"
+    >
+    <include
+        layout="@layout/toolbar"
+        android:id="@+id/toolbar"/>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="250dp"
+    android:background="@color/colorPrimary"
+    >
+                  <LinearLayout
+                   android:layout_gravity="center"
+                   android:gravity="center"
+                   android:layout_width="match_parent"
+                   android:orientation="vertical"
+                   android:background="@color/colorPrimary"
+                   android:layout_height="wrap_content">
+<RelativeLayout
+    android:id="@+id/canedite"
+    android:clickable="true"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    >
+        <de.hdodenhof.circleimageview.CircleImageView
+
+                        android:layout_centerVertical="true"
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/profile_image"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        app:civ_border_width="1dp"
+                        app:civ_border_color="@android:color/white"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/profile_test"
+                        app:civ_border_overlay="true"
+                        android:layout_margin="@dimen/margin_normal_size"
+                        />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_edit"
+        android:layout_marginTop="30dp"
+        >
+
+    </ImageView>
+                </RelativeLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="الطيب عمر"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/txt_large_size"
+                android:textStyle="bold" />
+               </LinearLayout>
+
+</LinearLayout>
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+<LinearLayout
+    android:layout_marginTop="250dp"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_marginRight="20dp"
+    android:layout_marginLeft="20dp"
+    android:layout_height="match_parent">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text=" الاسم"
+            android:gravity="right"
+            android:layout_gravity="right"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/txt_small_size"
+android:textStyle="bold" />
+
+
+        <EditText
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="الطيب عمر"
+             android:focusable="false"
+            android:clickable="false"
+            android:textColor="@color/grayColor"
+            android:cursorVisible="false"
+              android:gravity="right"
+            android:layout_gravity="right"
+            android:textSize="@dimen/txt_small_size"
+              />
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text=" الولاية"
+            android:gravity="right"
+            android:layout_gravity="right"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/txt_small_size"
+android:textStyle="bold" />
+
+
+        <EditText
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=" الخرطوم"
+    android:focusable="false"
+    android:clickable="false"
+    android:cursorVisible="false"
+            android:textColor="@color/grayColor"
+
+android:gravity="right"
+            android:layout_gravity="right"
+            android:textSize="@dimen/txt_small_size"
+ />
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text=" المدينة"
+            android:gravity="right"
+            android:layout_gravity="right"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/txt_small_size"
+android:textStyle="bold" />
+
+
+        <EditText
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=" الخرطوم"
+    android:focusable="false"
+    android:clickable="false"
+    android:cursorVisible="false"
+            android:textColor="@color/grayColor"
+
+             android:gravity="right"
+            android:layout_gravity="right"
+            android:textSize="@dimen/txt_small_size" />
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text=" المنطقة"
+            android:gravity="right"
+            android:layout_gravity="right"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/txt_small_size"
+android:textStyle="bold" />
+
+
+        <EditText
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=" الخرطوم"
+    android:focusable="false"
+    android:clickable="false"
+    android:cursorVisible="false"
+            android:textColor="@color/grayColor"
+
+android:gravity="right"
+            android:layout_gravity="right"
+            android:textSize="@dimen/txt_small_size"
+ />
+</LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</RelativeLayout>
