@@ -38,4 +38,5 @@ public class MyOrderDetails extends ToolbarClass {
         adapterMyOrder = new AdapterMyOrderDetails(this,arrayList);
         recyclerView.setAdapter(adapterMyOrder);
     }
+
 }

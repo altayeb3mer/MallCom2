@@ -19,6 +19,7 @@ public class Notifications extends ToolbarClass {
     RecyclerView recyclerView;
     ArrayList<NotificationModel> arrayList;
     NotoficationAdapter adapterMyOrder;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +28,7 @@ public class Notifications extends ToolbarClass {
 
         init();
     }
+
     private void init() {
         recyclerView = findViewById(R.id.recyclernotification);
         arrayList = new ArrayList<>();

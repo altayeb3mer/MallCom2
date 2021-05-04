@@ -7,9 +7,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toolbar;
 
 import com.example.mallcom.Adapter.AdapterCart;
+import com.example.mallcom.Database.SqlLiteDataBase;
 import com.example.mallcom.Models.ModelCart;
 import com.example.mallcom.R;
 import com.example.mallcom.Utils.Global;
@@ -23,15 +26,46 @@ public class CartActivity extends ToolbarClass {
     AdapterCart adapterCart;
     ArrayList<ModelCart> arrayList;
     AppCompatButton button;
+    public static TextView textViewTotal;
+    LinearLayout layNoData,layBtn;
 
     protected final void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         super.onCreate(R.layout.activity_cart, "السلة");
         new Global().changeStatusBarColor(this,getResources().getColor(R.color.productActivityColor));
         init();
+        getCart();
+    }
+
+    private void getCart() {
+        arrayList = new SqlLiteDataBase(getApplicationContext()).GetAllCart();
+        if (arrayList.size()>0){
+            getTotal(arrayList);
+            adapterCart = new AdapterCart(this,arrayList);
+            recyclerView.setAdapter(adapterCart);
+
+            layBtn.setVisibility(View.VISIBLE);
+            layNoData.setVisibility(View.INVISIBLE);
+        }else{
+            layBtn.setVisibility(View.INVISIBLE);
+            layNoData.setVisibility(View.VISIBLE);
+        }
+    }
+
+    public static double getTotal(ArrayList<ModelCart> list){
+        double total = 0;
+        for (int i = 0; i < list.size(); i++) {
+            total = total + (Double.parseDouble(list.get(i).getPrice1())*Double.parseDouble(list.get(i).getQty()));
+            textViewTotal.setText(String.valueOf(total));
+        }
+        double a=0d;
+        return a;
     }
 
     private void init() {
+        layNoData = findViewById(R.id.layNoData);
+        layBtn = findViewById(R.id.btnLay);
+        textViewTotal = findViewById(R.id.total);
         button = findViewById(R.id.btn);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,13 +74,5 @@ public class CartActivity extends ToolbarClass {
             }
         });
         recyclerView = findViewById(R.id.recycler);
-        arrayList = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
-            ModelCart modelCart = new ModelCart();
-            modelCart.setId(""+i);
-            arrayList.add(modelCart);
-        }
-        adapterCart = new AdapterCart(this,arrayList);
-        recyclerView.setAdapter(adapterCart);
     }
 }

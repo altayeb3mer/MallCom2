@@ -206,6 +206,7 @@
                 android:textSize="@dimen/txt_large_size"
                 android:gravity="center"/>
             <TextView
+                android:id="@+id/addToCart"
                 android:textColor="@color/productActivityColor"
                 android:layout_weight="0.5"
                 android:layout_width="0dp"
