@@ -7,7 +7,6 @@
     tools:context=".Activity.CartActivity"
     android:layoutDirection="ltr">
 
-
     <include
         layout="@layout/public_toolbar_cart"
         android:id="@+id/toolbar"/>
@@ -87,6 +86,7 @@
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
+
     <LinearLayout
         android:visibility="gone"
         android:id="@+id/layNoData"
