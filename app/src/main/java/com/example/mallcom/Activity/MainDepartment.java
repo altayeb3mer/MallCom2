@@ -59,6 +59,7 @@ public class MainDepartment extends ToolbarClass {
         adapterMyOrder = new MainDepartmentAdapter(this,arrayList);
         recyclerView.setAdapter(adapterMyOrder);
     }
+
     LinearLayout progressLay;
     private void addJob() {
         arrayList = new ArrayList<>();
