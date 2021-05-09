@@ -17,7 +17,7 @@ public class Api {
     }
     //getCat
     public interface RetrofitCategory {
-        @GET("api/v1/auth/signUp")
+        @GET("api/v1/public/getCategories")
         Call<String> putParam();
     }
 

@@ -9,12 +9,13 @@
     android:layout_marginRight="@dimen/margin_normal_size"
     android:id="@+id/container">
     <de.hdodenhof.circleimageview.CircleImageView
-        android:src="@drawable/hhhhh"
+        android:id="@+id/img"
         android:layout_width="50dp"
         android:layout_height="55dp"
         app:civ_border_overlay="true"
         />
     <TextView
+        android:id="@+id/name"
         android:layout_marginTop="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
