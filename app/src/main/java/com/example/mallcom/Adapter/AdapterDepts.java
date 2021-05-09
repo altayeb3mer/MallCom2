@@ -8,26 +8,31 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.mallcom.Activity.SubDept;
+import com.example.mallcom.Models.DepartmentModel;
 import com.example.mallcom.Models.ModelDept;
 import com.example.mallcom.R;
 
 import java.util.ArrayList;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class AdapterDepts extends RecyclerView.Adapter<AdapterDepts.ViewHolder> {
 
 //    Typeface tf;
     int current_page, last_page;
-    private ArrayList<ModelDept> arrayList;
+    private ArrayList<DepartmentModel> arrayList;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
     private Activity activity;
 //    RelativeLayout container;
-    public AdapterDepts(Activity activity, ArrayList<ModelDept> r) {
+    public AdapterDepts(Activity activity, ArrayList<DepartmentModel> r) {
         this.mInflater = LayoutInflater.from(activity);
         this.arrayList = r;
         this.activity = activity;
@@ -43,32 +48,20 @@ public class AdapterDepts extends RecyclerView.Adapter<AdapterDepts.ViewHolder> 
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-        final ModelDept item = arrayList.get(position);
-//        try {
-//            Glide.with(activity).load(Api.ROOT_URL+item.getImage())
-//                    .into(holder.imageView);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//
+        final DepartmentModel item = arrayList.get(position);
+
+        holder.textViewName.setText(item.getName());
+        Glide.with(activity).load(item.getImage()).into(holder.imageView);
         holder.container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(activity, SubDept.class);
-                activity.startActivity(intent);
+                if (item.getHasChild()){
+                    Toast.makeText(activity, "has child", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(activity, "has no child", Toast.LENGTH_SHORT).show();
+                }
             }
         });
-//        holder.textViewTitle.setText(item.getTitle());
-//        holder.textViewPrice.setText(item.getPrice()+" "+"جنيه سوداني");
-//
-//
-//
-//        holder.layDel.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                deleteAds(item.getType(),item.getId(),position);
-//            }
-//        });
 
 
     }
@@ -91,17 +84,16 @@ public class AdapterDepts extends RecyclerView.Adapter<AdapterDepts.ViewHolder> 
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        ImageView imageView;
         LinearLayout container;
-        TextView textViewTitle, textViewPrice;
+        TextView textViewName;
+        CircleImageView imageView;
 
         ViewHolder(View itemView) {
             super(itemView);
-//            layDel = itemView.findViewById(R.id.layDel);
-//            imageView = itemView.findViewById(R.id.img);
+
+            textViewName = itemView.findViewById(R.id.name);
+            imageView = itemView.findViewById(R.id.img);
             container = itemView.findViewById(R.id.container);
-//            textViewTitle = itemView.findViewById(R.id.title);
-//            textViewPrice = itemView.findViewById(R.id.price);
 
         }
 

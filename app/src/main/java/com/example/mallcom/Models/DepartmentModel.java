@@ -1,13 +1,32 @@
 package com.example.mallcom.Models;
 
 public class DepartmentModel {
-    private String id;
+    private String name;
+    private String image;
+    private boolean hasChild;
 
-    public String getId() {
-        return id;
+
+    public String getImage() {
+        return image;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public boolean getHasChild() {
+        return hasChild;
+    }
+
+    public void setHasChild(boolean hasChild) {
+        this.hasChild = hasChild;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
