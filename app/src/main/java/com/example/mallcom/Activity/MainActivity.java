@@ -8,11 +8,13 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.mallcom.Adapter.ViewPagerAdapter;
+import com.example.mallcom.Database.SharedPrefManager;
 import com.example.mallcom.Fragment.Fragment1;
 import com.example.mallcom.Fragment.Fragment2;
 import com.example.mallcom.Fragment.Fragment3;
@@ -32,16 +34,29 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     NavigationView navigationView;
     ImageView ic_menu_nav,imgCart;
 
+    CardView cardSearch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nav_drawer);
+        if (SharedPrefManager.getInstance(this).getAppToken().equals("")){
+            startActivity(new Intent(this,Login.class));
+            finish();
+        }
+
         new Global().changeStatusBarColor(this,getResources().getColor(R.color.colorPrimary));
         init();
     }
 
     private void init() {
+        cardSearch = findViewById(R.id.cardSearch);
+        cardSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this,Products.class));
+            }
+        });
         imgCart = findViewById(R.id.imgCart);
         imgCart.setOnClickListener(new View.OnClickListener() {
             @Override

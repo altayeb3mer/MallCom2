@@ -4,8 +4,25 @@ public class ModelProducts {
     private String id;
     private String name;
     private String image;
+    private String price;
+    private String rate;
 
 
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public String getRate() {
+        return rate;
+    }
+
+    public void setRate(String rate) {
+        this.rate = rate;
+    }
 
     public String getId() {
         return id;

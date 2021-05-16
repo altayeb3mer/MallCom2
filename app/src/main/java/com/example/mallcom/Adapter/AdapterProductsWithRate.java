@@ -10,8 +10,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.mallcom.Activity.ProductDetails;
 import com.example.mallcom.Activity.Products;
 import com.example.mallcom.Models.ModelProducts;
@@ -50,10 +52,27 @@ public class AdapterProductsWithRate extends RecyclerView.Adapter<AdapterProduct
         holder.container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                activity.startActivity(new Intent(activity, Products.class));
+                Intent intent = new Intent(activity, ProductDetails.class);
+                intent.putExtra("id",item.getId());
+                activity.startActivity(intent);
             }
         });
-//
+
+        try {
+            Glide.with(activity).load(item.getImage())
+                    .into(holder.imageView);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        holder.textViewName.setText(item.getName());
+        if (item.getRate()!=null){
+            holder.textViewRate.setText(item.getRate());
+        }else{
+            holder.cardRate.setVisibility(View.GONE);
+        }
+        holder.textViewPrice.setText(item.getPrice());
+
+
 //        holder.textViewPriceCross.setPaintFlags( holder.textViewPriceCross.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 //
 //
@@ -80,15 +99,18 @@ public class AdapterProductsWithRate extends RecyclerView.Adapter<AdapterProduct
 
         ImageView imageView;
         LinearLayout container;
-        TextView textViewTitle, textViewPriceCross;
+        TextView  textViewPrice,textViewName,
+                textViewRate;
+        CardView cardRate;
 
         ViewHolder(View itemView) {
             super(itemView);
-//            layDel = itemView.findViewById(R.id.layDel);
-//            imageView = itemView.findViewById(R.id.img);
+            cardRate = itemView.findViewById(R.id.cardRate);
+            imageView = itemView.findViewById(R.id.img);
+            textViewName = itemView.findViewById(R.id.name);
             container = itemView.findViewById(R.id.container);
-//            textViewTitle = itemView.findViewById(R.id.title);
-//            textViewPriceCross = itemView.findViewById(R.id.txtCross);
+            textViewPrice = itemView.findViewById(R.id.price);
+            textViewRate = itemView.findViewById(R.id.rate);
 
         }
 

@@ -57,6 +57,7 @@
                     android:id="@+id/ic_phone"
                     android:src="@drawable/ic_phone"/>
                 <EditText
+                    android:id="@+id/phone"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_toEndOf="@+id/ic_phone"
@@ -87,5 +88,17 @@
             android:text="دخـــــــول"
             android:layout_margin="@dimen/margin_large_size"/>
     </RelativeLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:id="@+id/progressLay"
+        android:visibility="gone">
+        <ProgressBar
+            android:layout_width="60dp"
+            android:layout_height="60dp"/>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

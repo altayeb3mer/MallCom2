@@ -23,7 +23,7 @@ public class Notifications extends ToolbarClass {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_notifications);
+//        setContentView(R.layout.activity_notifications);
         super.onCreate(R.layout.activity_notifications, "الإشعارات");
 
         init();
