@@ -39,6 +39,7 @@ public class Registration extends AppCompatActivity{
     Spinner gender,state;
     EditText fullname,agech;
     LinearLayout progressLay;
+    ArrayList<String> arrayListid = new ArrayList<>();
     HashMap<String,String> hashMap =new HashMap<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,8 +71,10 @@ public class Registration extends AppCompatActivity{
                      hashMap.put("username",fullname.getText().toString());
                      hashMap.put("phone",getIntent().getExtras().getString("userphone"));
                      hashMap.put("password",agech.getText().toString());
-                     hashMap.put("state_id","1");
+                     hashMap.put("state_id",arrayListid.get(state.getSelectedItemPosition()));
                      hashMap.put("gender",gender.getSelectedItem().toString());
+                     Toast.makeText(Registration.this,arrayListid.get(state.getSelectedItemPosition()), LENGTH_LONG).show();
+
                      registration();
                  }
             }
@@ -201,6 +204,7 @@ public class Registration extends AppCompatActivity{
                         for (Stateadata.Datum data : response.body().getData())
                         {
                             arrayList.add(data.getCity());
+                            arrayListid.add(data.getId());
                         }
                         //Toast.makeText(Registration.this,arrayList.size()+"", Toast.LENGTH_LONG).show();
 
