@@ -1,5 +1,7 @@
 package com.example.mallcom.Utils;
 
+import com.example.mallcom.Data.Stateadata;
+
 import java.util.HashMap;
 
 import retrofit2.Call;
@@ -13,7 +15,7 @@ public class Api {
 
     //registration
     public interface RetrofitRegister {
-        @POST("api/v1/auth/signUp")
+        @POST("api/v1/user/register")
         Call<String> putParam(@Body HashMap<String, String> param);
     }
     //search
@@ -45,6 +47,10 @@ public class Api {
     public interface RetrofitGetMyOrders {
         @GET("api/v1/user/ordersDetails")
         Call<String> putParam();
+    }
+    public interface RetrofitGetstate {
+        @GET("api/v1/public/states")
+        Call<Stateadata.Stateresponse> putParam();
     }
 
 
