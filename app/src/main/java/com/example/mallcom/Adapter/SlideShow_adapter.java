@@ -14,6 +14,9 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewpager.widget.PagerAdapter;
 
 
+import com.bumptech.glide.Glide;
+import com.example.mallcom.Activity.ProductDetails;
+import com.example.mallcom.Models.ModelSlider;
 import com.example.mallcom.R;
 
 import java.util.ArrayList;
@@ -26,10 +29,16 @@ public class SlideShow_adapter extends PagerAdapter {
 
 
     public ArrayList<String> urls;
+    public ArrayList<ModelSlider> urls2=new ArrayList<>();
     int detail;
 
     Activity activity;
 
+
+    public SlideShow_adapter(ArrayList<ModelSlider> urls2, Activity activity) {
+        this.urls2 = urls2;
+        this.activity = activity;
+    }
 
     public SlideShow_adapter(Activity activity, ArrayList<String> images) {
         this.activity = activity;
@@ -37,6 +46,13 @@ public class SlideShow_adapter extends PagerAdapter {
         this.urls=images;
         //this.detail=det;
       }
+
+//    public SlideShow_adapter(Activity activity, ArrayList<ModelSlider> urls2) {
+//        this.activity = activity;
+//
+//        this.urls2=urls2;
+//        //this.detail=det;
+//      }
 
 
     @Override
@@ -52,7 +68,7 @@ public class SlideShow_adapter extends PagerAdapter {
     }
 
     @Override
-    public Object instantiateItem(ViewGroup container, int position) {
+    public Object instantiateItem(ViewGroup container, final int position) {
 
         inflater=(LayoutInflater)activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
@@ -60,36 +76,23 @@ public class SlideShow_adapter extends PagerAdapter {
 //        TextView textView_trade_det_img_note = view.findViewById(R.id.trade_det_img_note);
         ImageView imgView=view.findViewById(R.id.img);
 
-//        if(!urls.isEmpty()){
-//            Glide.with(activity).load(URL.ROOT_IMG+urls.get(position))
-//                    .into(imgView);
-//        }
+        if(!urls2.isEmpty()){
+            Glide.with(activity).load(urls2.get(position).getImage())
+                    .into(imgView);
+        }
 
-//        imgView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if (!urls.get(position).equals("")){
-//
-//
-//                    Intent intent = new Intent(activity, IndividualsGallery.class);
-//                    intent.putExtra("list",urls);
-//                    intent.putExtra("title","معرض الصور");
-//                    activity.startActivity(intent);
-//
-////                    if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.M){
-////
-////                    }
-////                    try {
-////                        Intent intent = new Intent(activity, ImageViewer.class);
-////                        intent.putExtra("imgUrl",URL.ROOT_IMG+urls.get(position));
-////                        activity.startActivity(intent);
-////                    }catch (Exception e){
-////                        e.printStackTrace();
-////                        Toast.makeText(activity, "قريبا", Toast.LENGTH_SHORT).show();
-////                    }
-//                }
-//            }
-//        });
+        imgView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!urls2.get(position).getId().equals("")){
+                    Intent intent = new Intent(activity, ProductDetails.class);
+                    intent.putExtra("id",urls2.get(position).getId());
+                    activity.startActivity(intent);
+
+
+                }
+            }
+        });
 
 
         container.addView(view);

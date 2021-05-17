@@ -51,6 +51,7 @@
                 android:layout_alignParentRight="true" />
         </RelativeLayout>
         <androidx.cardview.widget.CardView
+            android:id="@+id/cardSearch"
             android:layout_margin="@dimen/margin_normal_size"
             android:layout_width="match_parent"
             android:layout_height="45dp">
@@ -67,9 +68,10 @@
                     android:layout_marginRight="@dimen/margin_small_size"
                     android:src="@drawable/ic_search"
                     android:layout_alignParentLeft="true" />
-                <EditText
+                <TextView
+                    android:gravity="center_vertical"
                     android:background="@android:color/transparent"
-                    android:hint="ابحث عن منتج"
+                    android:text="ابحث عن منتج"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_toLeftOf="@+id/ic_search"

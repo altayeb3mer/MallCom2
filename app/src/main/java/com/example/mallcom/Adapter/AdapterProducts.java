@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.mallcom.Activity.ProductDetails;
 import com.example.mallcom.Models.ModelItems;
 import com.example.mallcom.R;
@@ -50,13 +51,13 @@ public class AdapterProducts extends RecyclerView.Adapter<AdapterProducts.ViewHo
 
         holder.textViewOldPrice.setPaintFlags( holder.textViewOldPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 
-//        try {
-//            Glide.with(activity).load(Api.ROOT_URL+item.getImage())
-//                    .into(holder.imageView);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//
+        try {
+            Glide.with(activity).load(item.getImage())
+                    .into(holder.imageView);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         holder.container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -64,17 +65,15 @@ public class AdapterProducts extends RecyclerView.Adapter<AdapterProducts.ViewHo
                 activity.startActivity(intent);
             }
         });
-//        holder.textViewTitle.setText(item.getTitle());
-//        holder.textViewPrice.setText(item.getPrice()+" "+"جنيه سوداني");
-//
-//
-//
-//        holder.layDel.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                deleteAds(item.getType(),item.getId(),position);
-//            }
-//        });
+        holder.textViewName.setText(item.getName());
+        holder.textViewDesc.setText(item.getDesc());
+        holder.textViewRate.setText(item.getRate());
+        holder.textViewPrice.setText(item.getFinalPrice());
+        if (Integer.parseInt(item.getFinalPrice())>Integer.parseInt(item.getPrice1())){
+            holder.textViewOldPrice.setText(item.getPrice1());
+        }else{
+           holder.textViewOldPrice.setVisibility(View.GONE);
+        }
 
 
     }
@@ -100,18 +99,19 @@ public class AdapterProducts extends RecyclerView.Adapter<AdapterProducts.ViewHo
 
         ImageView imageView;
         LinearLayout container;
-        TextView textViewOldPrice, textViewPrice;
-//        Spinner spinner;
+        TextView textViewOldPrice, textViewPrice,textViewName,textViewDesc,
+        textViewRate;
 
         ViewHolder(View itemView) {
             super(itemView);
-//            layDel = itemView.findViewById(R.id.layDel);
-//            imageView = itemView.findViewById(R.id.img);
+            imageView = itemView.findViewById(R.id.img);
+            textViewName = itemView.findViewById(R.id.name);
+            textViewDesc = itemView.findViewById(R.id.desc);
             container = itemView.findViewById(R.id.container);
-//            textViewTitle = itemView.findViewById(R.id.title);
+            textViewPrice = itemView.findViewById(R.id.price1);
             textViewOldPrice = itemView.findViewById(R.id.oldPrice);
-//            spinner = itemView.findViewById(R.id.spinner);
-//            initSpinner();
+            textViewRate = itemView.findViewById(R.id.rate);
+
 
         }
 

@@ -14,19 +14,69 @@
         android:background="@color/colorPrimary"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
-        android:layout_height="100dp">
+        android:layout_height="wrap_content">
         <ImageView
+            android:scaleType="fitXY"
+            android:layout_marginTop="@dimen/margin_normal_size"
+            android:layout_marginBottom="@dimen/margin_normal_size"
             android:layoutDirection="ltr"
             android:id="@+id/imgBack"
             android:layout_alignParentEnd="true"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/margin_normal_size"
             android:layout_marginRight="@dimen/margin_normal_size"
             android:src="@drawable/ic_arrow_left"
             android:layout_alignParentRight="true" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_below="@+id/imgBack"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="@dimen/margin_normal_size">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:id="@+id/ic_clear"
+                    android:layout_alignParentStart="true"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/margin_small_size"
+                    android:layout_marginRight="@dimen/margin_small_size"
+                    android:src="@drawable/ic_close_30"
+                    android:layout_alignParentLeft="true" />
+                <EditText
+                    android:imeOptions="actionSearch"
+                    android:inputType="text"
+                    android:id="@+id/edtSearch"
+                    android:textColor="@android:color/black"
+                    android:background="@android:color/transparent"
+                    android:hint="ابحث عن منتج"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toEndOf="@+id/ic_clear"
+                    android:layout_toStartOf="@+id/ic_search2"
+                    android:textSize="@dimen/txt_small_size"
+                    android:layout_toRightOf="@+id/ic_clear"
+                    android:layout_toLeftOf="@+id/ic_search2" />
+                <ImageView
+                    android:id="@+id/ic_search2"
+                    android:layout_alignParentEnd="true"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/margin_small_size"
+                    android:layout_marginRight="@dimen/margin_small_size"
+                    android:src="@drawable/ic_search_black"
+                    android:layout_alignParentRight="true" />
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
         <TextView
+            android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="bold"
@@ -38,6 +88,7 @@
             android:layout_toLeftOf="@+id/imgBack" />
 
         <ImageView
+            android:visibility="gone"
             android:padding="@dimen/margin_small_size"
             android:id="@+id/imgCart"
             android:layout_alignParentStart="true"
@@ -49,6 +100,7 @@
             android:src="@drawable/ic_cart"
             android:layout_alignParentLeft="true" />
         <ImageView
+            android:visibility="gone"
             android:layout_toEndOf="@+id/imgCart"
             android:id="@+id/imgMicrophone"
             android:layout_width="30dp"
@@ -59,6 +111,7 @@
             android:src="@drawable/ic_microphone"
             android:layout_toRightOf="@+id/imgCart" />
         <ImageView
+            android:visibility="gone"
             android:layout_toEndOf="@+id/imgMicrophone"
             android:id="@+id/imgSearch"
             android:layout_width="30dp"
@@ -156,4 +209,17 @@
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+    <LinearLayout
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:id="@+id/progressLay"
+        android:visibility="gone">
+        <ProgressBar
+            android:layout_width="60dp"
+            android:layout_height="60dp"/>
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
