@@ -57,12 +57,12 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.ViewHolder> {
         final ModelCart item = arrayList.get(position);
 
 //
-//        try {
-//            Glide.with(activity).load(item.getImage())
-//                    .into(holder.imageView);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+        try {
+            Glide.with(activity).load(item.getImage())
+                    .into(holder.imageView);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         holder.textViewName.setText(item.getName());
         holder.textViewDesc.setText(item.getDescription());
         holder.textViewPrice.setText(item.getPrice1());
@@ -84,6 +84,7 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.ViewHolder> {
             public void onClick(View view) {
                 new SqlLiteDataBase(activity).deleteCartItem(item.getId());
                 arrayList.remove(position);
+                notifyItemRemoved(position);
                 notifyDataSetChanged();
             }
         });

@@ -114,7 +114,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
                             Intent intent =new Intent(getApplicationContext(),ConfirmPhone.class);
                             intent.putExtra("userId",object.getString("data"));
-                            intent.putExtra("userphone",phone);
                             startActivity(intent);
                             finish();
 
@@ -124,7 +123,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                         }
                         case "false": {
                             Intent intent =new Intent(getApplicationContext(),Registration.class);
-                            intent.putExtra("userphone",phone);
+                            intent.putExtra("phone",phone);
                             startActivity(intent);
                             finish();
 
