@@ -79,6 +79,9 @@ public class SlideShow_adapter extends PagerAdapter {
         if(!urls2.isEmpty()){
             Glide.with(activity).load(urls2.get(position).getImage())
                     .into(imgView);
+        }else {
+            Glide.with(activity).load(urls.get(position))
+                    .into(imgView);
         }
 
         imgView.setOnClickListener(new View.OnClickListener() {
@@ -88,8 +91,6 @@ public class SlideShow_adapter extends PagerAdapter {
                     Intent intent = new Intent(activity, ProductDetails.class);
                     intent.putExtra("id",urls2.get(position).getId());
                     activity.startActivity(intent);
-
-
                 }
             }
         });

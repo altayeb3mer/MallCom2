@@ -10,15 +10,12 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
-import com.example.mallcom.Models.ModelItems;
 import com.example.mallcom.R;
 import com.example.mallcom.Utils.Api;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
@@ -55,20 +52,19 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         switch (view.getId()) {
             case R.id.btn: {
                 String phone = editTextPhone.getText().toString();
-                if (!phone.isEmpty()){
-                    if (phone.length()==10){
+                if (!phone.isEmpty()) {
+                    if (phone.length() == 10) {
                         checkAccount(phone);
-                    }else{
+                    } else {
                         Toast.makeText(this, "الرجاء ادخال رقم هاتف صحيح", Toast.LENGTH_SHORT).show();
                     }
-                }else{
+                } else {
                     Toast.makeText(this, "الرجاء ادخال رقم الهاتف", Toast.LENGTH_SHORT).show();
                 }
                 break;
             }
         }
     }
-
 
 
     private void checkAccount(final String phone) {
@@ -86,8 +82,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                         return chain.proceed(ongoing.build());
                     }
                 })
-                .readTimeout(60*5, TimeUnit.SECONDS)
-                .connectTimeout(60*5, TimeUnit.SECONDS)
+                .readTimeout(60 * 5, TimeUnit.SECONDS)
+                .connectTimeout(60 * 5, TimeUnit.SECONDS)
                 .build();
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -98,8 +94,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 .build();
 
         Api.RetrofitCheckAccount service = retrofit.create(Api.RetrofitCheckAccount.class);
-        HashMap<String,String> hashMap =new HashMap<>();
-        hashMap.put("phoneNumber",phone);
+        HashMap<String, String> hashMap = new HashMap<>();
+        hashMap.put("phoneNumber", phone);
         Call<String> call = service.putParam(hashMap);
         call.enqueue(new Callback<String>() {
             @Override
@@ -112,18 +108,17 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
 //                            JSONObject dataObj = object.getJSONObject("data");
 
-                            Intent intent =new Intent(getApplicationContext(),ConfirmPhone.class);
-                            intent.putExtra("userId",object.getString("data"));
+                            Intent intent = new Intent(getApplicationContext(), ConfirmPhone.class);
+                            intent.putExtra("userId", object.getString("data"));
                             startActivity(intent);
                             finish();
-
 
 
                             break;
                         }
                         case "false": {
-                            Intent intent =new Intent(getApplicationContext(),Registration.class);
-                            intent.putExtra("phone",phone);
+                            Intent intent = new Intent(getApplicationContext(), Registration.class);
+                            intent.putExtra("phone", phone);
                             startActivity(intent);
                             finish();
 

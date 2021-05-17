@@ -110,10 +110,10 @@ public class SubDept extends AppCompatActivity {
     }
 
 
-
+    GridLayoutManager gridLayoutManager;
     private void initAdapter( ArrayList<ModelProducts> list) {
         recyclerView = findViewById(R.id.recyclerProduct);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3, GridLayoutManager.VERTICAL, false);
+        gridLayoutManager = new GridLayoutManager(this, 3, GridLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(gridLayoutManager);
         adapterProductsWithRate = new AdapterProductsWithRate(this,list);
         recyclerView.setAdapter(adapterProductsWithRate);

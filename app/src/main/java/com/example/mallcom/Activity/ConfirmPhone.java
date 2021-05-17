@@ -122,6 +122,7 @@ public class ConfirmPhone extends AppCompatActivity  implements View.OnClickList
                             Intent intent =new Intent(getApplicationContext(),MainActivity.class);
                             startActivity(intent);
 
+                            finish();
                             break;
                         }
 //                        case "false": {
