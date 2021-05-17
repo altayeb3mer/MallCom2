@@ -112,7 +112,7 @@ public class Registration extends AppCompatActivity{
                 public void onResponse(Call<String> call, retrofit2.Response<String> response) {
                     try {
                         JSONObject object = new JSONObject(response.body());
-                        Toast.makeText(getApplicationContext(), "حدث خطأ حاول مجددا", Toast.LENGTH_SHORT).show();
+                       // Toast.makeText(getApplicationContext(), "حدث خطأ حاول مجددا", Toast.LENGTH_SHORT).show();
 
                         String success = object.getString("success");
 
@@ -121,8 +121,8 @@ public class Registration extends AppCompatActivity{
 
 //                            JSONObject dataObj = object.getJSONObject("data");
 
-                                Intent intent =new Intent(getApplicationContext(),MainActivity.class);
-                               // intent.putExtra("userId",object.getString("data"));
+                                Intent intent =new Intent(getApplicationContext(),ConfirmPhone.class);
+                                intent.putExtra("userId",object.getString("data"));
                                // intent.putExtra("userphone",phone);
                                 startActivity(intent);
                                 finish();
@@ -137,7 +137,7 @@ public class Registration extends AppCompatActivity{
                               //  startActivity(intent);
                               //  finish();
                                 Toast.makeText(getApplicationContext(), "حدث خطأ حاول مجددا", Toast.LENGTH_SHORT).show();
-                                Toast.makeText(getApplicationContext(), object.getString("error")+":::", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), object.getJSONObject("errors").toString(), Toast.LENGTH_SHORT).show();
 
                                 break;
                             }
@@ -200,7 +200,7 @@ public class Registration extends AppCompatActivity{
 
                         for (Stateadata.Datum data : response.body().getData())
                         {
-                            arrayList.add("  "+data.getCity()+" ");
+                            arrayList.add(data.getCity());
                         }
                         //Toast.makeText(Registration.this,arrayList.size()+"", Toast.LENGTH_LONG).show();
 

@@ -142,13 +142,13 @@
                         android:layout_height="match_parent">
 
                         <Spinner
-                            android:gravity="right"
                             android:id="@+id/state"
-                            android:paddingLeft="@dimen/margin_normal_size"
-                            android:paddingRight="@dimen/margin_normal_size"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@android:color/transparent" />
+                            android:background="@android:color/transparent"
+                            android:gravity="right"
+                            android:paddingLeft="@dimen/margin_normal_size"
+                            android:paddingRight="@dimen/margin_normal_size" />
 
                         <ImageView
                             android:layout_alignParentEnd="true"
