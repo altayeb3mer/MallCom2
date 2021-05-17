@@ -41,6 +41,11 @@ public class Api {
         @GET("api/v1/public/productsWith")
         Call<String> putParam(@QueryMap HashMap<String, String> param);
     }
+    //get my orders
+    public interface RetrofitGetMyOrders {
+        @GET("api/v1/user/ordersDetails")
+        Call<String> putParam();
+    }
 
 
 }

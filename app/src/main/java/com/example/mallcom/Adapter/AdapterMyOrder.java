@@ -1,6 +1,7 @@
 package com.example.mallcom.Adapter;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,7 @@ import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.mallcom.Activity.MyOrderDetails;
 import com.example.mallcom.Models.ModelCart;
 import com.example.mallcom.Models.ModelMyOrder;
 import com.example.mallcom.R;
@@ -51,34 +53,18 @@ public class AdapterMyOrder extends RecyclerView.Adapter<AdapterMyOrder.ViewHold
     public void onBindViewHolder(ViewHolder holder, final int position) {
         final ModelMyOrder item = arrayList.get(position);
 
-//        holder.textViewOldPrice.setPaintFlags( holder.textViewOldPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+        holder.textViewDate.setText(item.getDate().substring(0,10));
+        holder.textViewCount.setText(item.getItemCount());
+        holder.textViewNumber.setText(item.getNumber());
+        holder.textViewTotal.setText(item.getTotal());
+        holder.textViewStatus.setText(item.getStatus());
 
-//        try {
-//            Glide.with(activity).load(Api.ROOT_URL+item.getImage())
-//                    .into(holder.imageView);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//
-//        holder.container.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(activity, DeptsActivity.class);
-//                activity.startActivity(intent);
-//            }
-//        });
-//        holder.textViewTitle.setText(item.getTitle());
-//        holder.textViewPrice.setText(item.getPrice()+" "+"جنيه سوداني");
-//
-//
-//
-//        holder.layDel.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                deleteAds(item.getType(),item.getId(),position);
-//            }
-//        });
-
+        holder.container.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                activity.startActivity(new Intent(activity, MyOrderDetails.class));
+            }
+        });
 
     }
 
@@ -100,20 +86,20 @@ public class AdapterMyOrder extends RecyclerView.Adapter<AdapterMyOrder.ViewHold
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        ImageView imageView;
         ConstraintLayout container;
-        TextView textViewOldPrice, textViewPrice;
-//        Spinner spinner;
+        TextView textViewDate, textViewTotal,textViewCount,textViewNumber,textViewStatus;
+
 
         ViewHolder(View itemView) {
             super(itemView);
-//            layDel = itemView.findViewById(R.id.layDel);
-//            imageView = itemView.findViewById(R.id.img);
-//            container = itemView.findViewById(R.id.container);
-//            textViewTitle = itemView.findViewById(R.id.title);
-//            textViewOldPrice = itemView.findViewById(R.id.oldPrice);
-//            spinner = itemView.findViewById(R.id.spinner);
-//            initSpinner();
+            textViewDate = itemView.findViewById(R.id.date);
+            textViewTotal = itemView.findViewById(R.id.total);
+            textViewCount = itemView.findViewById(R.id.count);
+            textViewNumber = itemView.findViewById(R.id.number);
+            textViewStatus = itemView.findViewById(R.id.status);
+
+            container = itemView.findViewById(R.id.container);
+
 
         }
 

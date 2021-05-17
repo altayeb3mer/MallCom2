@@ -115,10 +115,9 @@ public class ConfirmPhone extends AppCompatActivity  implements View.OnClickList
                     String success = object.getString("success");
                     switch (success) {
                         case "true": {
-
                             JSONObject dataObj = object.getJSONObject("data");
                             String token = object.getString("token");
-                            SharedPrefManager.getInstance(getApplicationContext()).storeAppToken("Barer"+" "+token);
+                            SharedPrefManager.getInstance(getApplicationContext()).storeAppToken("Bearer"+" "+token);
 
                             Intent intent =new Intent(getApplicationContext(),MainActivity.class);
                             startActivity(intent);
