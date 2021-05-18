@@ -2,7 +2,6 @@ package com.example.mallcom.Adapter;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.mallcom.Activity.ProductDetails;
-import com.example.mallcom.Activity.Products;
 import com.example.mallcom.Models.ModelProducts;
 import com.example.mallcom.R;
 

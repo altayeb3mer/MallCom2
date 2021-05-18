@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         cardSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this,Products.class));
+                startActivity(new Intent(MainActivity.this, SearchProducts.class));
             }
         });
         imgCart = findViewById(R.id.imgCart);
@@ -151,6 +151,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             }
 
         }
+        drawerLayout.closeDrawers();
         return true;
     }
 
