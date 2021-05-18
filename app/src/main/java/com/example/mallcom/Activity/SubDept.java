@@ -44,16 +44,22 @@ public class SubDept extends AppCompatActivity {
     ViewPager viewPager;
     CircleIndicator circleIndicator;
 
-    //rec
 
     View view;
     AdapterProductsWithRate adapterProductsWithRate;
     RecyclerView recyclerView;
+    String cat="Clothes",subCat="Boys";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sub_dept);
+
+        Bundle args = getIntent().getExtras();
+        if (args!=null){
+            cat = args.getString("category");
+            subCat = args.getString("subCategory");
+        }
 
         init();
         getProducts();
@@ -152,8 +158,8 @@ public class SubDept extends AppCompatActivity {
 
         Api.RetrofitGetProduct service = retrofit.create(Api.RetrofitGetProduct.class);
         HashMap<String,String> hashMap =new HashMap<>();
-        hashMap.put("category","Clothes");
-        hashMap.put("subCategory","Boys");
+        hashMap.put("category",cat);
+        hashMap.put("subCategory",subCat);
         Call<String> call = service.putParam(hashMap);
         call.enqueue(new Callback<String>() {
             @Override

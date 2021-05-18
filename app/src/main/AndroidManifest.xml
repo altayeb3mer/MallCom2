@@ -20,7 +20,7 @@
         <activity android:name=".Activity.Payment1" />
         <activity android:name=".Activity.DeliveryDetails" />
         <activity android:name=".Activity.FilterActivity" />
-        <activity android:name=".Activity.Products" />
+        <activity android:name=".Activity.SearchProducts" />
         <activity android:name=".Activity.ProductDetails" />
         <activity android:name=".Activity.ConfirmPhone" />
         <activity android:name=".Activity.Registration" />

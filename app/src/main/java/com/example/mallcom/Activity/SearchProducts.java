@@ -2,7 +2,6 @@ package com.example.mallcom.Activity;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
@@ -24,12 +23,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mallcom.Adapter.AdapterProducts;
-import com.example.mallcom.Models.DepartmentModel;
 import com.example.mallcom.Models.ModelItems;
 import com.example.mallcom.R;
 import com.example.mallcom.Utils.Api;
 import com.example.mallcom.Utils.Global;
-import com.example.mallcom.Utils.ToolbarClass;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import org.json.JSONArray;
@@ -48,7 +45,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
-public class Products extends AppCompatActivity {
+public class SearchProducts extends AppCompatActivity {
 
     AdapterProducts adapterProducts;
     RecyclerView recyclerView;
@@ -58,7 +55,7 @@ public class Products extends AppCompatActivity {
     LinearLayout laySort,layFilter;
     //search
     EditText editTextSearch;
-    ImageView ic_clear;
+    ImageView ic_clear,ic_search2;
     String query="";
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -95,6 +92,13 @@ public class Products extends AppCompatActivity {
     private void init() {
         arrayList = new ArrayList<>();
 
+        ic_search2 = findViewById(R.id.ic_search2);
+        ic_search2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                preSearch();
+            }
+        });
         progressLay = findViewById(R.id.progressLay);
         editTextSearch = findViewById(R.id.edtSearch);
         editTextSearch.addTextChangedListener(editTextWatcher);
@@ -103,17 +107,7 @@ public class Products extends AppCompatActivity {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                    query = editTextSearch.getText().toString().trim();
-                    if (!query.equals("")) {
-                        hideKeyboard(Products.this);
-                        if (arrayList.size()>0){
-                            arrayList.clear();
-                            adapterProducts.notifyDataSetChanged();
-                        }
-                        getSearch();
-                    } else {
-                        Toast.makeText(Products.this, "الرجاء كتابة شي للبحث", Toast.LENGTH_SHORT).show();
-                    }
+                    preSearch();
                     return true;
                 }
                 return false;
@@ -126,7 +120,7 @@ public class Products extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 editTextSearch.setText("");
-                showKeyboard(Products.this);
+                showKeyboard(SearchProducts.this);
                 query = "";
             }
         });
@@ -156,6 +150,21 @@ public class Products extends AppCompatActivity {
         recyclerView = findViewById(R.id.recycler);
 
     }
+
+    private void preSearch(){
+        query = editTextSearch.getText().toString().trim();
+        if (!query.equals("")) {
+            hideKeyboard(SearchProducts.this);
+            if (arrayList.size()>0){
+                arrayList.clear();
+                adapterProducts.notifyDataSetChanged();
+            }
+            getSearch();
+        } else {
+            Toast.makeText(SearchProducts.this, "الرجاء كتابة شي للبحث", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 
     public void showKeyboard(Activity activity) {
         InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
@@ -263,15 +272,20 @@ public class Products extends AppCompatActivity {
                                 departmentModel.setFinalPrice(itemData.getString("final_price"));
 
                                 JSONArray rateArray = itemData.getJSONArray("rate");
-                                JSONObject rateObj = rateArray.getJSONObject(0);
-                                departmentModel.setRate(rateObj.getString("rate"));
+                                if (rateArray.length()>0){
+                                    JSONObject rateObj = rateArray.getJSONObject(0);
+                                    departmentModel.setRate(rateObj.getString("rate"));
+                                }else {
+                                    departmentModel.setRate("");
+                                }
+
                                 arrayList.add(departmentModel);
                             }
 
                             if (arrayList.size()>0){
                                 initAdapter(arrayList);
                             }else{
-                                Toast.makeText(Products.this, "لاتوجد نتائج للبحث", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SearchProducts.this, "لاتوجد نتائج للبحث", Toast.LENGTH_SHORT).show();
                             }
 
 
