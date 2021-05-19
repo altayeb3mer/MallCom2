@@ -1,5 +1,6 @@
 package com.example.mallcom.Utils;
 
+import com.example.mallcom.Data.Favoritedata;
 import com.example.mallcom.Data.Notification;
 import com.example.mallcom.Data.Stateadata;
 
@@ -26,7 +27,7 @@ public class Api {
         Call<Notification.Notificationresponse> putParam();
     }public interface Retrofitfavorite {
         @GET("api/v1/user/favourit")
-        Call<Notification.Notificationresponse> putParam();
+        Call<Favoritedata.Favoriteresponse> putParam();
     }
     //search
     public interface RetrofitSearch {
