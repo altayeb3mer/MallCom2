@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -51,9 +52,16 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHo
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
+        TextView dayn,daten,itemnamef,itempricef,itemratef;
+                    ImageView itemimgf;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-
+           // dayn=itemView.findViewById(R.id.datef);
+            itemimgf=itemView.findViewById(R.id.itemimgf);
+            daten=itemView.findViewById(R.id.datef);
+            itemnamef=itemView.findViewById(R.id.itemnamef);
+            itempricef=itemView.findViewById(R.id.itempricef);
+            itemratef=itemView.findViewById(R.id.itemratef);
         }
     }
 
