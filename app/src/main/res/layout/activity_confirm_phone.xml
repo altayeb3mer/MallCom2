@@ -39,7 +39,7 @@
             android:textSize="@dimen/txt_normal_size"
             android:textColor="@color/colorPrimary"
             android:textStyle="bold"
-            android:text="ادخل الرمز المكون من 4 ارقام"
+            android:text="ادخل الرمز المكون من 6 ارقام"
             />
 
         <com.goodiebag.pinview.Pinview

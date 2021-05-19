@@ -9,14 +9,15 @@
     android:layout_marginTop="@dimen/margin_normal_size"
     android:id="@+id/container"
     android:layout_margin="@dimen/margin_small_size">
+
     <TextView
-        android:layout_marginTop="15dp"
+        android:id="@+id/datef"
         android:layout_width="wrap_content"
-        android:textColor="@color/grayColor"
         android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
         android:text="Apr 23, 2021"
-        android:textSize="@dimen/txt_normal_size"
-        />
+        android:textColor="@color/grayColor"
+        android:textSize="@dimen/txt_normal_size" />
     <LinearLayout
         android:layout_marginTop="8dp"
         android:layout_width="match_parent"
@@ -34,6 +35,7 @@
                 app:cardCornerRadius="@dimen/margin_normal_size">
 
                 <ImageView
+                    android:id="@+id/itemimgf"
                     android:layout_width="56dp"
                     android:layout_height="match_parent"
                     android:scaleType="center"
@@ -46,31 +48,36 @@
             android:layout_width="wrap_content"
             android:orientation="vertical"
             android:layout_height="wrap_content">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorAccent"
-                android:textStyle="bold"
-                android:textSize="@dimen/txt_small_size"
-                android:text="هاتف هواوي Y7"></TextView>
 
             <TextView
+                android:id="@+id/itemnamef"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="هاتف هواوي Y7"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/txt_small_size"
+                android:textStyle="bold"></TextView>
+
+            <TextView
+                android:id="@+id/itempricef"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="55.000 جنيه سوداني"
                 android:textColor="#67a0c4"
                 android:textSize="@dimen/txt_small_size"></TextView>
+
             <TextView
+                android:id="@+id/itemratef"
                 android:layout_width="wrap_content"
-                android:layout_marginTop="10dp"
-                android:textSize="@dimen/txt_small_size"
-                android:drawableLeft="@drawable/ic_star_24"
-                android:textColor="@color/colorAccent"
-                android:layout_marginBottom="10dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:background="@drawable/rounded_box1"
-                android:text="4.5"></TextView>
+                android:drawableLeft="@drawable/ic_star_24"
+                android:text="4.5"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/txt_small_size"></TextView>
         </LinearLayout>
 
 <RelativeLayout

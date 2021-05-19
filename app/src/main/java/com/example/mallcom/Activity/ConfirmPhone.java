@@ -42,6 +42,9 @@ public class ConfirmPhone extends AppCompatActivity  implements View.OnClickList
         if (args!=null) {
             userId = args.getString("userId");
         }
+        userId = args.getString("userId");
+
+        Toast.makeText(getApplicationContext(), userId, Toast.LENGTH_SHORT).show();
 
 
         init();

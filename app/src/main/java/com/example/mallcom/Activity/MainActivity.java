@@ -33,17 +33,17 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     ImageView ic_menu_nav,imgCart;
-
     CardView cardSearch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nav_drawer);
-        if (SharedPrefManager.getInstance(this).getAppToken().equals("")){
+
+        /* if (SharedPrefManager.getInstance(this).getAppToken().equals("")){
             startActivity(new Intent(this,Login.class));
             finish();
-        }
+        }*/
 
         new Global().changeStatusBarColor(this,getResources().getColor(R.color.colorPrimary));
         init();
@@ -108,9 +108,15 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             case R.id.btn_nav1:{
                 switchToFragment(1);
                 break;
-            }case R.id.nav_menu_1:{
+            }case R.id.dept3:{
                 //switchToFragment(1);
                 startActivity(new Intent(getApplicationContext(), MyFavorite.class));
+
+                break;
+            }
+            case R.id.nav_menu_2:{
+                //switchToFragment(1);
+                startActivity(new Intent(getApplicationContext(), MainDepartment.class));
 
                 break;
             }

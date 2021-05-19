@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.mallcom.Activity.SubDept;
+import com.example.mallcom.Activity.SubDeptproduct;
 import com.example.mallcom.Models.DepartmentModel;
 import com.example.mallcom.Models.ModelDept;
 import com.example.mallcom.R;
@@ -56,9 +57,17 @@ public class AdapterDepts extends RecyclerView.Adapter<AdapterDepts.ViewHolder> 
             @Override
             public void onClick(View view) {
                 if (item.getHasChild()){
-                    Toast.makeText(activity, "has child", Toast.LENGTH_SHORT).show();
+                  //  Toast.makeText(activity, "has child", Toast.LENGTH_SHORT).show();
+                    Intent intent =new Intent(activity, SubDept.class);
+                     intent.putExtra("categoryName",item.getName());
+
+                    activity.startActivity(intent);
                 } else {
                     Toast.makeText(activity, "has no child", Toast.LENGTH_SHORT).show();
+                    Intent intent =new Intent(activity, SubDeptproduct.class);
+                    intent.putExtra("category",item.getName());
+                    intent.putExtra("subCategory","");
+                    activity.startActivity(intent);
                 }
             }
         });

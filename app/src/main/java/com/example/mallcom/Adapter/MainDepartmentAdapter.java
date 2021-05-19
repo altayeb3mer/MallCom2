@@ -2,6 +2,7 @@ package com.example.mallcom.Adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.mallcom.Activity.ConfirmPhone;
+import com.example.mallcom.Activity.MainActivity;
+import com.example.mallcom.Activity.SubDept;
 import com.example.mallcom.Models.DepartmentModel;
 import com.example.mallcom.R;
 
@@ -54,8 +58,13 @@ public class MainDepartmentAdapter extends RecyclerView.Adapter<MainDepartmentAd
             @Override
             public void onClick(View view) {
                 if (item.getHasChild()){
-                    Toast.makeText(mContext, "has child", Toast.LENGTH_SHORT).show();
+                //    Toast.makeText(mContext, "has children", Toast.LENGTH_SHORT).show();
+                    Intent intent =new Intent(mContext, SubDept.class);
+                    intent.putExtra("categoryName",item.getName());
+
+                    mContext.startActivity(intent);
                 } else {
+
                     Toast.makeText(mContext, "has no child", Toast.LENGTH_SHORT).show();
                 }
             }

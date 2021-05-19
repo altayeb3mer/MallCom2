@@ -52,6 +52,16 @@ public class AdapterProductsWithRate extends RecyclerView.Adapter<AdapterProduct
             public void onClick(View view) {
                 Intent intent = new Intent(activity, ProductDetails.class);
                 intent.putExtra("id",item.getId());
+                intent.putExtra("name",item.getName());
+                if (item.getRate()!=null){
+                intent.putExtra("rate",item.getRate());}
+                else
+                {
+                    intent.putExtra("rate","");
+
+            }
+                intent.putExtra("price",item.getPrice());
+                intent.putExtra("image",item.getImage());
                 activity.startActivity(intent);
             }
         });
