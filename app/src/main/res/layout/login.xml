@@ -58,6 +58,8 @@
                     android:src="@drawable/ic_phone"/>
                 <EditText
                     android:id="@+id/phone"
+                    android:inputType="phone"
+                    android:maxLength="10"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_toEndOf="@+id/ic_phone"

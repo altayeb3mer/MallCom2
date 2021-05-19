@@ -124,13 +124,14 @@ public class Registration extends AppCompatActivity{
 
 //                            JSONObject dataObj = object.getJSONObject("data");
 
-                                Intent intent =new Intent(getApplicationContext(),ConfirmPhone.class);
-                                intent.putExtra("userId",object.getJSONObject("data").getString("id"));
-                               // intent.putExtra("userphone",phone);
+                               // Intent intent =new Intent(getApplicationContext(),ConfirmPhone.class);
+                               // intent.putExtra("userId",object.getJSONObject("data").getString("id"));
+                               // startActivity(intent);
+                               // finish();
+
+
+                                Intent intent =new Intent(getApplicationContext(),MainActivity.class);
                                 startActivity(intent);
-                                finish();
-
-
 
                                 break;
                             }

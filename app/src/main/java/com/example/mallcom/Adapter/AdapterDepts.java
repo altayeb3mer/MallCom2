@@ -56,7 +56,11 @@ public class AdapterDepts extends RecyclerView.Adapter<AdapterDepts.ViewHolder> 
             @Override
             public void onClick(View view) {
                 if (item.getHasChild()){
-                    Toast.makeText(activity, "has child", Toast.LENGTH_SHORT).show();
+                  //  Toast.makeText(activity, "has child", Toast.LENGTH_SHORT).show();
+                    Intent intent =new Intent(activity, SubDept.class);
+                     intent.putExtra("categoryName",item.getName());
+
+                    activity.startActivity(intent);
                 } else {
                     Toast.makeText(activity, "has no child", Toast.LENGTH_SHORT).show();
                 }
