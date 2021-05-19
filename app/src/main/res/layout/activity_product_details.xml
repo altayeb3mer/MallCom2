@@ -168,6 +168,7 @@
                     android:textSize="@dimen/txt_large_size" />
 
                 <ImageView
+                    android:id="@+id/imagerate"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:scaleType="center"

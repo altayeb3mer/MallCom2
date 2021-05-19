@@ -64,7 +64,6 @@ public class AdapterSubItem extends RecyclerView.Adapter<AdapterSubItem.ViewHold
                     Intent intent =new Intent(activity, SubDeptproduct.class);
                     intent.putExtra("category",item.getNamemain());
                     intent.putExtra("subCategory",item.getName());
-
                     activity.startActivity(intent);
 
                 }
