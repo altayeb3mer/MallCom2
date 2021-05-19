@@ -114,6 +114,12 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
                 break;
             }
+            case R.id.nav_menu_2:{
+                //switchToFragment(1);
+                startActivity(new Intent(getApplicationContext(), MainDepartment.class));
+
+                break;
+            }
             case R.id.btn_nav2:{
                 //switchToFragment(2);
                 startActivity(new Intent(getApplicationContext(), Notifications.class));

@@ -23,16 +23,20 @@
             android:orientation="vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
+
             <TextView
+                android:id="@+id/dayn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="اليوم"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="@dimen/txt_small_size"
                 android:textStyle="bold"></TextView>
+
             <TextView
+                android:id="@+id/daten"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="42dp"
                 android:text="Apr 23, 2021"
                 android:textSize="@dimen/txt_normal_size"
                 android:textStyle="bold"></TextView>
@@ -45,32 +49,37 @@
           <RelativeLayout
               android:layout_width="match_parent"
               android:layout_height="wrap_content">
+
               <TextView
+                  android:id="@+id/titlen"
                   android:layout_width="100dp"
                   android:layout_height="wrap_content"
-                  android:text="الإدارة"
-                  android:gravity="center"
                   android:background="@color/colorPrimaryDark"
+                  android:gravity="center"
+                  android:text="الإدارة"
                   android:textColor="@color/white"
                   android:textSize="@dimen/txt_normal_size"
                   android:textStyle="bold"></TextView>
+
               <TextView
-                  android:layout_alignParentLeft="true"
+                  android:id="@+id/timen"
                   android:layout_width="100dp"
                   android:layout_height="wrap_content"
-                  android:text="10:30 PM"
+                  android:layout_alignParentLeft="true"
                   android:gravity="center"
+                  android:text="10:30 PM"
                   android:textColor="@color/grayColor"
                   android:textSize="@dimen/txt_normal_size"
                   android:textStyle="bold"></TextView>
           </RelativeLayout>
 
           <TextView
+              android:id="@+id/bodyn"
+              android:layout_width="match_parent"
+              android:layout_height="100dp"
               android:layout_gravity="center"
               android:background="@drawable/roundbox"
-              android:layout_width="match_parent"
               android:gravity="center"
-              android:layout_height="100dp"
               android:text="يوجد تخفيض 50% على الملابس الرجالية والاطفالية"
               android:textColor="@color/colorPrimaryDark"
               android:textSize="@dimen/txt_normal_size"

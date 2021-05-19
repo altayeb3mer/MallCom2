@@ -58,10 +58,13 @@ public class MainDepartmentAdapter extends RecyclerView.Adapter<MainDepartmentAd
             @Override
             public void onClick(View view) {
                 if (item.getHasChild()){
-                    Toast.makeText(mContext, "has children", Toast.LENGTH_SHORT).show();
-                   // Intent intent =new Intent(mContext, SubDept.class);
-                   // mContext.startActivity(intent);
+                //    Toast.makeText(mContext, "has children", Toast.LENGTH_SHORT).show();
+                    Intent intent =new Intent(mContext, SubDept.class);
+                    intent.putExtra("categoryName",item.getName());
+
+                    mContext.startActivity(intent);
                 } else {
+
                     Toast.makeText(mContext, "has no child", Toast.LENGTH_SHORT).show();
                 }
             }
