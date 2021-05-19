@@ -59,7 +59,7 @@ public class AdapterSubItem extends RecyclerView.Adapter<AdapterSubItem.ViewHold
                    // Intent intent = new Intent(activity, ProductDetails.class);
                     //intent.putExtra("id",item.getId());
                     //activity.startActivity(intent);
-                    Toast.makeText(activity,item.getName()+"\n"+item.getNamemain(), LENGTH_LONG).show();
+                   // Toast.makeText(activity,item.getName()+"\n"+item.getNamemain(), LENGTH_LONG).show();
 
                     Intent intent =new Intent(activity, SubDeptproduct.class);
                     intent.putExtra("category",item.getNamemain());
