@@ -73,7 +73,7 @@ public class Registration extends AppCompatActivity{
                      hashMap.put("password",agech.getText().toString());
                      hashMap.put("state_id",arrayListid.get(state.getSelectedItemPosition()));
                      hashMap.put("gender",gender.getSelectedItem().toString());
-                     Toast.makeText(Registration.this,arrayListid.get(state.getSelectedItemPosition()), LENGTH_LONG).show();
+                   //  Toast.makeText(Registration.this,arrayListid.get(state.getSelectedItemPosition()), LENGTH_LONG).show();
 
                      registration();
                  }
@@ -125,7 +125,7 @@ public class Registration extends AppCompatActivity{
 //                            JSONObject dataObj = object.getJSONObject("data");
 
                                 Intent intent =new Intent(getApplicationContext(),ConfirmPhone.class);
-                                intent.putExtra("userId",object.getString("data"));
+                                intent.putExtra("userId",object.getJSONObject("data").getString("id"));
                                // intent.putExtra("userphone",phone);
                                 startActivity(intent);
                                 finish();
