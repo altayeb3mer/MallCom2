@@ -1,10 +1,5 @@
 package com.example.mallcom.Activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.ViewPager;
-
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -13,10 +8,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.mallcom.Adapter.AdapterProductsWithRate;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
+
 import com.example.mallcom.Adapter.AdapterSubItem;
 import com.example.mallcom.Adapter.SlideShow_adapter;
-import com.example.mallcom.Models.ModelItems;
 import com.example.mallcom.Models.ModelProducts;
 import com.example.mallcom.Models.ModelSlider;
 import com.example.mallcom.R;
@@ -43,15 +41,15 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 import static android.widget.Toast.LENGTH_LONG;
 
-public class SubDept extends AppCompatActivity {
+public class SubDeptproduct extends AppCompatActivity {
 
     SlideShow_adapter slideShow_adapter;
     ViewPager viewPager;
     CircleIndicator circleIndicator;
 
     //rec
-TextView subname;
-ImageView imgBack;
+   TextView subname;
+    ImageView imgBack;
     View view;
     AdapterSubItem adapterProductsWithRate;
     RecyclerView recyclerView;
@@ -68,7 +66,7 @@ ImageView imgBack;
                 finish();
             }
         });
-        subname.setText(getIntent().getExtras().getString("categoryName"));
+        subname.setText(getIntent().getExtras().getString("subCategory"));
        // Toast.makeText(getApplicationContext(), "in sub", Toast.LENGTH_SHORT).show();
 
         init();
@@ -166,11 +164,12 @@ ImageView imgBack;
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        Api.RetrofitgetSubCategories service = retrofit.create(Api.RetrofitgetSubCategories.class);
+        Api.RetrofitGetProduct service = retrofit.create(Api.RetrofitGetProduct.class);
         HashMap<String,String> hashMap =new HashMap<>();
-        hashMap.put("categoryName",getIntent().getExtras().getString("categoryName"));
+        hashMap.put("category",getIntent().getExtras().getString("category"));
+        hashMap.put("subCategory",getIntent().getExtras().getString("subCategory"));
         //hashMap.put("subCategory","Boys");
-        Call<String> call = service.putParam(getIntent().getExtras().getString("categoryName"));
+        Call<String> call = service.putParam(hashMap);
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, retrofit2.Response<String> response) {
@@ -186,16 +185,17 @@ ImageView imgBack;
 
                                 ModelProducts departmentModel = new ModelProducts();
                                 departmentModel.setId(itemData.getString("id"));
-                                departmentModel.setName(itemData.getString("subCategory"));
-                                departmentModel.setNamemain(itemData.getString("name"));
-                                departmentModel.setImage(itemData.getString("sub_img"));
-                               // departmentModel.setPrice(itemData.getString("price"));
+                                departmentModel.setName(itemData.getString("name"));
+                                departmentModel.setNamemain(itemData.getString("description"));
+                                departmentModel.setImage(itemData.getString("photo"));
+                                departmentModel.setPrice(itemData.getString("price"));
+                              //  Toast.makeText(SubDeptproduct.this,itemData.getString("subCategory"), LENGTH_LONG).show();
 
-                               // JSONArray rateArray = itemData.getJSONArray("rate");
-                                //if (rateArray.length()>0){
-                                //    JSONObject rateObj = rateArray.getJSONObject(0);
-                                //    departmentModel.setRate(rateObj.getString("rate"));
-                               // }
+                                JSONArray rateArray = itemData.getJSONArray("rate");
+                                if (rateArray.length()>0){
+                                    JSONObject rateObj = rateArray.getJSONObject(0);
+                                    departmentModel.setRate(rateObj.getString("rate"));
+                                }
 
                                 arrayList.add(departmentModel);
                             }
@@ -203,7 +203,7 @@ ImageView imgBack;
                             if (arrayList.size()>0){
                                 initAdapter(arrayList);
                             }else{
-                                Toast.makeText(SubDept.this, "لاتوجد نتائج للبحث", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SubDeptproduct.this, "لاتوجد نتائج للبحث", Toast.LENGTH_SHORT).show();
                             }
 
 

@@ -3,6 +3,16 @@ package com.example.mallcom.Models;
 public class ModelProducts {
     private String id;
     private String name;
+
+    public String getNamemain() {
+        return namemain;
+    }
+
+    public void setNamemain(String namemain) {
+        this.namemain = namemain;
+    }
+
+    private String namemain;
     private String image;
     private String price;
     private String rate;

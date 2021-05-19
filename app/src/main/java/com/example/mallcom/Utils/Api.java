@@ -8,6 +8,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
 
 public class Api {
@@ -42,6 +43,10 @@ public class Api {
     public interface RetrofitGetProduct {
         @GET("api/v1/public/productsWith")
         Call<String> putParam(@QueryMap HashMap<String, String> param);
+    }
+    public interface RetrofitgetSubCategories {
+        @GET("api/v1/public/getSubCategories")
+        Call<String> putParam(@Query("categoryName") String state);
     }
     //get my orders
     public interface RetrofitGetMyOrders {

@@ -26,6 +26,7 @@
         <activity android:name=".Activity.Registration" />
         <activity android:name=".Activity.Login" />
         <activity android:name=".Activity.SubDept" />
+        <activity android:name=".Activity.SubDeptproduct" />
         <activity android:name=".Activity.PaymentActivity" />
         <activity android:name=".Activity.CartActivity" />
         <activity
