@@ -73,9 +73,16 @@
                 android:background="#CD091D"
                 android:layout_width="match_parent"
                 android:layout_height="250dp">
+                <ImageView
+                    android:id="@+id/image"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </ImageView>
                 <androidx.viewpager.widget.ViewPager
                     android:scrollbarStyle="outsideInset"
                     android:id="@+id/viewpager"
+
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     />
@@ -104,16 +111,18 @@
                         android:scaleType="center"/>
                 </LinearLayout>
             </RelativeLayout>
+
             <TextView
-                android:layout_marginLeft="@dimen/margin_normal_size"
-                android:layout_marginRight="@dimen/margin_normal_size"
-                android:layout_marginTop="@dimen/margin_large_size"
+                android:id="@+id/nameofitem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:textSize="@dimen/txt_large_size"
+                android:layout_marginLeft="@dimen/margin_normal_size"
+                android:layout_marginTop="@dimen/margin_large_size"
+                android:layout_marginRight="@dimen/margin_normal_size"
+                android:text="حزاء نايك M7"
                 android:textColor="@color/productActivityColor"
-                android:text="حزاء نايك M7" />
+                android:textSize="@dimen/txt_large_size"
+                android:textStyle="bold" />
             <LinearLayout
                 android:layout_marginLeft="@dimen/margin_normal_size"
                 android:layout_marginRight="@dimen/margin_normal_size"
@@ -121,14 +130,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <TextView
+                    android:id="@+id/priceh"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/txt_large_size"
-                    android:textColor="@color/productActivityColor"
                     android:text="3.500"
-                    />
+                    android:textColor="@color/productActivityColor"
+                    android:textSize="@dimen/txt_large_size"
+                    android:textStyle="bold" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -137,49 +147,59 @@
                     />
 
             </LinearLayout>
+
             <LinearLayout
-                android:layout_marginLeft="@dimen/margin_normal_size"
-                android:layout_marginRight="@dimen/margin_normal_size"
-                android:layout_marginTop="@dimen/margin_large_size"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_normal_size"
+                android:layout_marginTop="@dimen/margin_large_size"
+                android:layout_marginRight="@dimen/margin_normal_size"
                 android:orientation="horizontal">
+
                 <TextView
+                    android:id="@+id/rate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/margin_small_size"
                     android:layout_marginRight="@dimen/margin_small_size"
                     android:gravity="center_vertical"
-                    android:layout_gravity="center_vertical"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/txt_large_size"
                     android:text="4.0"
-                    />
+                    android:textSize="@dimen/txt_large_size" />
 
                 <ImageView
                     android:layout_width="25dp"
                     android:layout_height="25dp"
-                    android:src="@drawable/ic_star"
-                    android:scaleType="center"/>
+                    android:scaleType="center"
+                    android:src="@drawable/ic_star_24" />
+
                 <ImageView
+                    android:visibility="gone"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
-                    android:src="@drawable/ic_star"
-                    android:scaleType="center"/>
+                    android:scaleType="center"
+                    android:src="@drawable/ic_star" />
+
                 <ImageView
+                    android:visibility="gone"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
-                    android:src="@drawable/ic_star"
-                    android:scaleType="center"/>
+                    android:scaleType="center"
+                    android:src="@drawable/ic_star" />
+
                 <ImageView
+                    android:visibility="gone"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
-                    android:src="@drawable/ic_star"
-                    android:scaleType="center"/>
+                    android:scaleType="center"
+                    android:src="@drawable/ic_star" />
+
                 <ImageView
+                    android:visibility="gone"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
-                    android:src="@drawable/ic_star"
-                    android:scaleType="center"/>
+                    android:scaleType="center"
+                    android:src="@drawable/ic_star" />
 
             </LinearLayout>
 

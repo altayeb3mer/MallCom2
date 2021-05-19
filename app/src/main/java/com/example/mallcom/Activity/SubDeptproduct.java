@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.mallcom.Adapter.AdapterProductsWithRate;
 import com.example.mallcom.Adapter.AdapterSubItem;
 import com.example.mallcom.Adapter.SlideShow_adapter;
 import com.example.mallcom.Models.ModelProducts;
@@ -51,7 +52,7 @@ public class SubDeptproduct extends AppCompatActivity {
    TextView subname;
     ImageView imgBack;
     View view;
-    AdapterSubItem adapterProductsWithRate;
+    AdapterProductsWithRate adapterProductsWithRate;
     RecyclerView recyclerView;
 
     @Override
@@ -129,7 +130,7 @@ public class SubDeptproduct extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerProduct);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3, GridLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(gridLayoutManager);
-        adapterProductsWithRate = new AdapterSubItem(this,list);
+        adapterProductsWithRate = new AdapterProductsWithRate(this,list);
         recyclerView.setAdapter(adapterProductsWithRate);
 
 
