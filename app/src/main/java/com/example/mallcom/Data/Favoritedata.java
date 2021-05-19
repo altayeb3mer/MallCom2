@@ -146,7 +146,7 @@ public class Favoritedata {
         private String updatedAt;
         @SerializedName("final_price")
         @Expose
-        private Integer finalPrice;
+        private String finalPrice;
         @SerializedName("rate")
         @Expose
         private List<Rate> rate = null;
@@ -278,11 +278,11 @@ public class Favoritedata {
             this.updatedAt = updatedAt;
         }
 
-        public Integer getFinalPrice() {
+        public String getFinalPrice() {
             return finalPrice;
         }
 
-        public void setFinalPrice(Integer finalPrice) {
+        public void setFinalPrice(String finalPrice) {
             this.finalPrice = finalPrice;
         }
 

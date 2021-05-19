@@ -110,7 +110,11 @@ RecyclerView recyclerView;
                             modelMyOrder.setName(data.getName());
                             modelMyOrder.setPrice(data.getPrice()+"");
                             modelMyOrder.setPhoto(data.getPhoto()+"");
-                            modelMyOrder.setRate(data.getRate()+"");
+                            if(data.getRate().size()>0)
+                            modelMyOrder.setRate(data.getRate().get(0).getRate()+" ");
+                            else
+                                modelMyOrder.setRate("");
+
                             arrayList.add(modelMyOrder);
                         }
                         //Toast.makeText(Registration.this,arrayList.size()+"", Toast.LENGTH_LONG).show();
