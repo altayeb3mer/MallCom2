@@ -111,6 +111,7 @@
                 android:textSize="@dimen/txt_normal_size"
                 android:textStyle="bold" />
             <EditText
+                android:inputType="text"
                 android:layout_marginTop="@dimen/margin_small_size"
                 android:layout_width="match_parent"
                 android:layout_height="50dp" />
@@ -135,6 +136,7 @@
                     android:layout_marginRight="@dimen/margin_small_size"
                     />
                 <EditText
+                    android:inputType="number"
                     android:layout_marginTop="@dimen/margin_small_size"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"/>

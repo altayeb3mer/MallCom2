@@ -42,14 +42,19 @@
                 app:cardCornerRadius="@dimen/margin_small_size"
                 android:layout_marginTop="40dp"
                 app:cardBackgroundColor="@color/cardBg">
-                    <EditText
-                        android:paddingLeft="@dimen/margin_normal_size"
-                        android:paddingRight="@dimen/margin_normal_size"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@android:color/transparent"
-                        android:hint="0116774943"
-                        />
+
+                <EditText
+                    android:id="@+id/phonenumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/transparent"
+                    android:hint="0116774943"
+                    android:maxLength="10"
+                    android:inputType="phone"
+                    android:layout_gravity="right"
+                    android:gravity="right|center"
+                    android:paddingLeft="@dimen/margin_normal_size"
+                    android:paddingRight="@dimen/margin_normal_size" />
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
