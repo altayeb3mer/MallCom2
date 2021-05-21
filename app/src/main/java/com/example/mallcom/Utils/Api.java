@@ -2,6 +2,7 @@ package com.example.mallcom.Utils;
 
 import com.example.mallcom.Data.Favoritedata;
 import com.example.mallcom.Data.Notification;
+import com.example.mallcom.Data.Profiledata;
 import com.example.mallcom.Data.Stateadata;
 
 import java.util.HashMap;
@@ -25,9 +26,14 @@ public class Api {
     public interface RetrofitNotificatio {
         @GET("api/v1/user/myNotifications")
         Call<Notification.Notificationresponse> putParam();
-    }public interface Retrofitfavorite {
+    }
+    public interface Retrofitfavorite {
         @GET("api/v1/user/favourit")
         Call<Favoritedata.Favoriteresponse> putParam();
+    }
+    public interface Retrofitmyaccount {
+        @GET("api/v1/user/profile")
+        Call<Profiledata.Profileresponse> putParam();
     }
     //search
     public interface RetrofitSearch {

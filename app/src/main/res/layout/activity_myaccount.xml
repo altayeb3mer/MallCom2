@@ -27,20 +27,23 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     >
-        <de.hdodenhof.circleimageview.CircleImageView
 
-                        android:layout_centerVertical="true"
-                        xmlns:app="http://schemas.android.com/apk/res-auto"
-                        android:id="@+id/profile_image"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        app:civ_border_width="1dp"
-                        app:civ_border_color="@android:color/white"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/profile_test"
-                        app:civ_border_overlay="true"
-                        android:layout_margin="@dimen/margin_normal_size"
-                        />
+    <de.hdodenhof.circleimageview.CircleImageView
+
+        android:id="@+id/profile_image"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="@dimen/margin_normal_size"
+        android:layout_marginLeft="@dimen/margin_normal_size"
+        android:layout_marginTop="@dimen/margin_normal_size"
+        android:layout_marginEnd="@dimen/margin_normal_size"
+        android:layout_marginRight="@dimen/margin_normal_size"
+        android:layout_marginBottom="@dimen/margin_normal_size"
+        android:scaleType="centerCrop"
+        app:civ_border_color="@android:color/white"
+        app:civ_border_overlay="true"
+        app:civ_border_width="1dp" />
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -50,13 +53,14 @@
 
     </ImageView>
                 </RelativeLayout>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="الطيب عمر"
-                android:textColor="@android:color/white"
-                android:textSize="@dimen/txt_large_size"
-                android:textStyle="bold" />
+
+                      <TextView
+                          android:id="@+id/profilename"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:textColor="@android:color/white"
+                          android:textSize="@dimen/txt_large_size"
+                          android:textStyle="bold" />
                </LinearLayout>
 
 </LinearLayout>
@@ -84,19 +88,18 @@
 android:textStyle="bold" />
 
 
-        <EditText
-            android:layout_marginTop="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="الطيب عمر"
-             android:focusable="false"
-            android:clickable="false"
-            android:textColor="@color/grayColor"
-            android:cursorVisible="false"
-              android:gravity="right"
-            android:layout_gravity="right"
-            android:textSize="@dimen/txt_small_size"
-              />
+    <EditText
+        android:id="@+id/profilename2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginTop="10dp"
+        android:clickable="false"
+        android:cursorVisible="false"
+        android:focusable="false"
+        android:gravity="right"
+        android:textColor="@color/grayColor"
+        android:textSize="@dimen/txt_small_size" />
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -109,20 +112,19 @@ android:textStyle="bold" />
 android:textStyle="bold" />
 
 
-        <EditText
-            android:layout_marginTop="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text=" الخرطوم"
-    android:focusable="false"
-    android:clickable="false"
-    android:cursorVisible="false"
-            android:textColor="@color/grayColor"
+    <EditText
+        android:id="@+id/state"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginTop="10dp"
+        android:clickable="false"
+        android:cursorVisible="false"
+        android:focusable="false"
 
-android:gravity="right"
-            android:layout_gravity="right"
-            android:textSize="@dimen/txt_small_size"
- />
+        android:gravity="right"
+        android:textColor="@color/grayColor"
+        android:textSize="@dimen/txt_small_size" />
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -135,19 +137,19 @@ android:gravity="right"
 android:textStyle="bold" />
 
 
-        <EditText
-            android:layout_marginTop="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text=" الخرطوم"
-    android:focusable="false"
-    android:clickable="false"
-    android:cursorVisible="false"
-            android:textColor="@color/grayColor"
+    <EditText
+        android:id="@+id/cityprofile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginTop="10dp"
+        android:clickable="false"
+        android:cursorVisible="false"
+        android:focusable="false"
 
-             android:gravity="right"
-            android:layout_gravity="right"
-            android:textSize="@dimen/txt_small_size" />
+        android:gravity="right"
+        android:textColor="@color/grayColor"
+        android:textSize="@dimen/txt_small_size" />
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -160,20 +162,31 @@ android:textStyle="bold" />
 android:textStyle="bold" />
 
 
-        <EditText
-            android:layout_marginTop="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text=" الخرطوم"
-    android:focusable="false"
-    android:clickable="false"
-    android:cursorVisible="false"
-            android:textColor="@color/grayColor"
+    <EditText
+        android:id="@+id/regionprofile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginTop="10dp"
+        android:clickable="false"
+        android:cursorVisible="false"
+        android:focusable="false"
 
-android:gravity="right"
-            android:layout_gravity="right"
-            android:textSize="@dimen/txt_small_size"
- />
+        android:gravity="right"
+        android:textColor="@color/grayColor"
+        android:textSize="@dimen/txt_small_size" />
 </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+    <LinearLayout
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:id="@+id/progressLay"
+        android:visibility="gone">
+        <ProgressBar
+            android:layout_width="60dp"
+            android:layout_height="60dp"/>
+    </LinearLayout>
 </RelativeLayout>
