@@ -10,6 +10,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
 
@@ -67,6 +68,15 @@ public class Api {
         @GET("api/v1/public/states")
         Call<Stateadata.Stateresponse> putParam();
     }
-
+    //get my order product
+    public interface RetrofitGetMyOrderProduct {
+        @GET("api/v1/user/getMyOrderByNumber")
+        Call<String> putParam(@QueryMap HashMap<String, String> param);
+    }
+    //product details
+    public interface RetrofitProductDetails {
+        @GET("api/v1/public/products/{id}")
+        Call<String> putParam(@Path("id") String id);
+    }
 
 }
