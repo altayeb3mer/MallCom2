@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mallcom.Activity.ProductDetails;
@@ -29,18 +30,20 @@ public class AdapterFilter1 extends RecyclerView.Adapter<AdapterFilter1.ViewHold
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
     private Activity activity;
-    Spinner spinner;
+    LinearLayout priceLay;
+    RecyclerView recyclerView;
 //    RelativeLayout container;
-    public AdapterFilter1(Activity activity, ArrayList<ModelFilter1> r) {
+    public AdapterFilter1(Activity activity, ArrayList<ModelFilter1> r,LinearLayout priceLay, RecyclerView recyclerView) {
         this.mInflater = LayoutInflater.from(activity);
         this.arrayList = r;
         this.activity = activity;
+        this.priceLay = priceLay;
+        this.recyclerView = recyclerView;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = mInflater.inflate(R.layout.filter_item1, parent, false);
-
         return new ViewHolder(view);
     }
 
@@ -49,33 +52,26 @@ public class AdapterFilter1 extends RecyclerView.Adapter<AdapterFilter1.ViewHold
     public void onBindViewHolder(ViewHolder holder, final int position) {
         final ModelFilter1 item = arrayList.get(position);
 
-//        holder.textViewOldPrice.setPaintFlags( holder.textViewOldPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 
-//        try {
-//            Glide.with(activity).load(Api.ROOT_URL+item.getImage())
-//                    .into(holder.imageView);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//
-//        holder.container.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(activity, ProductDetails.class);
-//                activity.startActivity(intent);
-//            }
-//        });
-//        holder.textViewTitle.setText(item.getTitle());
+
+
+        holder.textViewTitle.setText(item.getTitle());
 //        holder.textViewPrice.setText(item.getPrice()+" "+"جنيه سوداني");
 //
 //
 //
-//        holder.layDel.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                deleteAds(item.getType(),item.getId(),position);
-//            }
-//        });
+        holder.container.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (position==0){
+                    priceLay.setVisibility(View.VISIBLE);
+                    recyclerView.setVisibility(View.GONE);
+                }else{
+                    priceLay.setVisibility(View.GONE);
+                    recyclerView.setVisibility(View.VISIBLE);
+                }
+            }
+        });
 
 
     }
@@ -100,15 +96,15 @@ public class AdapterFilter1 extends RecyclerView.Adapter<AdapterFilter1.ViewHold
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         ImageView imageView;
-        LinearLayout container;
-        TextView textViewOldPrice, textViewPrice;
+        ConstraintLayout container;
+        TextView textViewTitle, textViewPrice;
 //        Spinner spinner;
 
         ViewHolder(View itemView) {
             super(itemView);
-//            layDel = itemView.findViewById(R.id.layDel);
+            textViewTitle = itemView.findViewById(R.id.title);
 //            imageView = itemView.findViewById(R.id.img);
-//            container = itemView.findViewById(R.id.container);
+            container = itemView.findViewById(R.id.container);
 //            textViewTitle = itemView.findViewById(R.id.title);
 //            textViewOldPrice = itemView.findViewById(R.id.oldPrice);
 //            spinner = itemView.findViewById(R.id.spinner);

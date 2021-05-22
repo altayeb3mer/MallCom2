@@ -56,7 +56,7 @@ public class SearchProducts extends AppCompatActivity {
     //search
     EditText editTextSearch;
     ImageView ic_clear,ic_search2;
-    String query="";
+    String query="",sort="";
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,6 +80,25 @@ public class SearchProducts extends AppCompatActivity {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 // checkedId is the RadioButton selected
+                switch (checkedId){
+                    case R.id.radio1:{
+                        sort = "";
+                        break;
+                    }
+                    case R.id.radio2:{
+                        sort = "lowerPrice";
+                        break;
+                    }
+                    case R.id.radio3:{
+                        sort = "higherPrice";
+                        break;
+                    }
+                    case R.id.radio4:{
+                        sort = "newFirst";
+                        break;
+                    }
+                }
+                preSearch();
                 dialog.dismiss();
             }
         });
@@ -249,6 +268,9 @@ public class SearchProducts extends AppCompatActivity {
         Api.RetrofitSearch service = retrofit.create(Api.RetrofitSearch.class);
         HashMap<String,String> hashMap =new HashMap<>();
         hashMap.put("search",query);
+        if (!sort.isEmpty()){
+            hashMap.put("sort",sort);
+        }
         Call<String> call = service.putParam(hashMap);
         call.enqueue(new Callback<String>() {
             @Override
@@ -259,6 +281,14 @@ public class SearchProducts extends AppCompatActivity {
                     switch (success) {
                         case "true": {
                             JSONObject data = object.getJSONObject("data");
+
+
+                            //color
+                            JSONObject productsPropertyList = data.getJSONObject("productsPropertyList");
+                            JSONArray colorArray = productsPropertyList.getJSONArray("color");
+                            if (colorArray.length()>0){
+
+                            }
                             JSONArray resultData = data.getJSONArray("result");
                             for (int i = 0; i < resultData.length(); i++) {
                                 JSONObject itemData = resultData.getJSONObject(i);

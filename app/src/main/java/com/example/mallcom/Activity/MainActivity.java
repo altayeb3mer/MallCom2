@@ -155,6 +155,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 startActivity(new Intent(getApplicationContext(), MyOrders.class));
                 break;
             }
+            case R.id.dept4:{
+                startActivity(new Intent(getApplicationContext(), CartActivity.class));
+                break;
+            }
 
         }
         drawerLayout.closeDrawers();

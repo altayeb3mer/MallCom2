@@ -1,9 +1,12 @@
 package com.example.mallcom.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 
 import com.example.mallcom.Adapter.AdapterFilter1;
 import com.example.mallcom.Adapter.AdapterFilter2;
@@ -26,6 +29,13 @@ public class FilterActivity extends ToolbarClass {
     ArrayList<ModelFilter2> arrayList2;
 
 
+    String priceFrom="",priceTo="",rate="",color="";
+    EditText editTextPriceFrom,editTextPriceTo;
+    AppCompatButton buttonOkPrice;
+    public static LinearLayout priceLay;
+
+
+
     protected final void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         super.onCreate(R.layout.activity_filter, "تنقية");
@@ -34,12 +44,38 @@ public class FilterActivity extends ToolbarClass {
     }
 
     private void init() {
+        editTextPriceFrom = findViewById(R.id.edtPriceFrom);
+        editTextPriceFrom = findViewById(R.id.edtPriceFrom);
+        editTextPriceTo = findViewById(R.id.edtPriceTo);
+        buttonOkPrice = findViewById(R.id.btnPrice);
+        priceLay = findViewById(R.id.priceLay);
+
+
+
+
+
         arrayList1 = new ArrayList<>();
         arrayList2 = new ArrayList<>();
-        for (int i = 0; i <5 ; i++) {
-            ModelFilter1 modelFilter1 = new ModelFilter1();
-            modelFilter1.setId(i+"");
-            arrayList1.add(modelFilter1);
+        for (int i = 0; i <3 ; i++) {
+            if (i==0){
+                ModelFilter1 modelFilter1 = new ModelFilter1();
+                modelFilter1.setId(i+"");
+                modelFilter1.setTitle("السعر");
+                arrayList1.add(modelFilter1);
+            }
+            if (i==1){
+                ModelFilter1 modelFilter1 = new ModelFilter1();
+                modelFilter1.setId(i+"");
+                modelFilter1.setTitle("اللون");
+                arrayList1.add(modelFilter1);
+            }
+            if (i==2){
+                ModelFilter1 modelFilter1 = new ModelFilter1();
+                modelFilter1.setId(i+"");
+                modelFilter1.setTitle("التقييم");
+                arrayList1.add(modelFilter1);
+            }
+
         }
 
         for (int i = 0; i <10 ; i++) {
@@ -54,7 +90,7 @@ public class FilterActivity extends ToolbarClass {
     }
 
     private void initAdapter1(ArrayList<ModelFilter1> arrayList1) {
-        adapterFilter1 = new AdapterFilter1(this,arrayList1);
+        adapterFilter1 = new AdapterFilter1(this,arrayList1,priceLay,recyclerView2);
         recyclerView1.setAdapter(adapterFilter1);
     }
 

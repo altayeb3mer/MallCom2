@@ -25,14 +25,12 @@ import java.util.ArrayList;
 
 public class AdapterMyOrderDetails extends RecyclerView.Adapter<AdapterMyOrderDetails.ViewHolder> {
 
-//    Typeface tf;
-    int current_page, last_page;
+
     private ArrayList<ModelItems> arrayList;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
     private Activity activity;
-    Spinner spinner;
-//    RelativeLayout container;
+
     public AdapterMyOrderDetails(Activity activity, ArrayList<ModelItems> r) {
         this.mInflater = LayoutInflater.from(activity);
         this.arrayList = r;
@@ -64,11 +62,12 @@ public class AdapterMyOrderDetails extends RecyclerView.Adapter<AdapterMyOrderDe
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(activity, ProductDetails.class);
+                intent.putExtra("id",item.getId());
                 activity.startActivity(intent);
             }
         });
         holder.textViewName.setText(item.getName());
-        holder.textViewDesc.setText(item.getDesc());
+        holder.textViewDesc.setText("عدد"+" "+item.getDesc());
         holder.textViewRate.setText(item.getRate());
         holder.textViewPrice.setText(item.getFinalPrice());
         if (Integer.parseInt(item.getFinalPrice())>Integer.parseInt(item.getPrice1())){

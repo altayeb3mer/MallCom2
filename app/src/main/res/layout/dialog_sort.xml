@@ -26,24 +26,28 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <RadioButton
+            android:id="@+id/radio1"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:text="الاولوية"
             android:textSize="@dimen/txt_normal_size"
             android:textColor="@android:color/darker_gray"/>
         <RadioButton
+            android:id="@+id/radio2"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:text="السعر - الاقل الى الاعلى"
             android:textSize="@dimen/txt_normal_size"
             android:textColor="@android:color/darker_gray"/>
         <RadioButton
+            android:id="@+id/radio3"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:text="السعر - الاعلى الى الاقل"
             android:textSize="@dimen/txt_normal_size"
             android:textColor="@android:color/darker_gray"/>
         <RadioButton
+            android:id="@+id/radio4"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:text="الجديد أولا"

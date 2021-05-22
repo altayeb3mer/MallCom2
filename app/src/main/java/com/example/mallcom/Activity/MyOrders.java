@@ -41,7 +41,7 @@ public class MyOrders extends ToolbarClass {
 
     protected final void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        super.onCreate(R.layout.activity_my_orders, "معلومات التوصيل");
+        super.onCreate(R.layout.activity_my_orders, "طلباتي");
         new Global().changeStatusBarColor(this,getResources().getColor(R.color.colorPrimary));
         init();
         getMyOrders();
@@ -72,7 +72,8 @@ public class MyOrders extends ToolbarClass {
                         ongoing.addHeader("Accept", "application/json");
 //                        ongoing.addHeader("lang", SharedPrefManager.getInstance(getApplicationContext()).GetAppLanguage());
                         String token = SharedPrefManager.getInstance(getApplicationContext()).getAppToken();
-                        ongoing.addHeader("Authorization", token);
+//                        ongoing.addHeader("Authorization", token);
+                        ongoing.addHeader("Authorization", "Bearer"+" "+"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC92MVwvdXNlclwvbG9naW4iLCJpYXQiOjE2MTYzNzQzMTQsIm5iZiI6MTYxNjM3NDMxNCwianRpIjoiVjY2bXVxM2FpSHJwenFBayIsInN1YiI6MSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.TF70v29HuwEQCb9ySR--bbY1pRivGv2831d0M1k_Wt0");
                         return chain.proceed(ongoing.build());
                     }
                 })

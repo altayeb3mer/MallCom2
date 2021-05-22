@@ -46,11 +46,13 @@ public class MyOrderDetails extends ToolbarClass {
         super.onCreate(R.layout.my_order_details, "تفاصيل طلب");
         new Global().changeStatusBarColor(this, getResources().getColor(R.color.colorPrimary));
         Bundle args = getIntent().getExtras();
+        init();
         if (args != null) {
             String orderNumber = args.getString("orderNumber");
             getMyOrderProduct(orderNumber);
         }
-        init();
+//        getMyOrderProduct("161901960922");
+
     }
 
     private void init() {
@@ -76,8 +78,8 @@ public class MyOrderDetails extends ToolbarClass {
                         ongoing.addHeader("Content-Type", "application/json;");
                         ongoing.addHeader("Accept", "application/json");
 //                        ongoing.addHeader("lang", SharedPrefManager.getInstance(getApplicationContext()).GetAppLanguage());
-//                        String token = SharedPrefManager.getInstance(getApplicationContext()).getAppToken();
-//                        ongoing.addHeader("Authorization", token);
+                        String token = SharedPrefManager.getInstance(getApplicationContext()).getAppToken();
+                        ongoing.addHeader("Authorization", token);
                         return chain.proceed(ongoing.build());
                     }
                 })
@@ -110,16 +112,24 @@ public class MyOrderDetails extends ToolbarClass {
                                 JSONObject itemData = dataArray.getJSONObject(i);
 
                                 ModelItems modelItems = new ModelItems();
-                                modelItems.setId(itemData.getString("id"));
-                                modelItems.setName(itemData.getString("name"));
-                                modelItems.setImage(itemData.getString("photo"));
-                                modelItems.setDesc(itemData.getString("description"));
-                                modelItems.setPrice1(itemData.getString("price"));
-                                modelItems.setFinalPrice(itemData.getString("final_price"));
+                                modelItems.setId(itemData.getString("product_id"));
 
-                                JSONArray rateArray = itemData.getJSONArray("rate");
-                                JSONObject rateObj = rateArray.getJSONObject(0);
-                                modelItems.setRate(rateObj.getString("rate"));
+                                JSONObject product = itemData.getJSONObject("product");
+                                modelItems.setName(product.getString("name"));
+                                modelItems.setImage(product.getString("photo"));
+
+                                modelItems.setDesc(itemData.getString("amount"));
+                                modelItems.setPrice1(product.getString("price"));
+                                modelItems.setFinalPrice(product.getString("final_price"));
+
+
+
+                                JSONArray rateArray = product.getJSONArray("rate");
+                                if (rateArray.length()>0){
+                                    JSONObject rateObj = rateArray.getJSONObject(0);
+                                    modelItems.setRate(rateObj.getString("rate"));
+                                }
+
 
                                 arrayList.add(modelItems);
                             }
