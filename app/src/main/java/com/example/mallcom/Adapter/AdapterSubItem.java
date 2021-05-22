@@ -8,23 +8,16 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.mallcom.Activity.MainActivity;
-import com.example.mallcom.Activity.ProductDetails;
-import com.example.mallcom.Activity.Products;
-import com.example.mallcom.Activity.SubDept;
 import com.example.mallcom.Activity.SubDeptproduct;
 import com.example.mallcom.Models.ModelProducts;
 import com.example.mallcom.R;
 
 import java.util.ArrayList;
-
-import static android.widget.Toast.LENGTH_LONG;
 
 public class AdapterSubItem extends RecyclerView.Adapter<AdapterSubItem.ViewHolder> {
 

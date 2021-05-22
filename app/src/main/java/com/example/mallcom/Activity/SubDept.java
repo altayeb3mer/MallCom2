@@ -76,7 +76,6 @@ public class SubDept extends AppCompatActivity {
             slideShow_adapter = new SlideShow_adapter(this,list1);
         }else{
             slideShow_adapter = new SlideShow_adapter(list2,this);
-
         }
         viewPager.setAdapter(slideShow_adapter);
         circleIndicator = findViewById(R.id.indicator);
