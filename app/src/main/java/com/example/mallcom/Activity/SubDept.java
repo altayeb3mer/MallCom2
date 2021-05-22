@@ -8,10 +8,13 @@ import androidx.viewpager.widget.ViewPager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mallcom.Adapter.AdapterProductsWithRate;
+import com.example.mallcom.Adapter.AdapterSubItem;
 import com.example.mallcom.Adapter.SlideShow_adapter;
 import com.example.mallcom.Models.ModelItems;
 import com.example.mallcom.Models.ModelProducts;
@@ -38,28 +41,35 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
+import static android.widget.Toast.LENGTH_LONG;
+
 public class SubDept extends AppCompatActivity {
 
     SlideShow_adapter slideShow_adapter;
     ViewPager viewPager;
     CircleIndicator circleIndicator;
 
-
+    //rec
+TextView subname;
+ImageView imgBack;
     View view;
-    AdapterProductsWithRate adapterProductsWithRate;
+    AdapterSubItem adapterProductsWithRate;
     RecyclerView recyclerView;
-    String cat="Clothes",subCat="Boys";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sub_dept);
-
-        Bundle args = getIntent().getExtras();
-        if (args!=null){
-            cat = args.getString("category");
-            subCat = args.getString("subCategory");
-        }
+        subname=findViewById(R.id.subname);
+        imgBack=findViewById(R.id.imgBack);
+        imgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        subname.setText(getIntent().getExtras().getString("categoryName"));
+       // Toast.makeText(getApplicationContext(), "in sub", Toast.LENGTH_SHORT).show();
 
         init();
         getProducts();
@@ -76,6 +86,7 @@ public class SubDept extends AppCompatActivity {
             slideShow_adapter = new SlideShow_adapter(this,list1);
         }else{
             slideShow_adapter = new SlideShow_adapter(list2,this);
+
         }
         viewPager.setAdapter(slideShow_adapter);
         circleIndicator = findViewById(R.id.indicator);
@@ -115,12 +126,12 @@ public class SubDept extends AppCompatActivity {
     }
 
 
-    GridLayoutManager gridLayoutManager;
+
     private void initAdapter( ArrayList<ModelProducts> list) {
         recyclerView = findViewById(R.id.recyclerProduct);
-        gridLayoutManager = new GridLayoutManager(this, 3, GridLayoutManager.VERTICAL, false);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3, GridLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(gridLayoutManager);
-        adapterProductsWithRate = new AdapterProductsWithRate(this,list);
+        adapterProductsWithRate = new AdapterSubItem(this,list);
         recyclerView.setAdapter(adapterProductsWithRate);
 
 
@@ -155,11 +166,11 @@ public class SubDept extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        Api.RetrofitGetProduct service = retrofit.create(Api.RetrofitGetProduct.class);
+        Api.RetrofitgetSubCategories service = retrofit.create(Api.RetrofitgetSubCategories.class);
         HashMap<String,String> hashMap =new HashMap<>();
-        hashMap.put("category",cat);
-        hashMap.put("subCategory",subCat);
-        Call<String> call = service.putParam(hashMap);
+        hashMap.put("categoryName",getIntent().getExtras().getString("categoryName"));
+        //hashMap.put("subCategory","Boys");
+        Call<String> call = service.putParam(getIntent().getExtras().getString("categoryName"));
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, retrofit2.Response<String> response) {
@@ -175,15 +186,16 @@ public class SubDept extends AppCompatActivity {
 
                                 ModelProducts departmentModel = new ModelProducts();
                                 departmentModel.setId(itemData.getString("id"));
-                                departmentModel.setName(itemData.getString("name"));
-                                departmentModel.setImage(itemData.getString("photo"));
-                                departmentModel.setPrice(itemData.getString("price"));
+                                departmentModel.setName(itemData.getString("subCategory"));
+                                departmentModel.setNamemain(itemData.getString("name"));
+                                departmentModel.setImage(itemData.getString("sub_img"));
+                               // departmentModel.setPrice(itemData.getString("price"));
 
-                                JSONArray rateArray = itemData.getJSONArray("rate");
-                                if (rateArray.length()>0){
-                                    JSONObject rateObj = rateArray.getJSONObject(0);
-                                    departmentModel.setRate(rateObj.getString("rate"));
-                                }
+                               // JSONArray rateArray = itemData.getJSONArray("rate");
+                                //if (rateArray.length()>0){
+                                //    JSONObject rateObj = rateArray.getJSONObject(0);
+                                //    departmentModel.setRate(rateObj.getString("rate"));
+                               // }
 
                                 arrayList.add(departmentModel);
                             }
