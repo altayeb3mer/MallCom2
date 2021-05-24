@@ -114,7 +114,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
                             Intent intent =new Intent(getApplicationContext(),ConfirmPhone.class);
                            // intent.putExtra("userId",object.getString("data"));
-                            intent.putExtra("userId",object.getJSONObject("data").getString("id"));
+                            intent.putExtra("userId",object.getString("data"));
 
                             //intent.putExtra("userphone",phone);
                             startActivity(intent);

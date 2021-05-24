@@ -43,6 +43,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         if (SharedPrefManager.getInstance(this).getAppToken().equals("")){
             startActivity(new Intent(this,Login.class));
             finish();
+//            findViewById(R.id.nav_menu_2).setVisibility(View.GONE);
+  //          findViewById(R.id.dept2).setVisibility(View.GONE);
         }
 
         new Global().changeStatusBarColor(this,getResources().getColor(R.color.colorPrimary));
