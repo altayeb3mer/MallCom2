@@ -8,7 +8,7 @@
             <item
                 android:id="@+id/nav_menu_2"
                 android:title="كل الاقسام"
-                android:icon="@drawable/ic_bookmark_border"
+                android:icon="@drawable/ic_apps_primary"
                 />
         </group>
         <group android:checkableBehavior="none"
@@ -16,17 +16,17 @@
             <item
                 android:id="@+id/dept2"
                 android:title="طلباتي"
-                android:icon="@drawable/ic_apps_primary"
+                android:icon="@drawable/myorder"
                 />
             <item
                 android:id="@+id/dept3"
                 android:title="المفضلة"
-                android:icon="@drawable/ic_apps_primary"
+                android:icon="@drawable/ic_star"
                 />
             <item
                 android:id="@+id/dept4"
                 android:title="السلة"
-                android:icon="@drawable/ic_apps_primary"
+                android:icon="@drawable/ic_shopping_cart"
                 />
         </group>
         <group>
