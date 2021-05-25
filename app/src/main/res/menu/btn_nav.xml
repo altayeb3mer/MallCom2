@@ -7,7 +7,7 @@
         android:icon="@drawable/ic_home"
         />
     <item android:id="@+id/btn_nav2"
-        android:title="اشعارات"
+        android:title="الاشعارات"
         android:orderInCategory="2"
         android:icon="@drawable/ic_notifications"
         />

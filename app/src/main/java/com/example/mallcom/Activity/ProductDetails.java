@@ -55,6 +55,18 @@ public class ProductDetails extends AppCompatActivity implements View.OnClickLis
             String id = args.getString("id");
             getDetails(id);
         }
+        setBadgeCount();
+    }
+
+    private void setBadgeCount() {
+        ArrayList<ModelCart> arrayList = new SqlLiteDataBase(getApplicationContext()).GetAllCart();
+        TextView badges = findViewById(R.id.txtBadge);
+        if (arrayList.size()>0){
+            badges.setText(arrayList.size()+"");
+            badges.setVisibility(View.VISIBLE);
+        }else {
+            badges.setVisibility(View.GONE);
+        }
     }
 
     private void init() {
@@ -87,6 +99,7 @@ public class ProductDetails extends AppCompatActivity implements View.OnClickLis
         try {
             new SqlLiteDataBase(getApplicationContext()).addToCart(modelCart);
             Toast.makeText(this, "تمت الاضافة", Toast.LENGTH_SHORT).show();
+            setBadgeCount();
 
         } catch (Exception e) {
             Toast.makeText(this, "حدث خطأ", Toast.LENGTH_SHORT).show();
@@ -226,4 +239,9 @@ public class ProductDetails extends AppCompatActivity implements View.OnClickLis
         circleIndicator.setViewPager(viewPager);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setBadgeCount();
+    }
 }

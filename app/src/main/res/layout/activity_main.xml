@@ -38,17 +38,36 @@
                 android:layout_marginLeft="@dimen/margin_normal_size"
                 android:layout_marginRight="@dimen/margin_normal_size"
                 android:src="@drawable/logo" />
-            <ImageView
-                android:padding="@dimen/margin_small_size"
-                android:id="@+id/imgCart"
-                android:layout_alignParentEnd="true"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_centerVertical="true"
+            <RelativeLayout
+                android:id="@+id/badgeLay"
                 android:layout_marginLeft="@dimen/margin_normal_size"
                 android:layout_marginRight="@dimen/margin_normal_size"
-                android:src="@drawable/ic_cart"
-                android:layout_alignParentRight="true" />
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true">
+                <ImageView
+                    android:layout_margin="@dimen/margin_small_size"
+                    android:padding="@dimen/margin_small_size"
+                    android:id="@+id/imgCart"
+                    android:layout_alignParentEnd="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_cart"
+                    android:layout_alignParentRight="true" />
+                <TextView
+                    android:gravity="center"
+                    android:id="@+id/txtBadge"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@drawable/badge_circle"
+                    android:text="2"
+                    android:textColor="@android:color/white"
+                    android:textSize="8sp"/>
+            </RelativeLayout>
+
         </RelativeLayout>
         <androidx.cardview.widget.CardView
             android:id="@+id/cardSearch"

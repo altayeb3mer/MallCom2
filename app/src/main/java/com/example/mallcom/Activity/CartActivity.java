@@ -27,7 +27,7 @@ public class CartActivity extends ToolbarClass {
     ArrayList<ModelCart> arrayList;
     AppCompatButton button;
     public static TextView textViewTotal;
-    LinearLayout layNoData,layBtn;
+    public static LinearLayout layNoData,layBtn;
 
     protected final void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,7 +56,12 @@ public class CartActivity extends ToolbarClass {
         double total = 0;
         for (int i = 0; i < list.size(); i++) {
             total = total + (Double.parseDouble(list.get(i).getPrice1())*Double.parseDouble(list.get(i).getQty()));
-            textViewTotal.setText(String.valueOf(total));
+
+            textViewTotal.setText(new Global().formatNumber(total));
+        }
+        if (list.size()==0){
+            layBtn.setVisibility(View.INVISIBLE);
+            layNoData.setVisibility(View.VISIBLE);
         }
         double a=0d;
         return a;

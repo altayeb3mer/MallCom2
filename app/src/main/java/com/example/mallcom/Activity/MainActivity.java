@@ -1,10 +1,17 @@
 package com.example.mallcom.Activity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,16 +22,21 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.mallcom.Adapter.ViewPagerAdapter;
 import com.example.mallcom.Database.SharedPrefManager;
+import com.example.mallcom.Database.SqlLiteDataBase;
 import com.example.mallcom.Fragment.Fragment1;
 import com.example.mallcom.Fragment.Fragment2;
 import com.example.mallcom.Fragment.Fragment3;
 import com.example.mallcom.Fragment.Fragment4;
 import com.example.mallcom.Fragment.Fragment5;
+import com.example.mallcom.Models.ModelCart;
 import com.example.mallcom.R;
 import com.example.mallcom.Utils.CustomViewPager;
 import com.example.mallcom.Utils.Global;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.mikepenz.actionitembadge.library.ActionItemBadge;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, NavigationView.OnNavigationItemSelectedListener {
     BottomNavigationView bottomNavigationView;
@@ -47,6 +59,19 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
         new Global().changeStatusBarColor(this,getResources().getColor(R.color.colorPrimary));
         init();
+        setBadgeCount();
+
+    }
+
+    private void setBadgeCount() {
+        ArrayList<ModelCart> arrayList = new SqlLiteDataBase(getApplicationContext()).GetAllCart();
+        TextView badges = findViewById(R.id.txtBadge);
+        if (arrayList.size()>0){
+            badges.setText(arrayList.size()+"");
+            badges.setVisibility(View.VISIBLE);
+        }else {
+            badges.setVisibility(View.GONE);
+        }
     }
 
     private void init() {
@@ -166,7 +191,11 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     }
 
 
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setBadgeCount();
+    }
 
     public void switchToFragment(int f_no) {
 //        FragmentManager manager = getSupportFragmentManager();

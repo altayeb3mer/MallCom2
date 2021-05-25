@@ -2,6 +2,8 @@ package com.example.mallcom.Adapter;
 
 import android.app.Activity;
 import android.graphics.Paint;
+import android.text.SpannableString;
+import android.text.style.RelativeSizeSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,20 +26,22 @@ import com.example.mallcom.Activity.CartActivity;
 import com.example.mallcom.Database.SqlLiteDataBase;
 import com.example.mallcom.Models.ModelCart;
 import com.example.mallcom.R;
+import com.example.mallcom.Utils.Global;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 
 public class AdapterCart extends RecyclerView.Adapter<AdapterCart.ViewHolder> {
 
-//    Typeface tf;
-    int current_page, last_page;
+
     private ArrayList<ModelCart> arrayList;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
     private Activity activity;
-    Spinner spinner;
-//    RelativeLayout container;
+
     public AdapterCart(Activity activity, ArrayList<ModelCart> r) {
         this.mInflater = LayoutInflater.from(activity);
         this.arrayList = r;
@@ -65,13 +69,21 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.ViewHolder> {
         }
         holder.textViewName.setText(item.getName());
         holder.textViewDesc.setText(item.getDescription());
-        holder.textViewPrice.setText(item.getPrice1());
-        holder.textViewOldPrice.setText(item.getPrice2());
+        DecimalFormat formatter = new DecimalFormat("#,###,###");
+        if (item.getPrice1()!=null) {
+
+            holder.textViewPrice.setText(new Global().formatNumber(item.getPrice1()));
+
+        }
+//        holder.textViewOldPrice.setText(item.getPrice2());
+        if (item.getPrice2()!=null)
+        holder.textViewOldPrice.setText(new Global().formatNumber(item.getPrice2()));
         holder.textViewOldPrice.setPaintFlags( holder.textViewOldPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
         holder.textViewRate.setText(item.getRate());
         holder.textViewQty.setText(item.getQty());
 
-//
+
+
 //        holder.container.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
@@ -86,6 +98,7 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.ViewHolder> {
                 arrayList.remove(position);
                 notifyItemRemoved(position);
                 notifyDataSetChanged();
+                CartActivity.getTotal(arrayList);
             }
         });
         holder.increase.setOnClickListener(new View.OnClickListener() {
@@ -165,9 +178,9 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.ViewHolder> {
 
     private void updateQty(ModelCart modelCart){
         if (new SqlLiteDataBase(activity).updateToCart(modelCart)){
-            Toast.makeText(activity, "done", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(activity, "done", Toast.LENGTH_SHORT).show();
         }else{
-            Toast.makeText(activity, "error", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(activity, "error", Toast.LENGTH_SHORT).show();
         }
 
     }
