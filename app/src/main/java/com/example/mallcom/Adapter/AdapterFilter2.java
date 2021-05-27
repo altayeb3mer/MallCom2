@@ -1,11 +1,13 @@
 package com.example.mallcom.Adapter;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -20,18 +22,19 @@ import java.util.ArrayList;
 
 public class AdapterFilter2 extends RecyclerView.Adapter<AdapterFilter2.ViewHolder> {
 
-//    Typeface tf;
-    int current_page, last_page;
+
     private ArrayList<ModelFilter2> arrayList;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
     private Activity activity;
-    Spinner spinner;
-//    RelativeLayout container;
-    public AdapterFilter2(Activity activity, ArrayList<ModelFilter2> r) {
+    String type;
+
+
+    public AdapterFilter2(Activity activity, ArrayList<ModelFilter2> r,String type) {
         this.mInflater = LayoutInflater.from(activity);
         this.arrayList = r;
         this.activity = activity;
+        this.type = type;
     }
 
     @Override
@@ -55,24 +58,30 @@ public class AdapterFilter2 extends RecyclerView.Adapter<AdapterFilter2.ViewHold
 //            e.printStackTrace();
 //        }
 //
-//        holder.container.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(activity, ProductDetails.class);
-//                activity.startActivity(intent);
-//            }
-//        });
-//        holder.textViewTitle.setText(item.getTitle());
-//        holder.textViewPrice.setText(item.getPrice()+" "+"جنيه سوداني");
-//
-//
-//
-//        holder.layDel.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                deleteAds(item.getType(),item.getId(),position);
-//            }
-//        });
+        holder.container.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (type.equals("color")){
+                    Intent returnIntent = new Intent();
+                    returnIntent.putExtra("price1","");
+                    returnIntent.putExtra("price2","");
+                    returnIntent.putExtra("color",item.getValue());
+                    returnIntent.putExtra("rate","");
+                    activity.setResult(Activity.RESULT_OK,returnIntent);
+                    activity.finish();
+                }else{
+                    Intent returnIntent = new Intent();
+                    returnIntent.putExtra("price1","");
+                    returnIntent.putExtra("price2","");
+                    returnIntent.putExtra("color","");
+                    returnIntent.putExtra("rate",item.getValue());
+                    activity.setResult(Activity.RESULT_OK,returnIntent);
+                    activity.finish();
+                }
+            }
+        });
+        holder.textViewValue.setText(item.getValue());
+
 
 
     }
@@ -96,20 +105,15 @@ public class AdapterFilter2 extends RecyclerView.Adapter<AdapterFilter2.ViewHold
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        ImageView imageView;
-        LinearLayout container;
-        TextView textViewOldPrice, textViewPrice;
-//        Spinner spinner;
+        RelativeLayout container;
+        TextView textViewValue;
 
         ViewHolder(View itemView) {
             super(itemView);
-//            layDel = itemView.findViewById(R.id.layDel);
-//            imageView = itemView.findViewById(R.id.img);
-//            container = itemView.findViewById(R.id.container);
-//            textViewTitle = itemView.findViewById(R.id.title);
-//            textViewOldPrice = itemView.findViewById(R.id.oldPrice);
-//            spinner = itemView.findViewById(R.id.spinner);
-//            initSpinner();
+
+            container = itemView.findViewById(R.id.container);
+            textViewValue = itemView.findViewById(R.id.value);
+
 
         }
 

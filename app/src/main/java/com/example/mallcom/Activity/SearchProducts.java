@@ -46,10 +46,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class SearchProducts extends AppCompatActivity {
-
+    static final int REQUEST_CODE = 1;
     AdapterProducts adapterProducts;
     RecyclerView recyclerView;
-    ArrayList<ModelItems> arrayList ;
+    ArrayList<ModelItems> arrayList;
 
     ImageView imgBack;
     LinearLayout laySort,layFilter;
@@ -149,7 +149,7 @@ public class SearchProducts extends AppCompatActivity {
         layFilter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               startActivity(new Intent(getApplicationContext(),FilterActivity.class));
+               startActivityForResult(new Intent(getApplicationContext(),FilterActivity.class),REQUEST_CODE);
             }
         });
         laySort = findViewById(R.id.laySort);
@@ -271,6 +271,19 @@ public class SearchProducts extends AppCompatActivity {
         if (!sort.isEmpty()){
             hashMap.put("sort",sort);
         }
+        if (!price1.isEmpty()){
+            hashMap.put("filter[price][from]",price1);
+        }
+        if (!price2.isEmpty()){
+            hashMap.put("filter[price][to]",price2);
+        }
+        if (!rate.isEmpty()){
+            hashMap.put("filter[rate]",rate);
+        }
+        if (!color.isEmpty()){
+            hashMap.put("filter[color]",color);
+        }
+
         Call<String> call = service.putParam(hashMap);
         call.enqueue(new Callback<String>() {
             @Override
@@ -342,5 +355,27 @@ public class SearchProducts extends AppCompatActivity {
         });
     }
 
+    String  price1="",price2="",color="",rate="";
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == Activity.RESULT_OK) {
+            initAdapter(arrayList);
+            hideKeyboard(SearchProducts.this);
+            price1 = data.getStringExtra("price1");
+            price2 = data.getStringExtra("price2");
+            color = data.getStringExtra("color");
+            rate = data.getStringExtra("rate");
+            preSearch();
+
+
+        }
+        if (resultCode == Activity.RESULT_CANCELED) {
+            //Write your code if there's no result
+            Toast.makeText(this, "لم تقم باختيار بطاقة", Toast.LENGTH_SHORT).show();
+        }
+
+    }//onActivityResult
 
 }

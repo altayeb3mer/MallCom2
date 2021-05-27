@@ -14,8 +14,10 @@ import android.widget.TextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.mallcom.Activity.FilterActivity;
 import com.example.mallcom.Activity.ProductDetails;
 import com.example.mallcom.Models.ModelFilter1;
+import com.example.mallcom.Models.ModelFilter2;
 import com.example.mallcom.Models.ModelItems;
 import com.example.mallcom.R;
 
@@ -63,12 +65,56 @@ public class AdapterFilter1 extends RecyclerView.Adapter<AdapterFilter1.ViewHold
         holder.container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (position==0){
-                    priceLay.setVisibility(View.VISIBLE);
-                    recyclerView.setVisibility(View.GONE);
-                }else{
-                    priceLay.setVisibility(View.GONE);
-                    recyclerView.setVisibility(View.VISIBLE);
+//                if (position==0){
+//                    priceLay.setVisibility(View.VISIBLE);
+//                    recyclerView.setVisibility(View.GONE);
+//                }else{
+//                    priceLay.setVisibility(View.GONE);
+//                    recyclerView.setVisibility(View.VISIBLE);
+//
+//                }
+                switch (position){
+                    case 0: {
+                        priceLay.setVisibility(View.VISIBLE);
+                        recyclerView.setVisibility(View.GONE);
+                        break;
+                    }
+                    case 1: {
+                        ArrayList<ModelFilter2> arrayList2 = new ArrayList<>();
+                        ModelFilter2 modelFilter1 = new ModelFilter2();
+                        modelFilter1.setId(0 + "");
+                        modelFilter1.setValue("red");
+                        arrayList2.add(modelFilter1);
+
+                        ModelFilter2 modelFilter2 = new ModelFilter2();
+                        modelFilter2.setId(1 + "");
+                        modelFilter2.setValue("blue");
+                        arrayList2.add(modelFilter2);
+
+                        ModelFilter2 modelFilter3 = new ModelFilter2();
+                        modelFilter3.setId(2 + "");
+                        modelFilter3.setValue("grey");
+                        arrayList2.add(modelFilter3);
+
+                        FilterActivity.initAdapter2(activity,arrayList2,"color");
+                        priceLay.setVisibility(View.GONE);
+                        recyclerView.setVisibility(View.VISIBLE);
+                        break;
+                    }
+                    case 2:{
+                        ArrayList<ModelFilter2> arrayList2 = new ArrayList<>();
+
+                        for (int i = 0; i < 10; i++) {
+                            ModelFilter2 modelFilter2 = new ModelFilter2();
+                            modelFilter2.setValue(i+1+" "+"من 10");
+                            arrayList2.add(modelFilter2);
+                        }
+
+                        FilterActivity.initAdapter2(activity,arrayList2,"rate");
+                        priceLay.setVisibility(View.GONE);
+                        recyclerView.setVisibility(View.VISIBLE);
+                        break;
+                    }
                 }
             }
         });

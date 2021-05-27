@@ -4,9 +4,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="45dp"
     android:layout_marginLeft="@dimen/margin_small_size"
-    android:layout_marginRight="@dimen/margin_small_size">
+    android:layout_marginRight="@dimen/margin_small_size"
+    android:id="@+id/container">
 
     <androidx.appcompat.widget.AppCompatCheckBox
+        android:visibility="gone"
         android:id="@+id/checkbox"
         android:layout_centerVertical="true"
         android:layout_width="30dp"
@@ -22,11 +24,13 @@
         android:layout_toEndOf="@id/checkbox"
         android:layout_toRightOf="@id/checkbox">
         <TextView
+            android:id="@+id/value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/txt_normal_size"
             android:text="1000-4000"/>
         <TextView
+            android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/txt_small_size"
