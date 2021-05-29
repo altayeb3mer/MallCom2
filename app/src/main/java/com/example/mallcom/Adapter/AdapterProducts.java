@@ -23,8 +23,7 @@ import java.util.ArrayList;
 
 public class AdapterProducts extends RecyclerView.Adapter<AdapterProducts.ViewHolder> {
 
-//    Typeface tf;
-    int current_page, last_page;
+
     private ArrayList<ModelItems> arrayList;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
@@ -75,7 +74,6 @@ public class AdapterProducts extends RecyclerView.Adapter<AdapterProducts.ViewHo
         }else{
            holder.textViewOldPrice.setVisibility(View.GONE);
         }
-
 
     }
 
