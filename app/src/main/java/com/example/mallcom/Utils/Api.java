@@ -20,7 +20,7 @@ public class Api {
                                  //  api/v1/user/myNotifications
     //registration
     public interface RetrofitRegister {
-        @POST("api/v1/user/register")
+        @POST("api/v1/auth/signUp")
         Call<String> putParam(@Body HashMap<String, String> param);
     }
     public interface RetrofitNotificatio {
@@ -73,10 +73,12 @@ public class Api {
         @GET("api/v1/user/getMyOrderByNumber")
         Call<String> putParam(@QueryMap HashMap<String, String> param);
     }
+
     //product details
     public interface RetrofitProductDetails {
         @GET("api/v1/public/products/{id}")
         Call<String> putParam(@Path("id") String id);
     }
+
 
 }
