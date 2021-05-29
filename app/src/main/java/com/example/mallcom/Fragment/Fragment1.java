@@ -23,6 +23,7 @@ import com.example.mallcom.Adapter.SlideShow_adapter;
 import com.example.mallcom.Models.DepartmentModel;
 import com.example.mallcom.Models.ModelDept;
 import com.example.mallcom.Models.ModelProducts;
+import com.example.mallcom.Models.ModelSlider;
 import com.example.mallcom.Models.ModelStagger;
 import com.example.mallcom.R;
 import com.example.mallcom.Utils.Api;
@@ -54,7 +55,7 @@ public class Fragment1 extends Fragment {
     RecyclerView recyclerView;
 
     AdapterStagger adapterStagger;
-    ArrayList<ModelStagger> staggerArrayList;
+
     AdapterOffer adapterProducts;
     ArrayList<ModelProducts> productsArrayList;
     RecyclerView recyclerProduct, recyclerStagger;
@@ -68,11 +69,12 @@ public class Fragment1 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragmenKt
+        // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_1, container, false);
         init();
         initSlider();
         getCategory();
+        getSuggestions();
         return view;
     }
 
@@ -128,20 +130,12 @@ public class Fragment1 extends Fragment {
         recyclerStagger = view.findViewById(R.id.recyclerStagger);
 
         initAdapterProduct();
-        initAdapterSagger();
     }
 
-    private void initAdapterSagger() {
-        staggerArrayList = new ArrayList<>();
+    private void initAdapterStagger(ArrayList<ModelStagger> list) {
         GridLayoutManager gridLayoutManager = new GridLayoutManager(context, 1, GridLayoutManager.VERTICAL, false);
         recyclerStagger.setLayoutManager(gridLayoutManager);
-        for (int i = 0; i < 5; i++) {
-            ModelStagger  modelProducts = new ModelStagger();
-            modelProducts.setId(i+"");
-            staggerArrayList.add(modelProducts);
-        }
-
-        adapterStagger = new AdapterStagger(getActivity(), staggerArrayList);
+        adapterStagger = new AdapterStagger(getActivity(), list);
         recyclerStagger.setAdapter(adapterStagger);
 
     }
@@ -168,7 +162,6 @@ public class Fragment1 extends Fragment {
 
 
     }
-
 
 
     LinearLayout progressLay;
@@ -248,12 +241,100 @@ public class Fragment1 extends Fragment {
             }
         });
     }
+    private void getSuggestions() {
+        final ArrayList<ModelStagger>  staggerArrayList = new ArrayList<>();
+        progressLay.setVisibility(View.VISIBLE);
+        OkHttpClient httpClient = new OkHttpClient.Builder()
+                .addInterceptor(new Interceptor() {
+                    @Override
+                    public okhttp3.Response intercept(Chain chain) throws IOException {
+                        okhttp3.Request.Builder ongoing = chain.request().newBuilder();
+                        ongoing.addHeader("Content-Type", "application/json;");
+                        ongoing.addHeader("Accept", "application/json");
+//                        ongoing.addHeader("lang", SharedPrefManager.getInstance(getApplicationContext()).GetAppLanguage());
+//                        String token = SharedPrefManager.getInstance(getApplicationContext()).getAppToken();
+//                        ongoing.addHeader("Authorization", token);
+                        return chain.proceed(ongoing.build());
+                    }
+                })
+                .readTimeout(60*5, TimeUnit.SECONDS)
+                .connectTimeout(60*5, TimeUnit.SECONDS)
+                .build();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Api.ROOT_URL)
+                .client(httpClient)
+                .addConverterFactory(ScalarsConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        Api.RetrofitSuggestions service = retrofit.create(Api.RetrofitSuggestions.class);
+
+        Call<String> call = service.putParam();
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, retrofit2.Response<String> response) {
+                try {
+                    JSONObject object = new JSONObject(response.body());
+                    String success = object.getString("success");
+                    switch (success) {
+                        case "true": {
+                            JSONArray data = object.getJSONArray("data");
+                            for (int i = 0; i < data.length(); i++) {
+                                JSONObject itemData = data.getJSONObject(i);
+
+                                ModelStagger modelStagger = new ModelStagger();
+                                modelStagger.setName(itemData.getString("watchAll"));
+                                //3 products
+                                JSONArray productsImg = itemData.getJSONArray("imgs");
+                                modelStagger.setProduct1(productsImg.getString(0));
+                                modelStagger.setProduct2(productsImg.getString(1));
+                                modelStagger.setProduct3(productsImg.getString(2));
+                                //slider
+                                JSONArray sliderImg = itemData.getJSONArray("topProduct");
+                                ArrayList<ModelSlider> modelSliders = new ArrayList<>();
+                                for (int j = 0; j < sliderImg.length(); j++) {
+                                    JSONObject jsonObjectSlider = sliderImg.getJSONObject(i);
+                                    ModelSlider modelSlider = new ModelSlider();
+                                    modelSlider.setId(jsonObjectSlider.getString("id"));
+                                    modelSlider.setImage(jsonObjectSlider.getString("photo"));
+                                    modelSliders.add(modelSlider);
+                                }
+                                modelStagger.setModelSliderArrayList(modelSliders);
+                                staggerArrayList.add(modelStagger);
+                            }
+
+                            if (staggerArrayList.size()>0){
+                                initAdapterStagger(staggerArrayList);
+                            }
+
+                            break;
+                        }
+
+                        default: {
+                            Toast.makeText(context, "حدث خطأ حاول مجددا", Toast.LENGTH_SHORT).show();
+                            break;
+                        }
+                    }
+                    progressLay.setVisibility(View.GONE);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+                progressLay.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable throwable) {
+                progressLay.setVisibility(View.GONE);
+            }
+        });
+    }
 
     @Override
     public void onAttach(@NonNull Context context) {
         this.context = context;
         super.onAttach(context);
     }
-
 
 }

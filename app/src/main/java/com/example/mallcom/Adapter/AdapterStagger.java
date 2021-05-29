@@ -5,23 +5,23 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
+import com.bumptech.glide.Glide;
 import com.example.mallcom.Activity.SubDept;
 import com.example.mallcom.Models.ModelStagger;
 import com.example.mallcom.R;
 
 import java.util.ArrayList;
+
+import me.relex.circleindicator.CircleIndicator;
 
 
 public class AdapterStagger extends RecyclerView.Adapter<AdapterStagger.ViewHolder> {
@@ -53,73 +53,45 @@ public class AdapterStagger extends RecyclerView.Adapter<AdapterStagger.ViewHold
         final ModelStagger item = arrayList.get(position);
 
 
+        SlideShow_adapter slideShow_adapter = new SlideShow_adapter(item.getModelSliderArrayList(),activity);
+        holder.viewPager.setAdapter(slideShow_adapter);
+        holder.circleIndicator.setViewPager(holder.viewPager);
+
         holder.cardShowMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                activity.startActivity(new Intent(activity, SubDept.class));
+                //categoryName
+                Intent intent = new Intent(activity, SubDept.class);
+                intent.putExtra("categoryName",item.getName());
+                activity.startActivity(intent);
             }
         });
 
-//        try {
-//            Glide.with(activity).load(Api.ROOT_URL+item.getImage())
-//                    .into(holder.imageView);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//
-//        holder.container.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(activity, DeptsActivity.class);
-//                activity.startActivity(intent);
-//            }
-//        });
-//        holder.textViewTitle.setText(item.getTitle());
-//        holder.textViewPrice.setText(item.getPrice()+" "+"جنيه سوداني");
-//
-//
-//
-//        holder.layDel.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                deleteAds(item.getType(),item.getId(),position);
-//            }
-//        });
-
-
-    }
-
-    private void initSpinner() {
-        spinner.setDropDownWidth(ViewGroup.LayoutParams.MATCH_PARENT);
-        ArrayList<String> arrayListSpinner = new ArrayList<>();
-        for (int i = 0; i < 20; i++) {
-            arrayListSpinner.add(String.valueOf(i+1));
+        try {
+            Glide.with(activity).load(item.getProduct1())
+                    .into(holder.imageView1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            Glide.with(activity).load(item.getProduct2())
+                    .into(holder.imageView2);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            Glide.with(activity).load(item.getProduct3())
+                    .into(holder.imageView3);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-        ArrayAdapter<String> arrayAdapterSpinner = new ArrayAdapter<String>(activity, R.layout.spinner_item, arrayListSpinner) {
-            @Override
-            public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-                return super.getDropDownView(position, convertView, parent);
-            }
-        };
-        arrayAdapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(arrayAdapterSpinner);
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (position == 0) {
-//                    s_month = "";
-                } else {
-//                    s_month = array_month[position];
-                }
-            }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
+        holder.textViewName.setText(item.getName());
+
 
     }
+
 
     @Override
     public int getItemCount() {
@@ -139,21 +111,23 @@ public class AdapterStagger extends RecyclerView.Adapter<AdapterStagger.ViewHold
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        ImageView imageView;
+        ImageView imageView1,imageView2,imageView3;
         ConstraintLayout container;
-        TextView textViewTitle, textViewPrice;
-//        Spinner spinner;
+        TextView textViewName;
         CardView cardShowMore;
+        ViewPager viewPager;
+        CircleIndicator circleIndicator;
 
         ViewHolder(View itemView) {
             super(itemView);
-//            layDel = itemView.findViewById(R.id.layDel);
-//            imageView = itemView.findViewById(R.id.img);
-//            container = itemView.findViewById(R.id.container);
-//            textViewTitle = itemView.findViewById(R.id.title);
-//            textViewPrice = itemView.findViewById(R.id.price);
+            circleIndicator = itemView.findViewById(R.id.indicator);
+            viewPager = itemView.findViewById(R.id.viewpager);
+            imageView1 = itemView.findViewById(R.id.image1);
+            imageView2 = itemView.findViewById(R.id.image2);
+            imageView3 = itemView.findViewById(R.id.image3);
+            textViewName = itemView.findViewById(R.id.name);
             cardShowMore = itemView.findViewById(R.id.cardShowMore);
-//            initSpinner();
+
 
         }
 

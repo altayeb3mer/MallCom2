@@ -12,6 +12,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
+            android:id="@+id/name"
             android:layout_marginLeft="@dimen/margin_normal_size"
             android:layout_marginRight="@dimen/margin_normal_size"
             android:layout_width="wrap_content"
@@ -113,6 +114,7 @@
                 android:id="@+id/con2g2"
                 app:layout_constraintGuide_percent="0.5"/>
             <ImageView
+                android:id="@+id/image1"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toLeftOf="@+id/con2g1"
@@ -121,7 +123,7 @@
                 android:layout_height="match_parent"
                 android:src="@drawable/eeeee"/>
             <ImageView
-
+                android:id="@+id/image2"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintLeft_toRightOf="@+id/con2g1"
                 app:layout_constraintRight_toRightOf="parent"
@@ -131,6 +133,7 @@
                 android:layout_height="0dp"
                 android:src="@drawable/hhhhh"/>
             <ImageView
+                android:id="@+id/image3"
                 app:layout_constraintTop_toBottomOf="@+id/con2g2"
                 app:layout_constraintLeft_toRightOf="@+id/con2g1"
                 app:layout_constraintRight_toRightOf="parent"
@@ -139,7 +142,25 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:src="@drawable/honor"/>
-
         </androidx.constraintlayout.widget.ConstraintLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp">
+            <androidx.viewpager.widget.ViewPager
+                android:scrollbarStyle="outsideInset"
+                android:id="@+id/viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                />
+            <me.relex.circleindicator.CircleIndicator
+                android:id="@+id/indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentBottom="true"
+                android:layout_margin="@dimen/margin_normal_size"/>
+        </RelativeLayout>
+
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

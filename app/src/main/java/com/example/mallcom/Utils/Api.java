@@ -80,5 +80,11 @@ public class Api {
         Call<String> putParam(@Path("id") String id);
     }
 
+    //suggestions
+    public interface RetrofitSuggestions {
+        @GET("api/v1/public/suggestions")
+        Call<String> putParam();
+    }
+
 
 }
