@@ -160,7 +160,6 @@ public class Fragment1 extends Fragment {
         adapterDepts = new AdapterDepts(getActivity(),list);
         recyclerView.setAdapter(adapterDepts);
 
-
     }
 
 

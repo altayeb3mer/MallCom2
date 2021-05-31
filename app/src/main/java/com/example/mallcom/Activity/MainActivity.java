@@ -11,6 +11,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -75,6 +76,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     }
 
     private void init() {
+        layTop = findViewById(R.id.layTop);
         cardSearch = findViewById(R.id.cardSearch);
         cardSearch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,8 +123,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         adapter.addFragment(fragment1, "الرئيسية");
         adapter.addFragment(fragment2, "اشعارات");
         adapter.addFragment(fragment3, "اقسام");
-        adapter.addFragment(fragment4, "الحساب");
-//        adapter.addFragment(fragment5, "الحساب");
+//        adapter.addFragment(fragment4, "الحساب");
+        adapter.addFragment(fragment5, "الحساب");
         viewPager.setAdapter(adapter);
     }
 
@@ -158,8 +160,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 break;
             }
             case R.id.btn_nav4:{
-               // switchToFragment(4);
-                startActivity(new Intent(getApplicationContext(), Myaccount.class));
+                switchToFragment(4);
 
                 break;
             }
@@ -197,25 +198,30 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         setBadgeCount();
     }
 
+    LinearLayout layTop;
     public void switchToFragment(int f_no) {
 //        FragmentManager manager = getSupportFragmentManager();
         switch (f_no) {
             case 1: {
+                layTop.setVisibility(View.VISIBLE);
                 viewPager.setCurrentItem(0);
                 SetNavigationItemSelected(R.id.btn_nav1);
                 break;
             }
             case 2: {
+                layTop.setVisibility(View.VISIBLE);
                 viewPager.setCurrentItem(1);
                 SetNavigationItemSelected(R.id.btn_nav2);
                 break;
             }
             case 3: {
+                layTop.setVisibility(View.VISIBLE);
                 viewPager.setCurrentItem(2);
                 SetNavigationItemSelected(R.id.btn_nav3);
                 break;
             }
             case 4: {
+                layTop.setVisibility(View.GONE);
                 viewPager.setCurrentItem(3);
                 SetNavigationItemSelected(R.id.btn_nav4);
                 break;

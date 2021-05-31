@@ -1,21 +1,16 @@
 package com.example.mallcom.Activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.example.mallcom.Adapter.AdapterMyOrder;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.mallcom.Adapter.FavoriteAdapter;
-import com.example.mallcom.Adapter.NotoficationAdapter;
 import com.example.mallcom.Data.Favoritedata;
-import com.example.mallcom.Data.Notification;
+import com.example.mallcom.Database.SharedPrefManager;
 import com.example.mallcom.Models.FavoriteModel;
-import com.example.mallcom.Models.ModelMyOrder;
-import com.example.mallcom.Models.NotificationModel;
 import com.example.mallcom.R;
 import com.example.mallcom.Utils.Api;
 import com.example.mallcom.Utils.ToolbarClass;
@@ -44,7 +39,7 @@ RecyclerView recyclerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_favorite);
+//        setContentView(R.layout.activity_my_favorite);
         super.onCreate(R.layout.activity_my_favorite, "المفضلة");
         progressLay = findViewById(R.id.progressLay);
         recyclerView = findViewById(R.id.recyclerfavorite);
@@ -74,8 +69,8 @@ RecyclerView recyclerView;
                         //.addHeader("Authorization", "Bearer " + Setting.Token)
 
 //                        ongoing.addHeader("lang", SharedPrefManager.getInstance(getApplicationContext()).GetAppLanguage());
-//                        String token = SharedPrefManager.getInstance(getApplicationContext()).getAppToken();
-                        String token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC92MVwvdXNlclwvbG9naW4iLCJpYXQiOjE2MTYzNzQzMTQsIm5iZiI6MTYxNjM3NDMxNCwianRpIjoiVjY2bXVxM2FpSHJwenFBayIsInN1YiI6MSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.TF70v29HuwEQCb9ySR--bbY1pRivGv2831d0M1k_Wt0";
+                        String token = SharedPrefManager.getInstance(getApplicationContext()).getAppToken();
+//                        String token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC92MVwvdXNlclwvbG9naW4iLCJpYXQiOjE2MTYzNzQzMTQsIm5iZiI6MTYxNjM3NDMxNCwianRpIjoiVjY2bXVxM2FpSHJwenFBayIsInN1YiI6MSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.TF70v29HuwEQCb9ySR--bbY1pRivGv2831d0M1k_Wt0";
                         ongoing.addHeader("Authorization", "Bearer "+token);
                         return chain.proceed(ongoing.build());
                     }

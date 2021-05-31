@@ -35,7 +35,7 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHo
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.favorite_item, parent, false);
+        View view = mInflater.inflate(R.layout.favorite_item2, parent, false);
 
         return new ViewHolder(view);
 
@@ -50,7 +50,7 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHo
             mHolder.itemratef.setVisibility(View.GONE);
         else
             mHolder.itemratef.setText(item.getRate());
-        mHolder.itempricef.setText(item.getPrice()+" جنيه سوداني");
+        mHolder.itempricef.setText(item.getPrice());
         Glide.with(mContext).load(item.getPhoto()).into(mHolder.itemimgf);
 
     }

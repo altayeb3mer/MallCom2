@@ -15,7 +15,8 @@ import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
 
 public class Api {
-    public static String ROOT_URL = "https://mallcom-asw4i.ondigitalocean.app/";
+    public static String ROOT_URL = "https://mallcom-asw4i.ondigitalocean.app/mall/";
+//    public static String ROOT_URL = "https://mallcom-asw4i.ondigitalocean.app/";
                                  //  https://mallcom-asw4i.ondigitalocean.app/
                                  //  api/v1/user/myNotifications
     //registration
