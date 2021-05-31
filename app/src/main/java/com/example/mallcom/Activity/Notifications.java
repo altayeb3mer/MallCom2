@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
@@ -14,6 +15,7 @@ import com.example.mallcom.Adapter.FavoriteAdapter;
 import com.example.mallcom.Adapter.NotoficationAdapter;
 import com.example.mallcom.Data.Notification;
 import com.example.mallcom.Data.Stateadata;
+import com.example.mallcom.Database.SharedPrefManager;
 import com.example.mallcom.Models.FavoriteModel;
 import com.example.mallcom.Models.NotificationModel;
 import com.example.mallcom.R;
@@ -40,7 +42,8 @@ public class Notifications extends ToolbarClass {
     ArrayList<NotificationModel> arrayList;
     NotoficationAdapter adapterMyOrder;
     LinearLayout progressLay;
-
+    String token;
+    TextView nodatasound;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +51,10 @@ public class Notifications extends ToolbarClass {
         super.onCreate(R.layout.activity_notifications, "الإشعارات");
         progressLay = findViewById(R.id.progressLay);
         recyclerView = findViewById(R.id.recyclernotification);
+        nodatasound = findViewById(R.id.nodatasound);
+         token = SharedPrefManager.getInstance(getApplicationContext()).getAppToken();
+        //String token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC92MVwvdXNlclwvbG9naW4iLCJpYXQiOjE2MTYzNzQzMTQsIm5iZiI6MTYxNjM3NDMxNCwianRpIjoiVjY2bXVxM2FpSHJwenFBayIsInN1YiI6MSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.TF70v29HuwEQCb9ySR--bbY1pRivGv2831d0M1k_Wt0";
+        //Toast.makeText(Notifications.this, token, Toast.LENGTH_SHORT).show();
 
         notificationdata();
     }
@@ -75,9 +82,8 @@ public class Notifications extends ToolbarClass {
                         //.addHeader("Authorization", "Bearer " + Setting.Token)
 
 //                        ongoing.addHeader("lang", SharedPrefManager.getInstance(getApplicationContext()).GetAppLanguage());
-//                        String token = SharedPrefManager.getInstance(getApplicationContext()).getAppToken();
-                        String token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC92MVwvdXNlclwvbG9naW4iLCJpYXQiOjE2MTYzNzQzMTQsIm5iZiI6MTYxNjM3NDMxNCwianRpIjoiVjY2bXVxM2FpSHJwenFBayIsInN1YiI6MSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.TF70v29HuwEQCb9ySR--bbY1pRivGv2831d0M1k_Wt0";
-                        ongoing.addHeader("Authorization", "Bearer "+token);
+
+                        ongoing.addHeader("Authorization", token);
                         return chain.proceed(ongoing.build());
                     }
                 })
@@ -113,15 +119,29 @@ public class Notifications extends ToolbarClass {
                                 arrayList.add(modelMyOrder);
                         }
                         //Toast.makeText(Registration.this,arrayList.size()+"", Toast.LENGTH_LONG).show();
-
+                  if(arrayList.size()>0){
                         adapterMyOrder = new NotoficationAdapter(Notifications.this,arrayList);
                         recyclerView.setAdapter(adapterMyOrder);
-                        progressLay.setVisibility(View.GONE);
+                        nodatasound.setVisibility(View.GONE);
+
+                        progressLay.setVisibility(View.GONE);}
+                  else
+                  {
+                      nodatasound.setText("عذرا لا يوجد اشعارات");
+                      nodatasound.setVisibility(View.VISIBLE);
+                      recyclerView.setVisibility(View.GONE);
+                      //Toast.makeText(Notifications.this,response.code()+"\n"+response.headers(), LENGTH_LONG).show();
+                      progressLay.setVisibility(View.GONE);
+
+                  }
                     }
                 }
                 else
                 {
-                    Toast.makeText(Notifications.this,response.code()+"\n"+response.headers(), LENGTH_LONG).show();
+                    nodatasound.setText("عذرا لا يوجد اشعارات");
+                    nodatasound.setVisibility(View.VISIBLE);
+                    recyclerView.setVisibility(View.GONE);
+                    //Toast.makeText(Notifications.this,response.code()+"\n"+response.headers(), LENGTH_LONG).show();
                     progressLay.setVisibility(View.GONE);
 
                 }

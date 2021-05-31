@@ -20,6 +20,7 @@ import com.bumptech.glide.Glide;
 import com.example.mallcom.Adapter.FavoriteAdapter;
 import com.example.mallcom.Data.Favoritedata;
 import com.example.mallcom.Data.Profiledata;
+import com.example.mallcom.Database.SharedPrefManager;
 import com.example.mallcom.Models.FavoriteModel;
 import com.example.mallcom.R;
 import com.example.mallcom.Utils.Api;
@@ -90,9 +91,9 @@ public class Myaccount extends AppCompatActivity{
                         //.addHeader("Authorization", "Bearer " + Setting.Token)
 
 //                        ongoing.addHeader("lang", SharedPrefManager.getInstance(getApplicationContext()).GetAppLanguage());
-//                        String token = SharedPrefManager.getInstance(getApplicationContext()).getAppToken();
-                        String token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC92MVwvdXNlclwvbG9naW4iLCJpYXQiOjE2MTYzNzQzMTQsIm5iZiI6MTYxNjM3NDMxNCwianRpIjoiVjY2bXVxM2FpSHJwenFBayIsInN1YiI6MSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.TF70v29HuwEQCb9ySR--bbY1pRivGv2831d0M1k_Wt0";
-                        ongoing.addHeader("Authorization", "Bearer "+token);
+                        String token = SharedPrefManager.getInstance(getApplicationContext()).getAppToken();
+                       // String token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC92MVwvdXNlclwvbG9naW4iLCJpYXQiOjE2MTYzNzQzMTQsIm5iZiI6MTYxNjM3NDMxNCwianRpIjoiVjY2bXVxM2FpSHJwenFBayIsInN1YiI6MSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.TF70v29HuwEQCb9ySR--bbY1pRivGv2831d0M1k_Wt0";
+                        ongoing.addHeader("Authorization", token);
                         return chain.proceed(ongoing.build());
                     }
                 })

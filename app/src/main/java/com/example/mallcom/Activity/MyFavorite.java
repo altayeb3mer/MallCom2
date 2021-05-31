@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mallcom.Adapter.AdapterMyOrder;
@@ -13,6 +14,7 @@ import com.example.mallcom.Adapter.FavoriteAdapter;
 import com.example.mallcom.Adapter.NotoficationAdapter;
 import com.example.mallcom.Data.Favoritedata;
 import com.example.mallcom.Data.Notification;
+import com.example.mallcom.Database.SharedPrefManager;
 import com.example.mallcom.Models.FavoriteModel;
 import com.example.mallcom.Models.ModelMyOrder;
 import com.example.mallcom.Models.NotificationModel;
@@ -38,7 +40,8 @@ import static android.widget.Toast.LENGTH_LONG;
 public class MyFavorite extends ToolbarClass  {
 RecyclerView recyclerView;
     LinearLayout progressLay;
-
+     String token;
+     TextView nodatasound;
     ArrayList<FavoriteModel> arrayList;
     FavoriteAdapter adapterMyOrder;
     @Override
@@ -48,6 +51,8 @@ RecyclerView recyclerView;
         super.onCreate(R.layout.activity_my_favorite, "المفضلة");
         progressLay = findViewById(R.id.progressLay);
         recyclerView = findViewById(R.id.recyclerfavorite);
+        token = SharedPrefManager.getInstance(getApplicationContext()).getAppToken();
+        nodatasound = findViewById(R.id.nodatasound);
 
         favoritedata();
     }
@@ -74,9 +79,9 @@ RecyclerView recyclerView;
                         //.addHeader("Authorization", "Bearer " + Setting.Token)
 
 //                        ongoing.addHeader("lang", SharedPrefManager.getInstance(getApplicationContext()).GetAppLanguage());
-//                        String token = SharedPrefManager.getInstance(getApplicationContext()).getAppToken();
-                        String token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC92MVwvdXNlclwvbG9naW4iLCJpYXQiOjE2MTYzNzQzMTQsIm5iZiI6MTYxNjM3NDMxNCwianRpIjoiVjY2bXVxM2FpSHJwenFBayIsInN1YiI6MSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.TF70v29HuwEQCb9ySR--bbY1pRivGv2831d0M1k_Wt0";
-                        ongoing.addHeader("Authorization", "Bearer "+token);
+                       // String token = SharedPrefManager.getInstance(getApplicationContext()).getAppToken();
+                        //String token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC92MVwvdXNlclwvbG9naW4iLCJpYXQiOjE2MTYzNzQzMTQsIm5iZiI6MTYxNjM3NDMxNCwianRpIjoiVjY2bXVxM2FpSHJwenFBayIsInN1YiI6MSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.TF70v29HuwEQCb9ySR--bbY1pRivGv2831d0M1k_Wt0";
+                        ongoing.addHeader("Authorization", token);
                         return chain.proceed(ongoing.build());
                     }
                 })
@@ -118,15 +123,27 @@ RecyclerView recyclerView;
                             arrayList.add(modelMyOrder);
                         }
                         //Toast.makeText(Registration.this,arrayList.size()+"", Toast.LENGTH_LONG).show();
-
+                   if(arrayList.size()>0){
                         adapterMyOrder = new FavoriteAdapter(MyFavorite.this,arrayList);
                         recyclerView.setAdapter(adapterMyOrder);
-                        progressLay.setVisibility(View.GONE);
+                        progressLay.setVisibility(View.GONE);}
+                   else
+                   {
+                       nodatasound.setText("عذرا لا يوجد مفضلة بعد");
+                       nodatasound.setVisibility(View.VISIBLE);
+                       recyclerView.setVisibility(View.GONE);
+                       //Toast.makeText(Notifications.this,response.code()+"\n"+response.headers(), LENGTH_LONG).show();
+                       progressLay.setVisibility(View.GONE);
+
+                   }
                     }
                 }
                 else
                 {
-                    Toast.makeText(MyFavorite.this,response.code()+"\n"+response.headers(), LENGTH_LONG).show();
+                    nodatasound.setText("عذرا لا يوجد اشعارات");
+                    nodatasound.setVisibility(View.VISIBLE);
+                    recyclerView.setVisibility(View.GONE);
+                    //Toast.makeText(Notifications.this,response.code()+"\n"+response.headers(), LENGTH_LONG).show();
                     progressLay.setVisibility(View.GONE);
 
                 }
