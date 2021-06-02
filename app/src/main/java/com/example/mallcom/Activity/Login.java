@@ -113,8 +113,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 //                            JSONObject dataObj = object.getJSONObject("data");
 
                             Intent intent =new Intent(getApplicationContext(),ConfirmPhone.class);
-                           // intent.putExtra("userId",object.getString("data"));
-                            intent.putExtra("userId",object.getJSONObject("data").getString("id"));
+                            intent.putExtra("userId",object.getString("data"));
+//                            intent.putExtra("userId",object.getJSONObject("data").getString("id"));
 
                             intent.putExtra("userphone",phone);
                             startActivity(intent);

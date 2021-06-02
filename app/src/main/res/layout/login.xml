@@ -91,13 +91,15 @@
             android:layout_margin="@dimen/margin_large_size"/>
     </RelativeLayout>
     <LinearLayout
+        android:clickable="true"
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
         android:id="@+id/progressLay"
-        android:visibility="gone">
+        android:visibility="gone"
+        android:focusable="true">
         <ProgressBar
             android:layout_width="60dp"
             android:layout_height="60dp"/>

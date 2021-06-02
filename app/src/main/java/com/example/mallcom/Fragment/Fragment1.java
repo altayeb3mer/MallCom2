@@ -1,8 +1,18 @@
 package com.example.mallcom.Fragment;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.MediaStore;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +20,8 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -31,7 +43,10 @@ import com.example.mallcom.Utils.Api;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -72,19 +87,20 @@ public class Fragment1 extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_1, container, false);
         init();
-        initSlider();
+        getTopSuggestions();
         getCategory();
         getSuggestions();
+
         return view;
     }
 
-    private void initSlider() {
-        arrayListImg = new ArrayList<>();
+    private void initSlider(ArrayList<String> list) {
+//        arrayListImg = new ArrayList<>();
         viewPager = view.findViewById(R.id.viewpager);
-        for (int i = 0; i < 5; i++) {
-            arrayListImg.add(""+i);
-        }
-        slideShow_adapter = new SlideShow_adapter(getActivity(),arrayListImg);
+//        for (int i = 0; i < 5; i++) {
+//            arrayListImg.add(""+i);
+//        }
+        slideShow_adapter = new SlideShow_adapter(getActivity(),list);
         viewPager.setAdapter(slideShow_adapter);
         circleIndicator = view.findViewById(R.id.indicator);
         circleIndicator.setViewPager(viewPager);
@@ -330,10 +346,90 @@ public class Fragment1 extends Fragment {
         });
     }
 
+
+
+    String category="";
+    private void getTopSuggestions() {
+        final ArrayList<ModelStagger>  staggerArrayList = new ArrayList<>();
+        progressLay.setVisibility(View.VISIBLE);
+        OkHttpClient httpClient = new OkHttpClient.Builder()
+                .addInterceptor(new Interceptor() {
+                    @Override
+                    public okhttp3.Response intercept(Chain chain) throws IOException {
+                        okhttp3.Request.Builder ongoing = chain.request().newBuilder();
+                        ongoing.addHeader("Content-Type", "application/json;");
+                        ongoing.addHeader("Accept", "application/json");
+//                        ongoing.addHeader("lang", SharedPrefManager.getInstance(getApplicationContext()).GetAppLanguage());
+//                        String token = SharedPrefManager.getInstance(getApplicationContext()).getAppToken();
+//                        ongoing.addHeader("Authorization", token);
+                        return chain.proceed(ongoing.build());
+                    }
+                })
+                .readTimeout(60*5, TimeUnit.SECONDS)
+                .connectTimeout(60*5, TimeUnit.SECONDS)
+                .build();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Api.ROOT_URL)
+                .client(httpClient)
+                .addConverterFactory(ScalarsConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        Api.RetrofitTopSuggestions service = retrofit.create(Api.RetrofitTopSuggestions.class);
+
+        Call<String> call = service.putParam();
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, retrofit2.Response<String> response) {
+                try {
+                    JSONObject object = new JSONObject(response.body());
+                    String success = object.getString("success");
+                    switch (success) {
+                        case "true": {
+                            ArrayList<String> stringArrayList = new ArrayList<>();
+                            JSONArray data = object.getJSONArray("data");
+
+                            JSONObject dataObj = data.getJSONObject(0);
+                            category = dataObj.getString("category");
+                            JSONArray sliderArr = dataObj.getJSONArray("slider");
+                            for (int i = 0; i < sliderArr.length(); i++) {
+                                stringArrayList.add(sliderArr.getString(i));
+                            }
+
+
+                            if (stringArrayList.size()>0){
+                                initSlider(stringArrayList);
+                            }
+
+                            break;
+                        }
+
+                        default: {
+                            Toast.makeText(context, "حدث خطأ حاول مجددا", Toast.LENGTH_SHORT).show();
+                            break;
+                        }
+                    }
+                    progressLay.setVisibility(View.GONE);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+                progressLay.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable throwable) {
+                progressLay.setVisibility(View.GONE);
+            }
+        });
+    }
+
     @Override
     public void onAttach(@NonNull Context context) {
         this.context = context;
         super.onAttach(context);
     }
+
 
 }

@@ -53,10 +53,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nav_drawer);
 
-        /* if (SharedPrefManager.getInstance(this).getAppToken().equals("")){
+         if (SharedPrefManager.getInstance(this).getAppToken().equals("")){
             startActivity(new Intent(this,Login.class));
             finish();
-        }*/
+        }
 
         new Global().changeStatusBarColor(this,getResources().getColor(R.color.colorPrimary));
         init();
@@ -148,14 +148,14 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 break;
             }
             case R.id.btn_nav2:{
-                //switchToFragment(2);
-                startActivity(new Intent(getApplicationContext(), Notifications.class));
+                switchToFragment(2);
+//                startActivity(new Intent(getApplicationContext(), Notifications.class));
 
                 break;
             }
             case R.id.btn_nav3:{
-                //switchToFragment(3);
-                startActivity(new Intent(getApplicationContext(), MainDepartment.class));
+                switchToFragment(3);
+//                startActivity(new Intent(getApplicationContext(), MainDepartment.class));
 
                 break;
             }

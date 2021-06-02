@@ -6,10 +6,14 @@ import com.example.mallcom.Data.Stateadata;
 
 import java.util.HashMap;
 
+import okhttp3.MultipartBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
+import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
@@ -85,6 +89,28 @@ public class Api {
     public interface RetrofitSuggestions {
         @GET("api/v1/public/suggestions")
         Call<String> putParam();
+    }
+    //top suggestions
+    public interface RetrofitTopSuggestions {
+        @GET("api/v1/public/topSuggestions")
+        Call<String> putParam();
+    }
+    //my profile
+    public interface RetrofitGetMyProfile {
+        @GET("api/v1/user/profile")
+        Call<String> putParam();
+    }
+
+    //update profile
+    public interface RetrofitUpdateProfile {
+        @PUT("api/v1/user/updateProfile")
+        Call<String> putParam( @Body HashMap<String, String> param);
+    }
+    //update profile image
+    public interface RetrofitUpdateProfileImage {
+        @Multipart
+        @PUT("api/v1/user/updateProfile")
+        Call<String> putParam(@Part MultipartBody.Part file);
     }
 
 

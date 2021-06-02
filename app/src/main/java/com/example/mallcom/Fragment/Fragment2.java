@@ -15,106 +15,133 @@ import android.view.ViewGroup;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.Toast;
 
+import com.example.mallcom.Activity.Notifications;
 import com.example.mallcom.Adapter.AdapterDepts;
 import com.example.mallcom.Adapter.AdapterDepts1;
 import com.example.mallcom.Adapter.AdapterDepts2;
 import com.example.mallcom.Adapter.AdapterDet1;
 import com.example.mallcom.Adapter.AdapterDet2;
+import com.example.mallcom.Adapter.NotoficationAdapter;
+import com.example.mallcom.Data.Notification;
+import com.example.mallcom.Database.SharedPrefManager;
 import com.example.mallcom.Models.ModelDept;
 import com.example.mallcom.Models.ModelDetails;
+import com.example.mallcom.Models.NotificationModel;
 import com.example.mallcom.R;
+import com.example.mallcom.Utils.Api;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
+
+import static android.widget.Toast.LENGTH_LONG;
 
 
 public class Fragment2 extends Fragment {
 
-    RecyclerView recyclerViewDept1,recyclerViewDept2;
-
-    AdapterDepts1 adapterDepts1;
-    AdapterDepts2 adapterDepts2;
-    ArrayList<ModelDept> arrayList;
-
+    RecyclerView recyclerView;
+    ArrayList<NotificationModel> arrayList;
+    NotoficationAdapter adapterMyOrder;
+    LinearLayout progressLay;
     View view;
-    Spinner spinnerDept;
-    ArrayList<String> arrayListSpinner;
-    ArrayAdapter<String> arrayAdapterSpinner;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_2, container, false);
-        init();
+        progressLay = view.findViewById(R.id.progressLay);
+        recyclerView = view.findViewById(R.id.recyclernotification);
+        notificationdata();
         return view;
     }
 
-    private void init() {
+
+    private void notificationdata() {
         arrayList = new ArrayList<>();
-        for (int i = 0; i < 8; i++) {
-            ModelDept modelDept = new ModelDept();
-            modelDept.setId(i+"");
-            arrayList.add(modelDept);
-        }
-        recyclerViewDept1 = view.findViewById(R.id.recyclerDept1);
-        recyclerViewDept2 = view.findViewById(R.id.recyclerDept2);
+        progressLay.setVisibility(View.VISIBLE);
+        OkHttpClient httpClient = new OkHttpClient.Builder()
+                .addInterceptor(new Interceptor() {
+                    @Override
+                    public okhttp3.Response intercept(Chain chain) throws IOException {
+                        okhttp3.Request.Builder ongoing = chain.request().newBuilder();
+                        // ongoing.addHeader("Content-Type", "application/json;");
+                        ongoing.addHeader("Accept", "application/json");
+                        //.addHeader("Authorization", "Bearer " + Setting.Token)
 
-        initAdapter();
-        spinnerDept = view.findViewById(R.id.spinner);
-        initSpinner();
+//                        ongoing.addHeader("lang", SharedPrefManager.getInstance(getApplicationContext()).GetAppLanguage());
+//                        String token = SharedPrefManager.getInstance(context).getAppToken();
+                        String token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC92MVwvdXNlclwvbG9naW4iLCJpYXQiOjE2MTYzNzQzMTQsIm5iZiI6MTYxNjM3NDMxNCwianRpIjoiVjY2bXVxM2FpSHJwenFBayIsInN1YiI6MSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.TF70v29HuwEQCb9ySR--bbY1pRivGv2831d0M1k_Wt0";
+                        ongoing.addHeader("Authorization", "Bearer "+token);
+                        return chain.proceed(ongoing.build());
+                    }
+                })
+                .readTimeout(60*5, TimeUnit.SECONDS)
+                .connectTimeout(60*5, TimeUnit.SECONDS)
+                .build();
 
-    }
+        final Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Api.ROOT_URL)
+                .client(httpClient)
+                .addConverterFactory(ScalarsConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
 
-    private void initSpinner() {
-        spinnerDept = view.findViewById(R.id.spinner);
-        arrayListSpinner = new ArrayList<>();
-        arrayListSpinner.add("قسم1");
-        arrayListSpinner.add("قسم2");
-        arrayListSpinner.add("قسم3");
-        arrayListSpinner.add("قسم4");
-        arrayListSpinner.add("قسم5");
+        Api.RetrofitNotificatio service = retrofit.create(Api.RetrofitNotificatio.class);
 
-        arrayAdapterSpinner = new ArrayAdapter<String>(context,R.layout.spinner_item,arrayListSpinner){
+        Call<Notification.Notificationresponse> call = service.putParam();
+        call.enqueue(new Callback<Notification.Notificationresponse>() {
             @Override
-            public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-                return super.getDropDownView(position, convertView, parent);
-            }
-        };
-        arrayAdapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerDept.setAdapter(arrayAdapterSpinner);
-        spinnerDept.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (position == 0) {
-//                    s_month = "";
-                } else {
-//                    s_month = array_month[position];
+            public void onResponse(Call<Notification.Notificationresponse> call,
+                                   Response<Notification.Notificationresponse> response) {
+                if (response.code()==200) {
+                    if(response.body().getSuccess()){
+                        //  ArrayList<NotificationModel> arrayList = new ArrayList<>();
+
+                        for (Notification.Datum data : response.body().getData())
+                        {
+                            NotificationModel modelMyOrder = new NotificationModel();
+                            modelMyOrder.setId(data.getId()+"");
+                            modelMyOrder.setUpdated_at(data.getUpdatedAt());
+                            modelMyOrder.setTitle(data.getTitle());
+                            modelMyOrder.setContent(data.getContent());
+                            arrayList.add(modelMyOrder);
+                        }
+                        //Toast.makeText(Registration.this,arrayList.size()+"", Toast.LENGTH_LONG).show();
+
+                        adapterMyOrder = new NotoficationAdapter(context,arrayList);
+                        recyclerView.setAdapter(adapterMyOrder);
+                        progressLay.setVisibility(View.GONE);
+                    }
                 }
-            }
+                else
+                {
+                    Toast.makeText(context,response.code()+"\n"+response.headers(), LENGTH_LONG).show();
+                    progressLay.setVisibility(View.GONE);
 
+                }
+
+            }
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+            public void onFailure(Call<Notification.Notificationresponse> call, Throwable t) {
+                Toast.makeText(context,t.toString()+"", LENGTH_LONG).show();
+                progressLay.setVisibility(View.GONE);
+
             }
         });
-
-
-
-    }
-
-    private void initAdapter() {
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(context, 1, GridLayoutManager.VERTICAL, false);
-        recyclerViewDept1.setLayoutManager(gridLayoutManager);
-        GridLayoutManager gridLayoutManager2 = new GridLayoutManager(context, 3, GridLayoutManager.VERTICAL, false);
-        recyclerViewDept2.setLayoutManager(gridLayoutManager2);
-
-        adapterDepts1 = new AdapterDepts1(getActivity(),arrayList);
-        adapterDepts2 = new AdapterDepts2(getActivity(),arrayList);
-        recyclerViewDept1.setAdapter(adapterDepts1);
-        recyclerViewDept2.setAdapter(adapterDepts2);
-
-
     }
 
     Context context;

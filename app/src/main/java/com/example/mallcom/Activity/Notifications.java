@@ -74,8 +74,8 @@ public class Notifications extends ToolbarClass {
                         ongoing.addHeader("Accept", "application/json");
                         //.addHeader("Authorization", "Bearer " + Setting.Token)
 
-//                        ongoing.addHeader("lang", SharedPrefManager.getInstance(getApplicationContext()).GetAppLanguage());
-//                        String token = SharedPrefManager.getInstance(getApplicationContext()).getAppToken();
+//                      ongoing.addHeader("lang", SharedPrefManager.getInstance(getApplicationContext()).GetAppLanguage());
+//                      String token = SharedPrefManager.getInstance(getApplicationContext()).getAppToken();
                         String token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC92MVwvdXNlclwvbG9naW4iLCJpYXQiOjE2MTYzNzQzMTQsIm5iZiI6MTYxNjM3NDMxNCwianRpIjoiVjY2bXVxM2FpSHJwenFBayIsInN1YiI6MSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.TF70v29HuwEQCb9ySR--bbY1pRivGv2831d0M1k_Wt0";
                         ongoing.addHeader("Authorization", "Bearer "+token);
                         return chain.proceed(ongoing.build());
