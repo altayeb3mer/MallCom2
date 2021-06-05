@@ -61,7 +61,7 @@ public class SearchProducts extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         new Global().changeStatusBarColor(this,getResources().getColor(R.color.colorPrimary));
-        setContentView(R.layout.products);
+        setContentView(R.layout.search_products);
         init();
     }
 

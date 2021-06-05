@@ -73,6 +73,7 @@
                 android:textSize="8sp"/>
         </RelativeLayout>
         <ImageView
+            android:visibility="gone"
             android:layout_toEndOf="@+id/imgCart"
             android:id="@+id/imgMicrophone"
             android:layout_width="30dp"

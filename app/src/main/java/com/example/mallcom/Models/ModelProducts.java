@@ -16,7 +16,16 @@ public class ModelProducts {
     private String image;
     private String price;
     private String rate;
+    private String oldPrice;
 
+
+    public String getOldPrice() {
+        return oldPrice;
+    }
+
+    public void setOldPrice(String oldPrice) {
+        this.oldPrice = oldPrice;
+    }
 
     public String getPrice() {
         return price;

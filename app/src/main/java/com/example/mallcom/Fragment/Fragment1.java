@@ -72,7 +72,6 @@ public class Fragment1 extends Fragment {
     AdapterStagger adapterStagger;
 
     AdapterOffer adapterProducts;
-    ArrayList<ModelProducts> productsArrayList;
     RecyclerView recyclerProduct, recyclerStagger;
 
     Context context;
@@ -144,8 +143,6 @@ public class Fragment1 extends Fragment {
         recyclerView = view.findViewById(R.id.recyclerDept);
         recyclerProduct = view.findViewById(R.id.recyclerProduct);
         recyclerStagger = view.findViewById(R.id.recyclerStagger);
-
-        initAdapterProduct();
     }
 
     private void initAdapterStagger(ArrayList<ModelStagger> list) {
@@ -155,17 +152,11 @@ public class Fragment1 extends Fragment {
         recyclerStagger.setAdapter(adapterStagger);
 
     }
-    private void initAdapterProduct() {
-        productsArrayList = new ArrayList<>();
+    private void initAdapterProduct(ArrayList<ModelProducts> list) {
         GridLayoutManager gridLayoutManager = new GridLayoutManager(context, 1, GridLayoutManager.HORIZONTAL, false);
         recyclerStagger.setLayoutManager(gridLayoutManager);
-        for (int i = 0; i < 5; i++) {
-            ModelProducts  modelProducts = new ModelProducts();
-            modelProducts.setId(i+"");
-            productsArrayList.add(modelProducts);
-        }
 
-        adapterProducts = new AdapterOffer(getActivity(), productsArrayList);
+        adapterProducts = new AdapterOffer(getActivity(), list);
         recyclerProduct.setAdapter(adapterProducts);
 
     }
@@ -300,23 +291,27 @@ public class Fragment1 extends Fragment {
 
                                 ModelStagger modelStagger = new ModelStagger();
                                 modelStagger.setName(itemData.getString("watchAll"));
-                                //3 products
+                                //3 search_products
                                 JSONArray productsImg = itemData.getJSONArray("imgs");
-                                modelStagger.setProduct1(productsImg.getString(0));
-                                modelStagger.setProduct2(productsImg.getString(1));
-                                modelStagger.setProduct3(productsImg.getString(2));
+                                if (productsImg.length() > 0) {
+                                    modelStagger.setProduct1(productsImg.getString(0));
+                                    modelStagger.setProduct2(productsImg.getString(1));
+                                    modelStagger.setProduct3(productsImg.getString(2));
+                                }
                                 //slider
                                 JSONArray sliderImg = itemData.getJSONArray("topProduct");
-                                ArrayList<ModelSlider> modelSliders = new ArrayList<>();
-                                for (int j = 0; j < sliderImg.length(); j++) {
-                                    JSONObject jsonObjectSlider = sliderImg.getJSONObject(i);
-                                    ModelSlider modelSlider = new ModelSlider();
-                                    modelSlider.setId(jsonObjectSlider.getString("id"));
-                                    modelSlider.setImage(jsonObjectSlider.getString("photo"));
-                                    modelSliders.add(modelSlider);
+                                if (sliderImg.length() > 0) {
+                                    ArrayList<ModelSlider> modelSliders = new ArrayList<>();
+                                    for (int j = 0; j < sliderImg.length(); j++) {
+                                        JSONObject jsonObjectSlider = sliderImg.getJSONObject(i);
+                                        ModelSlider modelSlider = new ModelSlider();
+                                        modelSlider.setId(jsonObjectSlider.getString("id"));
+                                        modelSlider.setImage(jsonObjectSlider.getString("photo"));
+                                        modelSliders.add(modelSlider);
+                                    }
+                                    modelStagger.setModelSliderArrayList(modelSliders);
+                                    staggerArrayList.add(modelStagger);
                                 }
-                                modelStagger.setModelSliderArrayList(modelSliders);
-                                staggerArrayList.add(modelStagger);
                             }
 
                             if (staggerArrayList.size()>0){
@@ -345,8 +340,6 @@ public class Fragment1 extends Fragment {
             }
         });
     }
-
-
 
     String category="";
     private void getTopSuggestions() {
@@ -400,6 +393,31 @@ public class Fragment1 extends Fragment {
 
                             if (stringArrayList.size()>0){
                                 initSlider(stringArrayList);
+                                view.findViewById(R.id.pagerLay).setVisibility(View.VISIBLE);
+                            }else {
+                                view.findViewById(R.id.pagerLay).setVisibility(View.GONE);
+                            }
+
+
+
+                            ArrayList<ModelProducts> productsArrayList = new ArrayList<>();
+                            JSONArray productsArray = dataObj.getJSONArray("search_products");
+                            for (int i = 0; i < productsArray.length(); i++) {
+                                JSONObject itemData = productsArray.getJSONObject(i);
+                                ModelProducts modelProducts=new ModelProducts();
+                                modelProducts.setId(itemData.getString("id"));
+                                modelProducts.setOldPrice(itemData.getString("price"));
+                                modelProducts.setPrice(itemData.getString("discounted_price"));
+                                modelProducts.setImage(itemData.getString("photo"));
+
+                                productsArrayList . add(modelProducts);
+                            }
+
+
+                            if (productsArrayList.size()>0){
+                                initAdapterProduct(productsArrayList);
+                            }else {
+                                recyclerProduct.setVisibility(View.GONE);
                             }
 
                             break;

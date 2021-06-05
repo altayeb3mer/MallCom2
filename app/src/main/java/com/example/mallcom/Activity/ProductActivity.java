@@ -1,5 +1,6 @@
 package com.example.mallcom.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -14,8 +15,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.mallcom.Adapter.AdapterProductsWithRate;
-import com.example.mallcom.Adapter.AdapterSubItem;
 import com.example.mallcom.Adapter.SlideShow_adapter;
+import com.example.mallcom.Database.SqlLiteDataBase;
+import com.example.mallcom.Models.ModelCart;
 import com.example.mallcom.Models.ModelProducts;
 import com.example.mallcom.Models.ModelSlider;
 import com.example.mallcom.R;
@@ -40,9 +42,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
-import static android.widget.Toast.LENGTH_LONG;
-
-public class SubDeptproduct extends AppCompatActivity {
+public class ProductActivity extends AppCompatActivity {
 
     SlideShow_adapter slideShow_adapter;
     ViewPager viewPager;
@@ -58,7 +58,7 @@ public class SubDeptproduct extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.sub_dept);
+        setContentView(R.layout.products_ac);
         subname=findViewById(R.id.subname);
         imgBack=findViewById(R.id.imgBack);
         imgBack.setOnClickListener(new View.OnClickListener() {
@@ -74,10 +74,37 @@ public class SubDeptproduct extends AppCompatActivity {
         getProducts();
     }
 
+    LinearLayout noData;
+    ImageView imgCart,imgSearch;
     private void init() {
+        imgSearch = findViewById(R.id.imgSearch);
+        imgSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(),SearchProducts.class));
+            }
+        });
+        noData = findViewById(R.id.noData);
         progressLay = findViewById(R.id.progressLay);
+        imgCart = findViewById(R.id.imgCart);
+        imgCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ProductActivity.this,CartActivity.class));
+            }
+        });
+        setBadgeCount();
     }
-
+    private void setBadgeCount() {
+        ArrayList<ModelCart> arrayList = new SqlLiteDataBase(getApplicationContext()).GetAllCart();
+        TextView badges = findViewById(R.id.txtBadge);
+        if (arrayList.size()>0){
+            badges.setText(arrayList.size()+"");
+            badges.setVisibility(View.VISIBLE);
+        }else {
+            badges.setVisibility(View.GONE);
+        }
+    }
 
     private void initSlider(ArrayList<String> list1, ArrayList<ModelSlider> list2) {
         viewPager = findViewById(R.id.viewpager);
@@ -203,8 +230,9 @@ public class SubDeptproduct extends AppCompatActivity {
 
                             if (arrayList.size()>0){
                                 initAdapter(arrayList);
+                                noData.setVisibility(View.GONE);
                             }else{
-                                Toast.makeText(SubDeptproduct.this, "لاتوجد نتائج للبحث", Toast.LENGTH_SHORT).show();
+                                noData.setVisibility(View.VISIBLE);
                             }
 
 
@@ -217,6 +245,7 @@ public class SubDeptproduct extends AppCompatActivity {
                         }
                     }
                     progressLay.setVisibility(View.GONE);
+
                 } catch (Exception e) {
                     e.printStackTrace();
                     Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();

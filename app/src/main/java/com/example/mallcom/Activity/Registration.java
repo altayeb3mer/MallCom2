@@ -129,8 +129,7 @@ public class Registration extends AppCompatActivity{
                                // startActivity(intent);
                                // finish();
 
-
-                                Intent intent =new Intent(getApplicationContext(),MainActivity.class);
+                                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                                 startActivity(intent);
 
                                 break;

@@ -1,7 +1,9 @@
 package com.example.mallcom.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,6 +44,7 @@ public class ProductDetails extends AppCompatActivity implements View.OnClickLis
     ViewPager viewPager;
     CircleIndicator circleIndicator;
     ConstraintLayout container;
+    ImageView imgSearch;
 
 
     @Override
@@ -70,6 +73,13 @@ public class ProductDetails extends AppCompatActivity implements View.OnClickLis
     }
 
     private void init() {
+        imgSearch = findViewById(R.id.imgSearch);
+        imgSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(),SearchProducts.class));
+            }
+        });
         container = findViewById(R.id.container);
         container.setVisibility(View.INVISIBLE);
         progressLay = findViewById(R.id.progressLay);

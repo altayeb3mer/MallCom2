@@ -5,6 +5,29 @@ public class DepartmentModel {
     private String image;
     private boolean hasChild;
 
+    private String subCat;
+    private String subImage;
+
+
+    public boolean isHasChild() {
+        return hasChild;
+    }
+
+    public String getSubCat() {
+        return subCat;
+    }
+
+    public void setSubCat(String subCat) {
+        this.subCat = subCat;
+    }
+
+    public String getSubImage() {
+        return subImage;
+    }
+
+    public void setSubImage(String subImage) {
+        this.subImage = subImage;
+    }
 
     public String getImage() {
         return image;

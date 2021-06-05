@@ -25,7 +25,7 @@
         <activity android:name=".Activity.Registration" />
         <activity android:name=".Activity.Login" />
         <activity android:name=".Activity.SubDept" />
-        <activity android:name=".Activity.SubDeptproduct" />
+        <activity android:name=".Activity.ProductActivity" />
         <activity android:name=".Activity.PaymentActivity" />
         <activity android:name=".Activity.CartActivity" />
         <activity
@@ -40,7 +40,6 @@
     </application>
 
 
-    //permissions
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />

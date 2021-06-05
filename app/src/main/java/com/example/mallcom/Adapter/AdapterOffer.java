@@ -1,6 +1,7 @@
 package com.example.mallcom.Adapter;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,8 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.example.mallcom.Activity.ProductDetails;
 import com.example.mallcom.Models.ModelProducts;
 import com.example.mallcom.R;
 
@@ -51,8 +54,19 @@ public class AdapterOffer extends RecyclerView.Adapter<AdapterOffer.ViewHolder> 
             }
         });
 
+        holder.textViewPrice.setText(item.getPrice());
+        holder.textViewPriceCross.setText(item.getOldPrice());
         holder.textViewPriceCross.setPaintFlags( holder.textViewPriceCross.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 
+        Glide.with(activity).load(item.getImage()).into(holder.imageView);
+        holder.container.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(activity, ProductDetails.class);
+                intent.putExtra("id",item.getId());
+                activity.startActivity(intent);
+            }
+        });
 
 
     }
@@ -77,14 +91,13 @@ public class AdapterOffer extends RecyclerView.Adapter<AdapterOffer.ViewHolder> 
 
         ImageView imageView;
         LinearLayout container;
-        TextView textViewTitle, textViewPriceCross;
+        TextView textViewPrice, textViewPriceCross;
 
         ViewHolder(View itemView) {
             super(itemView);
-//            layDel = itemView.findViewById(R.id.layDel);
-//            imageView = itemView.findViewById(R.id.img);
+            imageView = itemView.findViewById(R.id.img);
             container = itemView.findViewById(R.id.container);
-//            textViewTitle = itemView.findViewById(R.id.title);
+            textViewPrice = itemView.findViewById(R.id.price);
             textViewPriceCross = itemView.findViewById(R.id.txtCross);
 
         }

@@ -27,6 +27,7 @@
             app:reverseLayout="false"/>
 
         <RelativeLayout
+            android:id="@+id/pagerLay"
             android:layout_width="match_parent"
             android:layout_height="150dp">
             <androidx.viewpager.widget.ViewPager

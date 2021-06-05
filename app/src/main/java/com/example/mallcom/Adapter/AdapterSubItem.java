@@ -13,7 +13,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.mallcom.Activity.SubDeptproduct;
+import com.example.mallcom.Activity.ProductActivity;
 import com.example.mallcom.Models.ModelProducts;
 import com.example.mallcom.R;
 
@@ -55,7 +55,7 @@ public class AdapterSubItem extends RecyclerView.Adapter<AdapterSubItem.ViewHold
                 //activity.startActivity(intent);
                 // Toast.makeText(activity,item.getName()+"\n"+item.getNamemain(), LENGTH_LONG).show();
 
-                Intent intent = new Intent(activity, SubDeptproduct.class);
+                Intent intent = new Intent(activity, ProductActivity.class);
                 intent.putExtra("category", item.getNamemain());
                 intent.putExtra("subCategory", item.getName());
                 activity.startActivity(intent);

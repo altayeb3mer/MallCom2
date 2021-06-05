@@ -8,6 +8,7 @@
     android:layoutDirection="rtl"
     >
 
+
     <RelativeLayout
         android:id="@+id/layHeader"
         android:background="@color/colorPrimary"
@@ -37,19 +38,38 @@
             android:text="موبايلات"
             android:layout_toLeftOf="@+id/imgBack" />
 
-        <ImageView
-            android:padding="@dimen/margin_small_size"
-            android:id="@+id/imgCart"
-            android:layout_alignParentStart="true"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_centerVertical="true"
+        <RelativeLayout
+            android:id="@+id/badgeLay"
             android:layout_marginLeft="@dimen/margin_normal_size"
             android:layout_marginRight="@dimen/margin_normal_size"
-            android:src="@drawable/ic_cart"
-            android:layout_alignParentLeft="true" />
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true">
+            <ImageView
+                android:layout_margin="@dimen/margin_small_size"
+                android:padding="@dimen/margin_small_size"
+                android:id="@+id/imgCart"
+                android:layout_alignParentEnd="true"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_cart"
+                android:layout_alignParentRight="true" />
+            <TextView
+                android:gravity="center"
+                android:id="@+id/txtBadge"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/badge_circle"
+                android:text="2"
+                android:textColor="@android:color/white"
+                android:textSize="8sp"/>
+        </RelativeLayout>
         <ImageView
-            android:layout_toEndOf="@+id/imgCart"
+            android:visibility="gone"
+            android:layout_toEndOf="@+id/badgeLay"
             android:id="@+id/imgMicrophone"
             android:layout_width="30dp"
             android:layout_height="30dp"
@@ -57,7 +77,7 @@
             android:layout_marginLeft="@dimen/margin_normal_size"
             android:layout_marginRight="@dimen/margin_normal_size"
             android:src="@drawable/ic_microphone"
-            android:layout_toRightOf="@+id/imgCart" />
+            android:layout_toRightOf="@+id/badgeLay" />
         <ImageView
             android:layout_toEndOf="@+id/imgMicrophone"
             android:id="@+id/imgSearch"
@@ -80,6 +100,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <RelativeLayout
+                android:visibility="gone"
                 android:background="@android:color/white"
                 android:layout_width="match_parent"
                 android:layout_height="150dp">
@@ -120,16 +141,42 @@
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
     <LinearLayout
+        android:layout_marginTop="100dp"
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
         android:id="@+id/progressLay"
-        android:visibility="gone">
+        android:visibility="gone"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="@android:color/white">
         <ProgressBar
             android:layout_width="60dp"
-            android:layout_height="60dp"/>
+            android:layout_height="60dp"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="100dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:id="@+id/noData"
+        android:visibility="gone"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="@android:color/white">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="@dimen/txt_normal_size"
+            android:textColor="@color/colorPrimary"
+            android:text="لم يتم العثور على عناصر"
+            />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

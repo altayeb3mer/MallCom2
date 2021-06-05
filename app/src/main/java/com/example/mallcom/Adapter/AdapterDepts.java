@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -14,9 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.mallcom.Activity.SubDept;
-import com.example.mallcom.Activity.SubDeptproduct;
+import com.example.mallcom.Activity.ProductActivity;
 import com.example.mallcom.Models.DepartmentModel;
-import com.example.mallcom.Models.ModelDept;
 import com.example.mallcom.R;
 
 import java.util.ArrayList;
@@ -64,7 +62,7 @@ public class AdapterDepts extends RecyclerView.Adapter<AdapterDepts.ViewHolder> 
                     activity.startActivity(intent);
                 } else {
                     Toast.makeText(activity, "has no child", Toast.LENGTH_SHORT).show();
-                    Intent intent =new Intent(activity, SubDeptproduct.class);
+                    Intent intent =new Intent(activity, ProductActivity.class);
                     intent.putExtra("category",item.getName());
                     intent.putExtra("subCategory","");
                     activity.startActivity(intent);

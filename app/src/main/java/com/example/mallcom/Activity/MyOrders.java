@@ -105,7 +105,7 @@ public class MyOrders extends ToolbarClass {
                                 ModelMyOrder modelMyOrder = new ModelMyOrder();
                                 modelMyOrder.setNumber(jsonObject.getString("orderNumber"));
                                 modelMyOrder.setDate(jsonObject.getString("date"));
-                                modelMyOrder.setItemCount(jsonObject.getString("products"));
+                                modelMyOrder.setItemCount(jsonObject.getString("search_products"));
                                 modelMyOrder.setTotal(jsonObject.getString("total"));
                                 modelMyOrder.setStatus(jsonObject.getString("status"));
 

@@ -81,7 +81,7 @@ public class Api {
 
     //product details
     public interface RetrofitProductDetails {
-        @GET("api/v1/public/products/{id}")
+        @GET("api/v1/public/search_products/{id}")
         Call<String> putParam(@Path("id") String id);
     }
 

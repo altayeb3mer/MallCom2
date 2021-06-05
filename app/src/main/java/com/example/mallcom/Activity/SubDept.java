@@ -14,13 +14,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mallcom.Adapter.AdapterProductsWithRate;
+import com.example.mallcom.Adapter.AdapterSubDept;
 import com.example.mallcom.Adapter.AdapterSubItem;
+import com.example.mallcom.Adapter.MainDepartmentAdapter;
 import com.example.mallcom.Adapter.SlideShow_adapter;
+import com.example.mallcom.Models.DepartmentModel;
 import com.example.mallcom.Models.ModelItems;
 import com.example.mallcom.Models.ModelProducts;
 import com.example.mallcom.Models.ModelSlider;
 import com.example.mallcom.R;
 import com.example.mallcom.Utils.Api;
+import com.example.mallcom.Utils.Global;
+import com.example.mallcom.Utils.ToolbarClass;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -43,7 +48,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 import static android.widget.Toast.LENGTH_LONG;
 
-public class SubDept extends AppCompatActivity {
+public class SubDept extends ToolbarClass {
 
     SlideShow_adapter slideShow_adapter;
     ViewPager viewPager;
@@ -55,92 +60,47 @@ ImageView imgBack;
     View view;
     AdapterSubItem adapterProductsWithRate;
     RecyclerView recyclerView;
+    AdapterSubDept adapterSubDept;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
+
+
+    protected final void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.sub_dept);
-        subname=findViewById(R.id.subname);
-        imgBack=findViewById(R.id.imgBack);
-        imgBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-        subname.setText(getIntent().getExtras().getString("categoryName"));
-       // Toast.makeText(getApplicationContext(), "in sub", Toast.LENGTH_SHORT).show();
-
+        String title = getIntent().getExtras().getString("categoryName");
+        super.onCreate(R.layout.activity_main_department, title);
+        new Global().changeStatusBarColor(this,getResources().getColor(R.color.colorPrimary));
         init();
-        getProducts();
+        getSubDept();
     }
+
 
     private void init() {
         progressLay = findViewById(R.id.progressLay);
     }
 
 
-    private void initSlider(ArrayList<String> list1, ArrayList<ModelSlider> list2) {
-        viewPager = findViewById(R.id.viewpager);
-        if (list1.size()>0){
-            slideShow_adapter = new SlideShow_adapter(this,list1);
-        }else{
-            slideShow_adapter = new SlideShow_adapter(list2,this);
 
-        }
-        viewPager.setAdapter(slideShow_adapter);
-        circleIndicator = findViewById(R.id.indicator);
-        circleIndicator.setViewPager(viewPager);
-        AutoSwipingImg();
-    }
-    Handler handler;
-    Runnable runnable;
-    Timer timer;
-    private void AutoSwipingImg() {
-        handler = new Handler();
-        runnable = new Runnable() {
-            @Override
-            public void run() {
+//    private void initAdapter( ArrayList<ModelProducts> list) {
+//        recyclerView = findViewById(R.id.recyclerProduct);
+//        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3, GridLayoutManager.VERTICAL, false);
+//        recyclerView.setLayoutManager(gridLayoutManager);
+//        adapterProductsWithRate = new AdapterSubItem(this,list);
+//        recyclerView.setAdapter(adapterProductsWithRate);
+//
+//
+//    }
+    private void initAdapter(ArrayList<DepartmentModel> list) {
+        recyclerView = findViewById(R.id.recyclermaindepartment);
 
-                SwipImg();
-
-            }
-        };
-        timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                handler.post(runnable);
-            }
-        }, 0, 3000);
-    }
-    private void SwipImg() {
-        int i = viewPager.getCurrentItem();
-
-        if (i == slideShow_adapter.urls.size() - 1) {
-            i = 0;
-        } else {
-            i++;
-        }
-        viewPager.setCurrentItem(i, true);
-    }
-
-
-
-    private void initAdapter( ArrayList<ModelProducts> list) {
-        recyclerView = findViewById(R.id.recyclerProduct);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3, GridLayoutManager.VERTICAL, false);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getBaseContext(), 3, GridLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(gridLayoutManager);
-        adapterProductsWithRate = new AdapterSubItem(this,list);
-        recyclerView.setAdapter(adapterProductsWithRate);
-
-
+        adapterSubDept = new AdapterSubDept(this,list);
+        recyclerView.setAdapter(adapterSubDept);
     }
 
     LinearLayout progressLay;
-    private void getProducts() {
-        ArrayList<String> arrayListImg  = new ArrayList<>();
-        final ArrayList<ModelProducts> arrayList = new ArrayList<>();
+    private void getSubDept() {
+        final ArrayList<DepartmentModel> arrayList = new ArrayList<>();
         progressLay.setVisibility(View.VISIBLE);
         OkHttpClient httpClient = new OkHttpClient.Builder()
                 .addInterceptor(new Interceptor() {
@@ -180,32 +140,21 @@ ImageView imgBack;
                     switch (success) {
                         case "true": {
 //                            JSONObject data = object.getJSONObject("data");
-                            JSONArray resultData = object.getJSONArray("data");
-                            for (int i = 0; i < resultData.length(); i++) {
-                                JSONObject itemData = resultData.getJSONObject(i);
+                            JSONArray data = object.getJSONArray("data");
+                            for (int i = 0; i < data.length(); i++) {
+                                JSONObject itemData = data.getJSONObject(i);
 
-                                ModelProducts departmentModel = new ModelProducts();
-                                departmentModel.setId(itemData.getString("id"));
-                                departmentModel.setName(itemData.getString("subCategory"));
-                                departmentModel.setNamemain(itemData.getString("name"));
-                                departmentModel.setImage(itemData.getString("sub_img"));
-                               // departmentModel.setPrice(itemData.getString("price"));
-
-                               // JSONArray rateArray = itemData.getJSONArray("rate");
-                                //if (rateArray.length()>0){
-                                //    JSONObject rateObj = rateArray.getJSONObject(0);
-                                //    departmentModel.setRate(rateObj.getString("rate"));
-                               // }
-
+                                DepartmentModel departmentModel = new DepartmentModel();
+                                departmentModel.setName(itemData.getString("name"));
+                                departmentModel.setSubImage(itemData.getString("sub_img"));
+                                departmentModel.setSubCat(itemData.getString("subCategory"));
+//                                departmentModel.setHasChild(itemData.getBoolean("hasSub"));
                                 arrayList.add(departmentModel);
                             }
 
                             if (arrayList.size()>0){
                                 initAdapter(arrayList);
-                            }else{
-                                Toast.makeText(SubDept.this, "لاتوجد نتائج للبحث", Toast.LENGTH_SHORT).show();
                             }
-
 
                             break;
                         }
