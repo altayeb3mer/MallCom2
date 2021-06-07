@@ -275,6 +275,17 @@
             android:text="عفوا \n  قم بالتسجيل لعرض الملف الشخصي"
             android:textColor="@color/colorPrimary"
             android:textStyle="bold"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn"
+            android:textSize="@dimen/txt_large_size"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:background="@color/colorPrimary"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="التسجيل"
+            android:layout_margin="@dimen/margin_large_size"/>
+
     </LinearLayout>
 
 

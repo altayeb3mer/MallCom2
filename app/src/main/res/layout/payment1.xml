@@ -29,14 +29,13 @@
                 android:padding="5dp"
                 android:weightSum="3"
                 android:orientation="horizontal">
-                <RelativeLayout
-                    android:layout_margin="@dimen/margin_small_size"
-                    android:layout_width="90dp"
-                    android:layout_height="90dp">
+
                     <RadioButton
+                        android:text="كاش"
+                        android:layout_margin="@dimen/margin_small_size"
                         android:id="@+id/radio1"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_width="90dp"
+                        android:layout_height="90dp"
                         android:background="@drawable/radio_btn_bg"
                         android:button="@android:color/transparent"
                         android:gravity="center"
@@ -44,113 +43,89 @@
                         android:textStyle="bold">
 
                     </RadioButton>
-                    <ImageView
-                        android:layout_centerVertical="true"
-                        android:layout_centerHorizontal="true"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:src="@drawable/ic_credit_card"
-                        android:layout_marginLeft="@dimen/margin_small_size"
-                        android:layout_marginRight="@dimen/margin_small_size"
-                        />
-                </RelativeLayout>
-                <RelativeLayout
-                    android:layout_margin="@dimen/margin_small_size"
-                    android:layout_width="90dp"
-                    android:layout_height="90dp">
+
+
                     <RadioButton
+                        android:text="بطاقة"
+                        android:layout_margin="@dimen/margin_small_size"
                         android:id="@+id/radio2"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_width="90dp"
+                        android:layout_height="90dp"
                         android:background="@drawable/radio_btn_bg"
                         android:button="@android:color/transparent"
                         android:gravity="center"
                         android:textColor="@color/colorPrimary"
                         android:textStyle="bold"/>
-                    <ImageView
-                        android:layout_centerVertical="true"
-                        android:layout_centerHorizontal="true"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:src="@drawable/ic_credit_card"
-                        android:layout_marginLeft="@dimen/margin_small_size"
-                        android:layout_marginRight="@dimen/margin_small_size"
-                        />
-                </RelativeLayout>
-                <RelativeLayout
-                    android:layout_margin="@dimen/margin_small_size"
-                    android:layout_width="90dp"
-                    android:layout_height="90dp">
+
+
                     <RadioButton
+                        android:text="بنكك"
+                        android:layout_margin="@dimen/margin_small_size"
                         android:id="@+id/radio3"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_width="90dp"
+                        android:layout_height="90dp"
                         android:background="@drawable/radio_btn_bg"
                         android:button="@android:color/transparent"
                         android:gravity="center"
                         android:textColor="@color/colorPrimary"
                         android:textStyle="bold"/>
-                    <ImageView
-                        android:layout_centerVertical="true"
-                        android:layout_centerHorizontal="true"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:src="@drawable/ic_credit_card"
-                        android:layout_marginLeft="@dimen/margin_small_size"
-                        android:layout_marginRight="@dimen/margin_small_size"
-                        />
-                </RelativeLayout>
+
 
             </RadioGroup>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                android:text="اسم البطاقة"
-                android:textSize="@dimen/txt_normal_size"
-                android:textStyle="bold" />
-            <EditText
-                android:layout_marginTop="@dimen/margin_small_size"
+            <LinearLayout
+                android:visibility="gone"
                 android:layout_width="match_parent"
-                android:layout_height="50dp" />
-            <TextView
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                android:text="رقم البطاقة"
-                android:textSize="@dimen/txt_normal_size"
-                android:textStyle="bold" />
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp">
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:src="@drawable/ic_star"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginLeft="@dimen/margin_small_size"
-                    android:layout_marginRight="@dimen/margin_small_size"
-                    />
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:text="اسم البطاقة"
+                    android:textSize="@dimen/txt_normal_size"
+                    android:textStyle="bold" />
                 <EditText
                     android:layout_marginTop="@dimen/margin_small_size"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
-
-            </RelativeLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40dp">
-                <androidx.constraintlayout.widget.Guideline
+                    android:layout_height="50dp" />
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintGuide_percent="0.5"
-                    android:id="@+id/g1"
-                    android:orientation="vertical"/>
+                    android:layout_marginTop="40dp"
+                    android:text="رقم البطاقة"
+                    android:textSize="@dimen/txt_normal_size"
+                    android:textStyle="bold" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp">
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/ic_star"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginLeft="@dimen/margin_small_size"
+                        android:layout_marginRight="@dimen/margin_small_size"
+                        />
+                    <EditText
+                        android:layout_marginTop="@dimen/margin_small_size"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+
+                </RelativeLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp">
+                    <androidx.constraintlayout.widget.Guideline
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintGuide_percent="0.5"
+                        android:id="@+id/g1"
+                        android:orientation="vertical"/>
                     <LinearLayout
                         android:layout_weight="0.5"
                         android:layout_width="0dp"
@@ -191,17 +166,19 @@
                             android:layout_height="50dp" />
                     </LinearLayout>
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
-            <androidx.appcompat.widget.AppCompatCheckBox
-                android:layout_marginTop="@dimen/margin_large_size"
-                android:id="@+id/checkbox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:text="حفظ تفاصيل البطاقة"
-                android:textColor="@color/productActivityColor"
-                android:textSize="@dimen/txt_normal_size"
-                android:textStyle="bold" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:layout_marginTop="@dimen/margin_large_size"
+                    android:id="@+id/checkbox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="حفظ تفاصيل البطاقة"
+                    android:textColor="@color/productActivityColor"
+                    android:textSize="@dimen/txt_normal_size"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn"

@@ -9,16 +9,20 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.mallcom.Data.Stateadata;
+import com.example.mallcom.Database.SharedPrefManager;
 import com.example.mallcom.R;
 import com.example.mallcom.Utils.Api;
 
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
@@ -37,24 +41,50 @@ import static android.widget.Toast.LENGTH_LONG;
 public class Registration extends AppCompatActivity{
     AppCompatButton button;
     Spinner gender,state;
-    EditText fullname,agech;
+    EditText editTextFirstName,editTextSecondName,
+    editTextThirdName,editTextBirth,editTextRegion,editTextPhone
+    ,agech;
     LinearLayout progressLay;
     ArrayList<String> arrayListid = new ArrayList<>();
     HashMap<String,String> hashMap =new HashMap<>();
+
+    String phone="";
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.registraton);
-        fullname = findViewById(R.id.fullname);
-        agech = findViewById(R.id.agech);
+
+        Bundle args = getIntent().getExtras();
+        if (args!=null){
+            phone = args.getString("phone");
+        }
+
+        init();
+        editTextPhone.setText(phone);
+
         button = findViewById(R.id.btnregestration);
         gender=findViewById(R.id.gender);
         state=findViewById(R.id.state);
         progressLay = findViewById(R.id.progressLay);
 
         ArrayList<String> arrayList = new ArrayList<>();
-        arrayList.add("أنثى");
-        arrayList.add("ذكر");
+        arrayList.add("اختر المدينة");
+        arrayList.add("الخرطوم");
+        arrayList.add("مدني");
+        arrayList.add("بورتسودان");
+        arrayList.add("الابيض");
+        arrayList.add("الفاشر");
+        arrayList.add("سنار");
+        arrayList.add("عطبرة");
+        arrayList.add("ربك");
+        arrayList.add("الدمازين");
+        arrayList.add("كسلا");
+        arrayList.add("كوستي");
+        arrayList.add("كادقلي");
+        arrayList.add("الجنينة");
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(Registration.this,
                 android.R.layout.simple_spinner_item, arrayList);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -64,24 +94,102 @@ public class Registration extends AppCompatActivity{
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                 if(fullname.getText().toString().equals("")||agech.getText().toString().equals(""))
-            Toast.makeText(Registration.this,"الرجاء ملء كل الحقول", LENGTH_LONG).show();
-                 else{
-                     hashMap.put("firstName",fullname.getText().toString());
-                     hashMap.put("username",fullname.getText().toString());
-                     hashMap.put("phone",getIntent().getExtras().getString("userphone"));
-                     hashMap.put("password",agech.getText().toString());
-                     hashMap.put("state_id",arrayListid.get(state.getSelectedItemPosition()));
-                     hashMap.put("gender",gender.getSelectedItem().toString());
-                   //  Toast.makeText(Registration.this,arrayListid.get(state.getSelectedItemPosition()), LENGTH_LONG).show();
+                preReg();
+//                hashMap.put("firstName",fullname.getText().toString());
+//                hashMap.put("username",fullname.getText().toString());
+//                hashMap.put("phone",getIntent().getExtras().getString("userphone"));
+//                hashMap.put("password",agech.getText().toString());
+//                hashMap.put("state_id",arrayListid.get(state.getSelectedItemPosition()));
+//                hashMap.put("gender",gender.getSelectedItem().toString());
 
-                     registration();
-                 }
             }
         });
     }
 
-        private void registration() {
+    String gender_string="ذكر";
+    RadioGroup radioGroupType;
+    private void init() {
+        editTextPhone = findViewById(R.id.phone);
+        editTextFirstName = findViewById(R.id.firstName);
+        editTextSecondName=findViewById(R.id.secondName);
+        editTextThirdName=findViewById(R.id.thirdName);
+        editTextBirth = findViewById(R.id.birth);
+        editTextRegion = findViewById(R.id.region);
+
+        radioGroupType = findViewById(R.id.radioGroupType);
+        radioGroupType.check(R.id.radioBtnType1);
+        radioGroupType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
+                switch (checkedId) {
+                    case R.id.radioBtnType1: {
+                        gender_string = "ذكر";
+                        break;
+                    }
+                    case R.id.radioBtnType2: {
+                        gender_string = "انثى";
+                        break;
+                    }
+                }
+            }
+        });
+    }
+
+    String firstName="",secondName="",lastName="",birthDate="",region="";
+    private void preReg() {
+        firstName=editTextFirstName.getText().toString();
+        secondName=editTextSecondName.getText().toString();
+        lastName=editTextThirdName.getText().toString();
+        birthDate=editTextBirth.getText().toString();
+        region=editTextRegion.getText().toString();
+        phone=editTextPhone.getText().toString();
+
+        if (phone.isEmpty()){
+            editTextPhone.setError("رقم الهاتف مطلوب");
+            editTextPhone.requestFocus();
+            return;
+        }
+        if (firstName.isEmpty()){
+            editTextFirstName.setError("هذا الحقل مطلوب");
+            editTextFirstName.requestFocus();
+            return;
+        }
+        if (secondName.isEmpty()){
+            editTextSecondName.setError("هذا الحقل مطلوب");
+            editTextSecondName.requestFocus();
+            return;
+        }
+        if (lastName.isEmpty()){
+            editTextThirdName.setError("هذا الحقل مطلوب");
+            editTextThirdName.requestFocus();
+            return;
+        }
+//        if (birthDate.isEmpty()||!isValidDate(birthDate)){
+//            editTextBirth.setError("هذا الحقل مطلوب ،الرجاء التاكد من الصيغة");
+//            editTextBirth.requestFocus();
+//            return;
+//        }
+
+        if (region.isEmpty()){
+            editTextRegion.setError("هذا الحقل مطلوب");
+            editTextRegion.requestFocus();
+            return;
+        }
+
+
+        registration();
+    }
+
+    private void registration() {
+        hashMap.put("firstName",firstName);
+        hashMap.put("middleName",secondName);
+        hashMap.put("lastName",lastName);
+        hashMap.put("username",phone);
+        hashMap.put("phone",phone);
+        hashMap.put("birthDate",birthDate);
+        hashMap.put("gender",gender_string);
+        hashMap.put("password",birthDate);// TODO: 05/06/21 pass
+        hashMap.put("state_id",arrayListid.get(state.getSelectedItemPosition()));
             progressLay.setVisibility(View.VISIBLE);
             OkHttpClient httpClient = new OkHttpClient.Builder()
                     .addInterceptor(new Interceptor() {
@@ -121,15 +229,9 @@ public class Registration extends AppCompatActivity{
 
                         switch (success) {
                             case "true": {
-
-//                            JSONObject dataObj = object.getJSONObject("data");
-
-                               // Intent intent =new Intent(getApplicationContext(),ConfirmPhone.class);
-                               // intent.putExtra("userId",object.getJSONObject("data").getString("id"));
-                               // startActivity(intent);
-                               // finish();
-
-                                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                                JSONObject dataObj = object.getJSONObject("data");
+                                Intent intent = new Intent(getApplicationContext(),ConfirmPhone.class);
+                                intent.putExtra("userId",dataObj.getString("id"));
                                 startActivity(intent);
 
                                 break;
@@ -226,5 +328,16 @@ public class Registration extends AppCompatActivity{
         });
     }
 
+
+    public static boolean isValidDate(String inDate) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-yy-dd");
+        dateFormat.setLenient(false);
+        try {
+            dateFormat.parse(inDate.trim());
+        } catch (ParseException pe) {
+            return false;
+        }
+        return true;
+    }
 
 }

@@ -53,10 +53,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nav_drawer);
 
-         if (SharedPrefManager.getInstance(this).getAppToken().equals("")){
-            startActivity(new Intent(this,Login.class));
-            finish();
-        }
+//         if (SharedPrefManager.getInstance(this).getAppToken().equals("")){
+//            startActivity(new Intent(this,Login.class));
+//            finish();
+//        }
 
         new Global().changeStatusBarColor(this,getResources().getColor(R.color.colorPrimary));
         init();

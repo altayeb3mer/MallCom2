@@ -22,7 +22,9 @@
         <activity android:name=".Activity.SearchProducts" />
         <activity android:name=".Activity.ProductDetails" />
         <activity android:name=".Activity.ConfirmPhone" />
-        <activity android:name=".Activity.Registration" />
+        <activity android:name=".Activity.Registration" >
+
+        </activity>
         <activity android:name=".Activity.Login" />
         <activity android:name=".Activity.SubDept" />
         <activity android:name=".Activity.ProductActivity" />

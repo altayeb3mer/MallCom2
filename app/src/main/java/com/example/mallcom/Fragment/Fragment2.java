@@ -55,7 +55,7 @@ public class Fragment2 extends Fragment {
     RecyclerView recyclerView;
     ArrayList<NotificationModel> arrayList;
     NotoficationAdapter adapterMyOrder;
-    LinearLayout progressLay;
+    LinearLayout progressLay,noData;
     View view;
 
     @Override
@@ -64,6 +64,7 @@ public class Fragment2 extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_2, container, false);
         progressLay = view.findViewById(R.id.progressLay);
+        noData = view.findViewById(R.id.noData);
         recyclerView = view.findViewById(R.id.recyclernotification);
         notificationdata();
         return view;
@@ -83,9 +84,9 @@ public class Fragment2 extends Fragment {
                         //.addHeader("Authorization", "Bearer " + Setting.Token)
 
 //                        ongoing.addHeader("lang", SharedPrefManager.getInstance(getApplicationContext()).GetAppLanguage());
-//                        String token = SharedPrefManager.getInstance(context).getAppToken();
-                        String token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC92MVwvdXNlclwvbG9naW4iLCJpYXQiOjE2MTYzNzQzMTQsIm5iZiI6MTYxNjM3NDMxNCwianRpIjoiVjY2bXVxM2FpSHJwenFBayIsInN1YiI6MSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.TF70v29HuwEQCb9ySR--bbY1pRivGv2831d0M1k_Wt0";
-                        ongoing.addHeader("Authorization", "Bearer "+token);
+                        String token = SharedPrefManager.getInstance(context).getAppToken();
+//                        String token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC92MVwvdXNlclwvbG9naW4iLCJpYXQiOjE2MTYzNzQzMTQsIm5iZiI6MTYxNjM3NDMxNCwianRpIjoiVjY2bXVxM2FpSHJwenFBayIsInN1YiI6MSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.TF70v29HuwEQCb9ySR--bbY1pRivGv2831d0M1k_Wt0";
+                        ongoing.addHeader("Authorization", token);
                         return chain.proceed(ongoing.build());
                     }
                 })
@@ -122,8 +123,14 @@ public class Fragment2 extends Fragment {
                         }
                         //Toast.makeText(Registration.this,arrayList.size()+"", Toast.LENGTH_LONG).show();
 
-                        adapterMyOrder = new NotoficationAdapter(context,arrayList);
-                        recyclerView.setAdapter(adapterMyOrder);
+                        if (arrayList.size()>0){
+                            adapterMyOrder = new NotoficationAdapter(context,arrayList);
+                            recyclerView.setAdapter(adapterMyOrder);
+                            noData.setVisibility(View.GONE);
+                        }else{
+                            noData.setVisibility(View.VISIBLE);
+                        }
+
                         progressLay.setVisibility(View.GONE);
                     }
                 }

@@ -31,6 +31,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
+import com.example.mallcom.Activity.Login;
 import com.example.mallcom.Database.SharedPrefManager;
 import com.example.mallcom.R;
 import com.example.mallcom.Utils.Api;
@@ -73,6 +74,7 @@ public class Fragment5 extends Fragment implements View.OnClickListener {
     LinearLayout progressLay;
     Context context;
     String state_id="";
+    AppCompatButton button;
 
     public Fragment5() {
         // Required empty public constructor
@@ -107,6 +109,8 @@ public class Fragment5 extends Fragment implements View.OnClickListener {
         circleImageView.setOnClickListener(this);
         icEdit = view.findViewById(R.id.icEdit);
         icEdit.setOnClickListener(this);
+        button = view.findViewById(R.id.btn);
+        button.setOnClickListener(this);
 
         textViewName.setOnClickListener(this);
         textViewState.setOnClickListener(this);
@@ -181,14 +185,14 @@ public class Fragment5 extends Fragment implements View.OnClickListener {
                     progressLay.setVisibility(View.GONE);
                 } catch (Exception e) {
                     e.printStackTrace();
-                    Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
                 progressLay.setVisibility(View.GONE);
             }
 
             @Override
             public void onFailure(Call<String> call, Throwable throwable) {
-                Toast.makeText(context, ""+ throwable.getMessage(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, ""+ throwable.getMessage(), Toast.LENGTH_SHORT).show();
                 progressLay.setVisibility(View.GONE);
             }
         });
@@ -273,7 +277,8 @@ public class Fragment5 extends Fragment implements View.OnClickListener {
                     public okhttp3.Response intercept(Chain chain) throws IOException {
                         okhttp3.Request.Builder ongoing = chain.request().newBuilder();
                         ongoing.addHeader("Content-Type", "application/json;");
-                        ongoing.addHeader("Accept", "application/json");
+                        ongoing.addHeader("Content-Type", "multipart/form-data; boundary=<calculated when request is sent>");
+                        ongoing.addHeader("Accept", "*/*");
 //                        ongoing.addHeader("lang", SharedPrefManager.getInstance(getApplicationContext()).GetAppLanguage());
                         String token = SharedPrefManager.getInstance(context).getAppToken();
                         ongoing.addHeader("Authorization", token);
@@ -376,7 +381,7 @@ public class Fragment5 extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.name: {
-                dialogEdit(textViewName.getText().toString().trim(), "firstName");
+//                dialogEdit(textViewName.getText().toString().trim(), "firstName");
                 break;
             }
             case R.id.state: {
@@ -394,6 +399,11 @@ public class Fragment5 extends Fragment implements View.OnClickListener {
             case R.id.icEdit:
             case R.id.img: {
                 checkPermission();
+                break;
+            }
+            case R.id.btn: {
+                startActivity(new Intent(getActivity(), Login.class));
+
                 break;
             }
         }

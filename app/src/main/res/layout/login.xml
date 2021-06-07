@@ -57,6 +57,8 @@
                     android:id="@+id/ic_phone"
                     android:src="@drawable/ic_phone"/>
                 <EditText
+                    android:maxLines="1"
+                    android:lines="1"
                     android:id="@+id/phone"
                     android:inputType="phone"
                     android:maxLength="10"

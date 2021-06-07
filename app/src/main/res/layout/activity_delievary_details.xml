@@ -24,6 +24,7 @@
             android:orientation="vertical">
 
             <androidx.appcompat.widget.AppCompatCheckBox
+                android:checked="true"
                 android:id="@+id/checkbox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -43,12 +44,13 @@
                 android:layout_marginTop="40dp"
                 app:cardBackgroundColor="@color/cardBg">
                     <EditText
+                        android:id="@+id/phone"
                         android:paddingLeft="@dimen/margin_normal_size"
                         android:paddingRight="@dimen/margin_normal_size"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@android:color/transparent"
-                        android:hint="0116774943"
+
                         />
             </androidx.cardview.widget.CardView>
 
@@ -61,12 +63,13 @@
                 android:layout_marginTop="40dp"
                 app:cardBackgroundColor="@color/cardBg">
                     <EditText
+                        android:id="@+id/state"
                         android:paddingLeft="@dimen/margin_normal_size"
                         android:paddingRight="@dimen/margin_normal_size"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@android:color/transparent"
-                        android:hint="الخرطوم"
+
                         />
             </androidx.cardview.widget.CardView>
             <androidx.cardview.widget.CardView
@@ -78,12 +81,12 @@
                 android:layout_marginTop="40dp"
                 app:cardBackgroundColor="@color/cardBg">
                     <EditText
+                        android:id="@+id/city"
                         android:paddingLeft="@dimen/margin_normal_size"
                         android:paddingRight="@dimen/margin_normal_size"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@android:color/transparent"
-                        android:hint="الخرطوم"
                         />
             </androidx.cardview.widget.CardView>
             <androidx.cardview.widget.CardView
@@ -95,15 +98,16 @@
                 android:layout_marginTop="40dp"
                 app:cardBackgroundColor="@color/cardBg">
                     <EditText
+                        android:id="@+id/region"
                         android:paddingLeft="@dimen/margin_normal_size"
                         android:paddingRight="@dimen/margin_normal_size"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@android:color/transparent"
-                        android:hint="اركويت مربع 1"
                         />
             </androidx.cardview.widget.CardView>
             <TextView
+                android:visibility="gone"
                 android:layout_marginTop="40dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -112,6 +116,7 @@
                 android:textStyle="bold"
                 android:text="أو"/>
             <RelativeLayout
+                android:visibility="gone"
                 android:layout_marginRight="@dimen/margin_small_size"
                 android:layout_marginLeft="@dimen/margin_small_size"
                 android:layout_width="match_parent"
@@ -161,6 +166,18 @@
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+    <LinearLayout
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:id="@+id/progressLay"
+        android:visibility="gone">
+        <ProgressBar
+            android:layout_width="60dp"
+            android:layout_height="60dp"/>
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

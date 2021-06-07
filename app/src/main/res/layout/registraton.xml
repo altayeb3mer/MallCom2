@@ -83,13 +83,68 @@
                         android:layout_height="match_parent">
 
                         <EditText
-                            android:id="@+id/fullname"
+                            android:inputType="phone"
+                            android:maxLines="1"
+                            android:lines="1"
+                            android:id="@+id/phone"
                             android:paddingLeft="@dimen/margin_normal_size"
                             android:paddingRight="@dimen/margin_normal_size"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@android:color/transparent"
-                            android:hint="الاسم رباعي" />
+                            android:hint="رقم الهاتف" />
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:layout_marginRight="@dimen/margin_small_size"
+                    android:layout_marginLeft="@dimen/margin_small_size"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    app:cardCornerRadius="@dimen/margin_small_size"
+                    android:layout_marginTop="@dimen/margin_normal_size"
+                    app:cardBackgroundColor="@color/cardBg">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <EditText
+                            android:inputType="text"
+                            android:maxLines="1"
+                            android:lines="1"
+                            android:id="@+id/firstName"
+                            android:paddingLeft="@dimen/margin_normal_size"
+                            android:paddingRight="@dimen/margin_normal_size"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@android:color/transparent"
+                            android:hint="الاسم الاول" />
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:layout_marginRight="@dimen/margin_small_size"
+                    android:layout_marginLeft="@dimen/margin_small_size"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    app:cardCornerRadius="@dimen/margin_small_size"
+                    android:layout_marginTop="@dimen/margin_normal_size"
+                    app:cardBackgroundColor="@color/cardBg">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <EditText
+                            android:inputType="text"
+                            android:maxLines="1"
+                            android:lines="1"
+                            android:id="@+id/secondName"
+                            android:paddingLeft="@dimen/margin_normal_size"
+                            android:paddingRight="@dimen/margin_normal_size"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@android:color/transparent"
+                            android:hint="الاسم الثاني" />
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -107,18 +162,88 @@
                         android:layout_height="match_parent">
 
                         <EditText
-                            android:id="@+id/agech"
+                            android:inputType="text"
+                            android:maxLines="1"
+                            android:lines="1"
+                            android:id="@+id/thirdName"
                             android:paddingLeft="@dimen/margin_normal_size"
                             android:paddingRight="@dimen/margin_normal_size"
-                             android:gravity="right"
-                            android:inputType="textPassword"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@android:color/transparent"
-                            android:hint="كلمة السر" />
+                            android:hint="الاسم الثالث" />
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
+                <TextView
+                    android:layout_marginTop="@dimen/margin_small_size"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/txt_normal_size"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold"
+                    android:text="تاريخ الميلاد" />
 
+                <androidx.cardview.widget.CardView
+                    android:visibility="gone"
+                    android:layout_marginRight="@dimen/margin_small_size"
+                    android:layout_marginLeft="@dimen/margin_small_size"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    app:cardCornerRadius="@dimen/margin_small_size"
+                    android:layout_marginTop="@dimen/margin_normal_size"
+                    app:cardBackgroundColor="@color/cardBg">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <EditText
+                            android:textDirection="rtl"
+                            android:id="@+id/birth"
+                            android:paddingLeft="@dimen/margin_normal_size"
+                            android:paddingRight="@dimen/margin_normal_size"
+                             android:gravity="center_vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@android:color/transparent"
+                            android:hint="(1993-12-28)" />
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+                <TextView
+                    android:layout_marginTop="@dimen/margin_small_size"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/txt_normal_size"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold"
+                    android:text="النوع" />
+
+                <RadioGroup
+                    android:layout_marginTop="@dimen/margin_small_size"
+                    android:id="@+id/radioGroupType"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:orientation="horizontal">
+                    <RadioButton
+                        android:id="@+id/radioBtnType1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ذكر"
+                        android:textSize="@dimen/txt_normal_size"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorPrimary"/>
+                    <RadioButton
+                        android:layout_marginLeft="@dimen/margin_normal_size"
+                        android:layout_marginRight="@dimen/margin_normal_size"
+                        android:id="@+id/radioBtnType2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="انثى"
+                        android:textSize="@dimen/txt_normal_size"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorPrimary"/>
+                </RadioGroup>
                 <TextView
                     android:layout_marginTop="30dp"
                     android:layout_width="wrap_content"
@@ -194,7 +319,7 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
-                    android:visibility="gone"
+                    android:visibility="visible"
                     android:layout_marginRight="@dimen/margin_small_size"
                     android:layout_marginLeft="@dimen/margin_small_size"
                     android:layout_width="match_parent"
@@ -209,12 +334,16 @@
                         android:layout_height="match_parent">
 
                         <EditText
-                            android:paddingLeft="@dimen/margin_normal_size"
-                            android:paddingRight="@dimen/margin_normal_size"
+                            android:inputType="text"
+                            android:maxLines="1"
+                            android:lines="1"
+                            android:id="@+id/region"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@android:color/transparent"
-                            android:hint="المنطقة" />
+                            android:hint="المنطقة"
+                            android:paddingLeft="@dimen/margin_normal_size"
+                            android:paddingRight="@dimen/margin_normal_size" />
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -246,7 +375,9 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:id="@+id/progressLay"
-            android:visibility="gone">
+            android:visibility="gone"
+            android:clickable="true"
+            android:focusable="true">
             <ProgressBar
                 android:layout_width="60dp"
                 android:layout_height="60dp"/>

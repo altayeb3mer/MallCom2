@@ -1,8 +1,15 @@
 package com.example.mallcom.Utils;
 
+import androidx.annotation.RawRes;
+
 import com.example.mallcom.Data.Favoritedata;
 import com.example.mallcom.Data.Notification;
 import com.example.mallcom.Data.Stateadata;
+import com.example.mallcom.Models.CreateOrderAll;
+import com.example.mallcom.Models.CreateOrderRequest;
+import com.google.gson.annotations.SerializedName;
+
+import org.json.JSONObject;
 
 import java.util.HashMap;
 
@@ -25,7 +32,7 @@ public class Api {
                                  //  api/v1/user/myNotifications
     //registration
     public interface RetrofitRegister {
-        @POST("api/v1/auth/signUp")
+        @POST("api/v1/user/register")
         Call<String> putParam(@Body HashMap<String, String> param);
     }
     public interface RetrofitNotificatio {
@@ -81,7 +88,7 @@ public class Api {
 
     //product details
     public interface RetrofitProductDetails {
-        @GET("api/v1/public/search_products/{id}")
+        @GET("api/v1/public/products/{id}")
         Call<String> putParam(@Path("id") String id);
     }
 
@@ -103,13 +110,41 @@ public class Api {
 
     //update profile
     public interface RetrofitUpdateProfile {
-        @PUT("api/v1/user/updateProfile")
-        Call<String> putParam( @Body HashMap<String, String> param);
+        @POST("api/v1/user/updateProfile")
+        Call<String> putParam(@Body HashMap<String, String> param);
     }
+    //create order
+    public interface RetrofitCreateOrder {
+        @POST("api/v1/user/order")
+        Call<String> putParam(@Body HashMap param);
+    }
+    //create order
+    public interface RetrofitCreateOrder2 {
+        @POST("api/v1/user/order")
+        Call<String> putParam(@Body CreateOrderRequest param);
+    }
+    public interface RetrofitCreateOrder3 {
+        @POST("api/v1/user/order")
+        Call<JSONObject> putParam(@Body JSONObject param);
+    }
+    //create order
+
+    public interface RetrofitCreateOrder4 {
+        @POST("api/v1/user/order")
+        Call<String> putParam(@Body HashMap<String,Object> param);
+    }
+    //create order
+    public interface RetrofitCreateOrder5 {
+        @POST("api/v1/user/order")
+        Call<String> putParam(@Body CreateOrderAll param);
+    }
+
+
+
     //update profile image
     public interface RetrofitUpdateProfileImage {
-        @Multipart
-        @PUT("api/v1/user/updateProfile")
+//        @Multipart
+        @POST("api/v1/user/updateProfile")
         Call<String> putParam(@Part MultipartBody.Part file);
     }
 

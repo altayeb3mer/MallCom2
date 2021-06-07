@@ -401,7 +401,7 @@ public class Fragment1 extends Fragment {
 
 
                             ArrayList<ModelProducts> productsArrayList = new ArrayList<>();
-                            JSONArray productsArray = dataObj.getJSONArray("search_products");
+                            JSONArray productsArray = dataObj.getJSONArray("products");
                             for (int i = 0; i < productsArray.length(); i++) {
                                 JSONObject itemData = productsArray.getJSONObject(i);
                                 ModelProducts modelProducts=new ModelProducts();

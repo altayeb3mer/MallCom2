@@ -29,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/productActivityColor"
-            android:text="تم سداد المبلغ بنجاح"
+            android:text="تم ارسال الطلب بنجاح"
             android:textSize="@dimen/txt_normal_size"
             />
 
@@ -52,6 +52,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
                     <TextView
+                        android:id="@+id/total"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/productActivityColor"
@@ -94,6 +95,7 @@
         android:orientation="vertical"
         android:gravity="center">
         <androidx.appcompat.widget.AppCompatButton
+            android:visibility="gone"
             android:id="@+id/btn"
             android:textSize="@dimen/txt_normal_size"
             android:textColor="@android:color/white"
