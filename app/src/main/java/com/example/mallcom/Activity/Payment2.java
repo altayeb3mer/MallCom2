@@ -3,10 +3,13 @@ package com.example.mallcom.Activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -203,8 +206,9 @@ public class Payment2 extends ToolbarClass  implements View.OnClickListener {
 
                         default: {
 
-                            Toast.makeText(Payment2.this, "حدث خطأ", Toast.LENGTH_SHORT).show();
-//                            Toast.makeText(Payment2.this, object.getString("error"), Toast.LENGTH_SHORT).show();
+                            JSONArray errors = object.getJSONArray("errors");
+                            String msg = errors.getString(0);
+                            dialogWarning(msg);
                             break;
                         }
                     }
@@ -338,6 +342,44 @@ public class Payment2 extends ToolbarClass  implements View.OnClickListener {
                 break;
             }
         }
+    }
+
+
+
+    private void dialogWarning(String msg) {
+//        final BottomSheetDialog dialog = new BottomSheetDialog(this);
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(false);
+        dialog.setContentView(R.layout.dialog_warning);
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+        AppCompatButton buttonYes = dialog.findViewById(R.id.btnYes);
+        buttonYes.setText("موافق");
+        AppCompatButton buttonNo = dialog.findViewById(R.id.btnNo);
+        buttonNo.setText("ليس الان");
+        buttonNo.setVisibility(View.GONE);
+        TextView message = dialog.findViewById(R.id.msg);
+        message.setText(msg);
+
+
+        buttonYes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+        buttonNo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                dialog.dismiss();
+            }
+        });
+
+
+        dialog.show();
+
     }
 
 

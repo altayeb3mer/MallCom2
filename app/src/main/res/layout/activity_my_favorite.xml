@@ -22,7 +22,7 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
         app:spanCount="1"
         tools:itemCount="2"
-        tools:listitem="@layout/favorite_item" />
+        tools:listitem="@layout/favorite_item2" />
     <LinearLayout
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent"
@@ -34,6 +34,20 @@
         <ProgressBar
             android:layout_width="60dp"
             android:layout_height="60dp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/layNoData"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/productActivityColor"
+            android:textSize="@dimen/txt_normal_size"
+            android:text="لم تقم باضافة عناصر الى المفضلة"
+            />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

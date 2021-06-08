@@ -72,8 +72,8 @@ public class MyOrders extends ToolbarClass {
                         ongoing.addHeader("Accept", "application/json");
 //                        ongoing.addHeader("lang", SharedPrefManager.getInstance(getApplicationContext()).GetAppLanguage());
                         String token = SharedPrefManager.getInstance(getApplicationContext()).getAppToken();
-//                        ongoing.addHeader("Authorization", token);
-                        ongoing.addHeader("Authorization", "Bearer"+" "+"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC92MVwvdXNlclwvbG9naW4iLCJpYXQiOjE2MTYzNzQzMTQsIm5iZiI6MTYxNjM3NDMxNCwianRpIjoiVjY2bXVxM2FpSHJwenFBayIsInN1YiI6MSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.TF70v29HuwEQCb9ySR--bbY1pRivGv2831d0M1k_Wt0");
+                        ongoing.addHeader("Authorization", token);
+//                        ongoing.addHeader("Authorization", "Bearer"+" "+"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC92MVwvdXNlclwvbG9naW4iLCJpYXQiOjE2MTYzNzQzMTQsIm5iZiI6MTYxNjM3NDMxNCwianRpIjoiVjY2bXVxM2FpSHJwenFBayIsInN1YiI6MSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.TF70v29HuwEQCb9ySR--bbY1pRivGv2831d0M1k_Wt0");
                         return chain.proceed(ongoing.build());
                     }
                 })
@@ -105,7 +105,7 @@ public class MyOrders extends ToolbarClass {
                                 ModelMyOrder modelMyOrder = new ModelMyOrder();
                                 modelMyOrder.setNumber(jsonObject.getString("orderNumber"));
                                 modelMyOrder.setDate(jsonObject.getString("date"));
-                                modelMyOrder.setItemCount(jsonObject.getString("search_products"));
+                                modelMyOrder.setItemCount(jsonObject.getString("products"));
                                 modelMyOrder.setTotal(jsonObject.getString("total"));
                                 modelMyOrder.setStatus(jsonObject.getString("status"));
 

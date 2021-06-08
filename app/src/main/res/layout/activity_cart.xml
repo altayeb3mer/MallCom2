@@ -102,6 +102,8 @@
             />
     </LinearLayout>
     <LinearLayout
+        android:clickable="true"
+        android:focusable="true"
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"

@@ -23,7 +23,7 @@
             app:layout_constraintBottom_toTopOf="@+id/lay2"
             android:orientation="vertical">
 
-            <androidx.appcompat.widget.AppCompatCheckBox
+            <CheckBox
                 android:checked="true"
                 android:id="@+id/checkbox"
                 android:layout_width="wrap_content"
@@ -167,6 +167,8 @@
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
     <LinearLayout
+        android:clickable="true"
+        android:focusable="true"
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"

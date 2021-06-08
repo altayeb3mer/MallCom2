@@ -4,9 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -106,13 +109,16 @@ public class CartActivity extends ToolbarClass {
             @Override
             public void onClick(View view) {
 
+                if (new SharedPrefManager(CartActivity.this).getAppToken().isEmpty()){
+                    dialogRegisterWarning("الرجاء التجيل لارسال الطلب!");
+                }else{
 
-                orders = new JSONArray();
+                    orders = new JSONArray();
 
 //                String orders [][] =new String[3][arrayList.size()];
 
 
-                HashMap<String,String> hashMap = new HashMap<>();
+                    HashMap<String,String> hashMap = new HashMap<>();
 
                     for (int i = 0; i < arrayList.size(); i++) {
                         OrderData orderData = new OrderData();
@@ -125,7 +131,7 @@ public class CartActivity extends ToolbarClass {
 //                        hashMap.put("orders["+i+"][product_id]",arrayList.get(i).getId());
 //                        hashMap.put("orders["+i+"][amount]",arrayList.get(i).getQty());
 
-                }
+                    }
 
 
 
@@ -133,13 +139,16 @@ public class CartActivity extends ToolbarClass {
 
 //                hashMap.put("orders", Arrays.toString(orders));
 
-                hashMap.put("total",textViewTotal.getText().toString());
-                hashMap.put("state_id",state_id);
-                Intent intent = new Intent(getApplicationContext(),DeliveryDetails.class);
-                intent.putExtra("hashMap",hashMap);
-                intent.putExtra("orders",orders.toString());
+                    hashMap.put("total",textViewTotal.getText().toString());
+                    hashMap.put("state_id",state_id);
+                    Intent intent = new Intent(getApplicationContext(),DeliveryDetails.class);
+                    intent.putExtra("hashMap",hashMap);
+                    intent.putExtra("orders",orders.toString());
 //                intent.putExtra("orders",orders);
-                startActivity(intent);
+                    startActivity(intent);
+                }
+
+
             }
         });
         recyclerView = findViewById(R.id.recycler);
@@ -214,5 +223,41 @@ public class CartActivity extends ToolbarClass {
         });
     }
 
+
+    private void dialogRegisterWarning(String msg) {
+//        final BottomSheetDialog dialog = new BottomSheetDialog(this);
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(true);
+        dialog.setContentView(R.layout.dialog_warning);
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+        AppCompatButton buttonYes = dialog.findViewById(R.id.btnYes);
+        buttonYes.setText("تسجيل");
+        AppCompatButton buttonNo = dialog.findViewById(R.id.btnNo);
+        buttonNo.setText("ليس الان");
+        TextView message = dialog.findViewById(R.id.msg);
+        message.setText(msg);
+
+
+        buttonYes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(),Login.class));
+                finish();
+            }
+        });
+        buttonNo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                dialog.dismiss();
+            }
+        });
+
+
+        dialog.show();
+
+    }
 
 }

@@ -36,12 +36,14 @@ RecyclerView recyclerView;
 
     ArrayList<FavoriteModel> arrayList;
     FavoriteAdapter adapterMyOrder;
+    LinearLayout layNoData;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        setContentView(R.layout.activity_my_favorite);
         super.onCreate(R.layout.activity_my_favorite, "المفضلة");
         progressLay = findViewById(R.id.progressLay);
+        layNoData = findViewById(R.id.layNoData);
         recyclerView = findViewById(R.id.recyclerfavorite);
 
         favoritedata();
@@ -114,15 +116,22 @@ RecyclerView recyclerView;
                         }
                         //Toast.makeText(Registration.this,arrayList.size()+"", Toast.LENGTH_LONG).show();
 
-                        adapterMyOrder = new FavoriteAdapter(MyFavorite.this,arrayList);
-                        recyclerView.setAdapter(adapterMyOrder);
+                        if (arrayList.size()>0){
+                            adapterMyOrder = new FavoriteAdapter(MyFavorite.this,arrayList);
+                            recyclerView.setAdapter(adapterMyOrder);
+                            layNoData.setVisibility(View.GONE);
+                        }else{
+                            layNoData.setVisibility(View.VISIBLE);
+                        }
+
                         progressLay.setVisibility(View.GONE);
                     }
                 }
                 else
                 {
-                    Toast.makeText(MyFavorite.this,response.code()+"\n"+response.headers(), LENGTH_LONG).show();
+//                    Toast.makeText(MyFavorite.this,response.code()+"\n"+response.headers(), LENGTH_LONG).show();
                     progressLay.setVisibility(View.GONE);
+                    layNoData.setVisibility(View.VISIBLE);
 
                 }
 

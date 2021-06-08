@@ -3,6 +3,8 @@ package com.example.mallcom.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -14,7 +16,6 @@ import com.example.mallcom.R;
 import com.example.mallcom.Utils.Api;
 import com.example.mallcom.Utils.Global;
 import com.example.mallcom.Utils.ToolbarClass;
-import com.google.gson.JsonParser;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -40,6 +41,8 @@ public class DeliveryDetails extends ToolbarClass implements View.OnClickListene
     String state_id = "";
     JSONArray orders = new JSONArray();
 
+    CheckBox checkbox;
+
     protected final void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         super.onCreate(R.layout.activity_delievary_details, "معلومات التوصيل");
@@ -56,8 +59,24 @@ public class DeliveryDetails extends ToolbarClass implements View.OnClickListene
         getProfile();
     }
 
+    boolean ok=true;
     private void init() {
         phone = findViewById(R.id.phone);
+        checkbox = findViewById(R.id.checkbox);
+
+        checkbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                                                @Override
+                                                public void onCheckedChanged(CompoundButton buttonView, boolean b) {
+                                                    if (b) {
+                                                        ok = true;
+                                                    } else {
+                                                        ok = false;
+                                                    }
+                                                }
+                                            }
+        );
+
+
         state = findViewById(R.id.state);
         city = findViewById(R.id.city);
         region = findViewById(R.id.region);
@@ -154,13 +173,19 @@ public class DeliveryDetails extends ToolbarClass implements View.OnClickListene
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn: {
+                if (ok){
+                    Intent intent = new Intent(getApplicationContext(),Payment1.class);
+                    intent.putExtra("hashMap",hashMap);
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(this, "الرجاء الموافقة على معلومات التوصيل في الاعلى", Toast.LENGTH_SHORT).show();
+                }
 
-                Intent intent = new Intent(getApplicationContext(),Payment1.class);
-                intent.putExtra("hashMap",hashMap);
-                startActivity(intent);
-//                startActivity(new Intent(getApplicationContext(), Payment1.class));
                 break;
             }
         }
     }
+
+
+
 }

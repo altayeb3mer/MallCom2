@@ -36,8 +36,6 @@ public class Payment1 extends ToolbarClass implements View.OnClickListener {
         new Global().changeStatusBarColor(this,getResources().getColor(R.color.colorPrimary));
         try {
             hashMap = (HashMap<String, String>) getIntent().getSerializableExtra("hashMap");
-            String scamDatas = getIntent().getStringExtra("orders");
-            orders = new JSONArray(scamDatas);
             total = hashMap.get("total");
         } catch (Exception e) {
             e.printStackTrace();

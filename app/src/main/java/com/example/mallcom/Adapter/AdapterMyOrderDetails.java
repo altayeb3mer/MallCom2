@@ -70,7 +70,7 @@ public class AdapterMyOrderDetails extends RecyclerView.Adapter<AdapterMyOrderDe
         holder.textViewDesc.setText("عدد"+" "+item.getDesc());
         holder.textViewRate.setText(item.getRate());
         holder.textViewPrice.setText(item.getFinalPrice());
-        if (Integer.parseInt(item.getFinalPrice())>Integer.parseInt(item.getPrice1())){
+        if (Double.parseDouble(item.getFinalPrice())>Double.parseDouble(item.getPrice1())){
             holder.textViewOldPrice.setText(item.getPrice1());
         }else{
             holder.textViewOldPrice.setVisibility(View.GONE);

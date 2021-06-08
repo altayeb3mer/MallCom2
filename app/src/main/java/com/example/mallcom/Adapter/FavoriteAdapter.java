@@ -2,11 +2,13 @@ package com.example.mallcom.Adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -14,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.mallcom.Activity.ProductDetails;
 import com.example.mallcom.Models.FavoriteModel;
 import com.example.mallcom.R;
 
@@ -53,6 +56,17 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHo
         mHolder.itempricef.setText(item.getPrice());
         Glide.with(mContext).load(item.getPhoto()).into(mHolder.itemimgf);
 
+        mHolder.container.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mContext, ProductDetails.class);
+                intent.putExtra("id",item.getId());
+                mContext.startActivity(intent);
+            }
+        });
+
+
+
     }
 
     @Override
@@ -63,9 +77,10 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHo
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView dayn,daten,itemnamef,itempricef,itemratef;
                     ImageView itemimgf;
+                    LinearLayout container;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-           // dayn=itemView.findViewById(R.id.datef);
+            container=itemView.findViewById(R.id.container);
             itemimgf=itemView.findViewById(R.id.itemimgf);
             daten=itemView.findViewById(R.id.datef);
             itemnamef=itemView.findViewById(R.id.itemnamef);
