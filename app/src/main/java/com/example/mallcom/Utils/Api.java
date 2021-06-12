@@ -113,37 +113,23 @@ public class Api {
         @POST("api/v1/user/updateProfile")
         Call<String> putParam(@Body HashMap<String, String> param);
     }
-    //create order
-    public interface RetrofitCreateOrder {
-        @POST("api/v1/user/order")
-        Call<String> putParam(@Body HashMap param);
-    }
-    //create order
-    public interface RetrofitCreateOrder2 {
-        @POST("api/v1/user/order")
-        Call<String> putParam(@Body CreateOrderRequest param);
-    }
-    public interface RetrofitCreateOrder3 {
-        @POST("api/v1/user/order")
-        Call<JSONObject> putParam(@Body JSONObject param);
-    }
-    //create order
 
-    public interface RetrofitCreateOrder4 {
-        @POST("api/v1/user/order")
-        Call<String> putParam(@Body HashMap<String,Object> param);
-    }
     //create order
     public interface RetrofitCreateOrder5 {
         @POST("api/v1/user/order")
         Call<String> putParam(@Body CreateOrderAll param);
+    }
+    //create favourit
+    public interface RetrofitAddFavorite {
+        @POST("api/v1/user/favourit")
+        Call<String> putParam(@Query("product_id")  String id);
     }
 
 
 
     //update profile image
     public interface RetrofitUpdateProfileImage {
-//        @Multipart
+        @Multipart
         @POST("api/v1/user/updateProfile")
         Call<String> putParam(@Part MultipartBody.Part file);
     }

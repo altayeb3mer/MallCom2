@@ -136,7 +136,7 @@ public class Fragment2 extends Fragment {
                 }
                 else
                 {
-                    Toast.makeText(context,response.code()+"\n"+response.headers(), LENGTH_LONG).show();
+//                    Toast.makeText(context,response.code()+"\n"+response.headers(), LENGTH_LONG).show();
                     progressLay.setVisibility(View.GONE);
 
                 }
@@ -144,7 +144,7 @@ public class Fragment2 extends Fragment {
             }
             @Override
             public void onFailure(Call<Notification.Notificationresponse> call, Throwable t) {
-                Toast.makeText(context,t.toString()+"", LENGTH_LONG).show();
+//                Toast.makeText(context,t.toString()+"", LENGTH_LONG).show();
                 progressLay.setVisibility(View.GONE);
 
             }

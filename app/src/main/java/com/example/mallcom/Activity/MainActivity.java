@@ -1,13 +1,8 @@
 package com.example.mallcom.Activity;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -21,6 +16,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.viewpager.widget.ViewPager;
 
+import com.bumptech.glide.Glide;
 import com.example.mallcom.Adapter.ViewPagerAdapter;
 import com.example.mallcom.Database.SharedPrefManager;
 import com.example.mallcom.Database.SqlLiteDataBase;
@@ -31,13 +27,28 @@ import com.example.mallcom.Fragment.Fragment4;
 import com.example.mallcom.Fragment.Fragment5;
 import com.example.mallcom.Models.ModelCart;
 import com.example.mallcom.R;
+import com.example.mallcom.Utils.Api;
 import com.example.mallcom.Utils.CustomViewPager;
 import com.example.mallcom.Utils.Global;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
-import com.mikepenz.actionitembadge.library.ActionItemBadge;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, NavigationView.OnNavigationItemSelectedListener {
     BottomNavigationView bottomNavigationView;
@@ -61,6 +72,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         new Global().changeStatusBarColor(this,getResources().getColor(R.color.colorPrimary));
         init();
         setBadgeCount();
+        getProfile();
 
     }
 
@@ -198,6 +210,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         setBadgeCount();
     }
 
+
+
+
+
     LinearLayout layTop;
     public void switchToFragment(int f_no) {
 //        FragmentManager manager = getSupportFragmentManager();
@@ -240,5 +256,106 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     }
 
 
+
+
+
+    private void getProfile() {
+        View headerview = navigationView.getHeaderView(0);
+        final ImageView profile_image = headerview.findViewById(R.id.profile_image);
+        final TextView textViewName =  headerview.findViewById(R.id.name);
+        TextView textViewHello = headerview.findViewById(R.id.hello);
+        knowingTime(textViewHello);
+        OkHttpClient httpClient = new OkHttpClient.Builder()
+                .addInterceptor(new Interceptor() {
+                    @Override
+                    public okhttp3.Response intercept(Chain chain) throws IOException {
+                        okhttp3.Request.Builder ongoing = chain.request().newBuilder();
+                        ongoing.addHeader("Content-Type", "application/json;");
+                        ongoing.addHeader("Accept", "application/json");
+//                        ongoing.addHeader("lang", SharedPrefManager.getInstance(getApplicationContext()).GetAppLanguage());
+                        String token = SharedPrefManager.getInstance(getApplicationContext()).getAppToken();
+//                        String token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC92MVwvdXNlclwvbG9naW4iLCJpYXQiOjE2MTYzNzQzMTQsIm5iZiI6MTYxNjM3NDMxNCwianRpIjoiVjY2bXVxM2FpSHJwenFBayIsInN1YiI6MSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.TF70v29HuwEQCb9ySR--bbY1pRivGv2831d0M1k_Wt0";
+
+                        ongoing.addHeader("Authorization", token);
+                        return chain.proceed(ongoing.build());
+                    }
+                })
+                .readTimeout(60 * 5, TimeUnit.SECONDS)
+                .connectTimeout(60 * 5, TimeUnit.SECONDS)
+                .build();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Api.ROOT_URL)
+                .client(httpClient)
+                .addConverterFactory(ScalarsConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        Api.RetrofitGetMyProfile service = retrofit.create(Api.RetrofitGetMyProfile.class);
+
+        Call<String> call = service.putParam();
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, retrofit2.Response<String> response) {
+                try {
+                    JSONObject object = new JSONObject(response.body());
+                    String success = object.getString("success");
+                    switch (success) {
+                        case "true": {
+                            JSONArray data = object.getJSONArray("data");
+                            JSONObject dataObj = data.getJSONObject(0);
+                            String name = dataObj.getString("firstName") + " " + dataObj.getString("middleName");
+
+                            textViewName.setText(name);
+
+//                            JSONObject stateObj = dataObj.getJSONObject("state");
+
+
+
+
+                            Glide.with(getApplicationContext()).load(dataObj.getString("thumbnail")).
+                                    into(profile_image);
+
+                            break;
+                        }
+
+                        default: {
+//                            Toast.makeText(context, "حدث خطأ حاول مجددا", Toast.LENGTH_SHORT).show();
+                            break;
+                        }
+                    }
+//                    progressLay.setVisibility(View.GONE);
+                } catch (Exception e) {
+                    e.printStackTrace();
+//                    Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+//                progressLay.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable throwable) {
+//                Toast.makeText(context, ""+ throwable.getMessage(), Toast.LENGTH_SHORT).show();
+//                progressLay.setVisibility(View.GONE);
+            }
+        });
+    }
+
+    private void knowingTime(TextView textView){
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+        String getCurrentTime  = sdf.format(new Date());
+        String getTestTime="12:00";
+
+        if (getCurrentTime.compareTo(getTestTime) < 0) {
+            // Do your staff
+            Log.d("Return", "getTestTime less than getCurrentTime ");
+            textView.setText("صباح الخير");
+
+        } else {
+            Log.d("Return", "getTestTime older than getCurrentTime ");
+            textView.setText("مساء الخير");
+        }
+
+
+    }
 
 }

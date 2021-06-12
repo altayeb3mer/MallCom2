@@ -52,7 +52,7 @@ public class Fragment4 extends Fragment {
             modelCart.setId(""+i);
             arrayList.add(modelCart);
         }
-        adapterCart = new AdapterCart(getActivity(),arrayList);
+        adapterCart = new AdapterCart(getActivity(),arrayList,null);
         recyclerView.setAdapter(adapterCart);
     }
     Context context;

@@ -89,6 +89,7 @@ public class SlideShow_adapter extends PagerAdapter {
         imgView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (urls2.size()>0)
                 if (!urls2.get(position).getId().equals("")){
                     Intent intent = new Intent(activity, ProductDetails.class);
                     intent.putExtra("id",urls2.get(position).getId());

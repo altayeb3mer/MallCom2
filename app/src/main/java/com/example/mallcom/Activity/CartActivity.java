@@ -62,7 +62,7 @@ public class CartActivity extends ToolbarClass {
 
     private void getCart() {
         arrayList = new SqlLiteDataBase(getApplicationContext()).GetAllCart();
-        adapterCart = new AdapterCart(this,arrayList);
+        adapterCart = new AdapterCart(this,arrayList,progressLay);
         recyclerView.setAdapter(adapterCart);
         if (arrayList.size()>0){
             getTotal(arrayList);
@@ -110,7 +110,7 @@ public class CartActivity extends ToolbarClass {
             public void onClick(View view) {
 
                 if (new SharedPrefManager(CartActivity.this).getAppToken().isEmpty()){
-                    dialogRegisterWarning("الرجاء التجيل لارسال الطلب!");
+                    dialogRegisterWarning("الرجاء التسجيل لارسال الطلب!");
                 }else{
 
                     orders = new JSONArray();
@@ -157,7 +157,7 @@ public class CartActivity extends ToolbarClass {
     String state_id="";
     private void getStateId() {
         progressLay.setVisibility(View.VISIBLE);
-        button.setVisibility(View.GONE);
+//        button.setVisibility(View.GONE);
         OkHttpClient httpClient = new OkHttpClient.Builder()
                 .addInterceptor(new Interceptor() {
                     @Override

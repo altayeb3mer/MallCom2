@@ -207,17 +207,24 @@
             android:layout_weight="0.5"
             android:orientation="horizontal"
             android:gravity="center">
-            <ImageView
-                android:visibility="invisible"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:src="@drawable/ic_delete_24"/>
-            <TextView
-                android:visibility="invisible"
+            <LinearLayout
+                android:id="@+id/addToFavorite"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="حفظ لاحقا"
-                android:textSize="@dimen/txt_normal_size"/>
+                android:orientation="horizontal">
+                <ImageView
+                    android:visibility="visible"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/ic_bookmark_out"/>
+                <TextView
+                    android:visibility="visible"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="حفظ لاحقا"
+                    android:textSize="@dimen/txt_normal_size"/>
+            </LinearLayout>
+
         </LinearLayout>
     </LinearLayout>
 

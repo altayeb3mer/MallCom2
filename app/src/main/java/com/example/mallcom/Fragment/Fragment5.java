@@ -29,6 +29,7 @@ import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.loader.content.CursorLoader;
 
 import com.bumptech.glide.Glide;
 import com.example.mallcom.Activity.Login;
@@ -60,6 +61,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 import static android.app.Activity.RESULT_OK;
+import static com.mikepenz.iconics.Iconics.getApplicationContext;
 
 
 public class Fragment5 extends Fragment implements View.OnClickListener {
@@ -172,7 +174,7 @@ public class Fragment5 extends Fragment implements View.OnClickListener {
 
                             textViewRegion.setText(dataObj.getString("address"));
 
-                            Glide.with(context).load(dataObj.getString("thumbnail"));
+                            Glide.with(context).load(dataObj.getString("thumbnail")).into(circleImageView);
 
                             break;
                         }
@@ -269,6 +271,7 @@ public class Fragment5 extends Fragment implements View.OnClickListener {
             }
         });
     }
+
     private void updateProfileImage(File file) {
         progressLay.setVisibility(View.VISIBLE);
         OkHttpClient httpClient = new OkHttpClient.Builder()
@@ -278,7 +281,6 @@ public class Fragment5 extends Fragment implements View.OnClickListener {
                         okhttp3.Request.Builder ongoing = chain.request().newBuilder();
                         ongoing.addHeader("Content-Type", "application/json;");
                         ongoing.addHeader("Content-Type", "multipart/form-data; boundary=<calculated when request is sent>");
-                        ongoing.addHeader("Accept", "*/*");
 //                        ongoing.addHeader("lang", SharedPrefManager.getInstance(getApplicationContext()).GetAppLanguage());
                         String token = SharedPrefManager.getInstance(context).getAppToken();
                         ongoing.addHeader("Authorization", token);
@@ -334,6 +336,10 @@ public class Fragment5 extends Fragment implements View.OnClickListener {
             }
         });
     }
+
+
+
+
 
     private void dialogEdit(final String value, final String key) {
 //        final BottomSheetDialog di`alog = new BottomSheetDialog(this);
@@ -501,10 +507,11 @@ public class Fragment5 extends Fragment implements View.OnClickListener {
 
 
                 File imageFile  = new File(getRealPathFromURI(imageUri));
-                File imageFile2  = new File(imageUri.getPath());
+//                File imageFile2  = new File(imageUri.getPath());
+
 
                 if (imageFile!=null){
-                    updateProfileImage(imageFile2);
+                    updateProfileImage(imageFile);
                 }
 
 
@@ -530,7 +537,7 @@ public class Fragment5 extends Fragment implements View.OnClickListener {
     private String getRealPathFromURI(Uri contentURI) {
 
         String thePath = "no-path-found";
-        String[] filePathColumn = {MediaStore.Images.Media.DISPLAY_NAME};
+        String[] filePathColumn = {MediaStore.Images.Media.DATA};
         Cursor cursor = getActivity().getContentResolver().query(contentURI, filePathColumn, null, null, null);
         if(cursor.moveToFirst()){
             int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
@@ -539,5 +546,7 @@ public class Fragment5 extends Fragment implements View.OnClickListener {
         cursor.close();
         return  thePath;
     }
+
+
 
 }

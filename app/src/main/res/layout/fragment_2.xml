@@ -64,4 +64,6 @@
             android:text="لم يتم العثور على اشعارات"
             />
     </LinearLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

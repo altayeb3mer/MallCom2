@@ -137,7 +137,7 @@ public class MyOrderDetails extends ToolbarClass {
                             if (arrayList.size() > 0) {
                                 initAdapter(arrayList);
                             } else {
-                                Toast.makeText(MyOrderDetails.this, "لم تقم باضافة طلبات حتى الان", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(MyOrderDetails.this, "ليس لديك طلبات حتى الان", Toast.LENGTH_SHORT).show();
                             }
 
 
@@ -157,7 +157,7 @@ public class MyOrderDetails extends ToolbarClass {
                     progressLay.setVisibility(View.GONE);
                 } catch (Exception e) {
                     e.printStackTrace();
-                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MyOrderDetails.this, "ليس لديك طلبات حتى الان", Toast.LENGTH_SHORT).show();
                 }
                 progressLay.setVisibility(View.GONE);
             }
