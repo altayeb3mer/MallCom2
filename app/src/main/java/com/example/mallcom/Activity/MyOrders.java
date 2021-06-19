@@ -114,21 +114,25 @@ public class MyOrders extends ToolbarClass {
 
                             if (arrayList.size()>0){
                                 initAdapter(arrayList);
+                                findViewById(R.id.noData).setVisibility(View.GONE);
                             }else{
-                                Toast.makeText(MyOrders.this, "لم تقم باضافة طلبات حتى الان", Toast.LENGTH_SHORT).show();
+                                findViewById(R.id.noData).setVisibility(View.VISIBLE);
+//                                Toast.makeText(MyOrders.this, "لم تقم باضافة طلبات حتى الان", Toast.LENGTH_SHORT).show();
                             }
 
 
                             break;
                         }
                         case "false": {
-                            Toast.makeText(MyOrders.this, "حدث خطأ الرجاء المحاولة مرة اخرى", Toast.LENGTH_SHORT).show();
-
+//                            Toast.makeText(MyOrders.this, "حدث خطأ الرجاء المحاولة مرة اخرى", Toast.LENGTH_SHORT).show();
+                            findViewById(R.id.noData).setVisibility(View.VISIBLE);
                             break;
                         }
 
                         default: {
-                            Toast.makeText(getApplicationContext(), "حدث خطأ حاول مجددا", Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(getApplicationContext(), "حدث خطأ حاول مجددا", Toast.LENGTH_SHORT).show();
+
+                            findViewById(R.id.noData).setVisibility(View.VISIBLE);
                             break;
                         }
                     }

@@ -81,7 +81,15 @@ public class ProductDetails extends AppCompatActivity implements View.OnClickLis
         }
     }
 
+    ImageView imgBack;
     private void init() {
+        imgBack = findViewById(R.id.imgBack);
+        imgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               onBackPressed();
+            }
+        });
         imgCart = findViewById(R.id.imgCart);
         imgCart.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    >
 
     <data>
 
@@ -83,6 +84,7 @@
                         android:layout_height="match_parent">
 
                         <EditText
+                            android:gravity="right"
                             android:inputType="phone"
                             android:maxLines="1"
                             android:lines="1"
@@ -184,7 +186,7 @@
                     android:text="تاريخ الميلاد" />
 
                 <androidx.cardview.widget.CardView
-                    android:visibility="gone"
+                    android:visibility="visible"
                     android:layout_marginRight="@dimen/margin_small_size"
                     android:layout_marginLeft="@dimen/margin_small_size"
                     android:layout_width="match_parent"
@@ -197,7 +199,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
-                        <EditText
+                        <TextView
                             android:textDirection="rtl"
                             android:id="@+id/birth"
                             android:paddingLeft="@dimen/margin_normal_size"
@@ -206,7 +208,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@android:color/transparent"
-                            android:hint="(1993-12-28)" />
+                            android:hint="اضغط لاختيار التاريخ.." />
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
                 <TextView
@@ -267,15 +269,18 @@
                         android:layout_height="match_parent">
 
                         <Spinner
+                            android:layout_toStartOf="@+id/ic_arrow_down"
                             android:id="@+id/state"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@android:color/transparent"
                             android:gravity="right"
                             android:paddingLeft="@dimen/margin_normal_size"
-                            android:paddingRight="@dimen/margin_normal_size" />
+                            android:paddingRight="@dimen/margin_normal_size"
+                            android:layout_toLeftOf="@+id/ic_arrow_down" />
 
                         <ImageView
+                            android:id="@+id/ic_arrow_down"
                             android:layout_alignParentEnd="true"
                             android:layout_width="30dp"
                             android:layout_height="30dp"
@@ -300,14 +305,17 @@
                         android:layout_height="match_parent">
 
                         <Spinner
+                            android:layout_toStartOf="@+id/ic_arrow_down2"
                             android:id="@+id/gender"
                             android:paddingLeft="@dimen/margin_normal_size"
                             android:paddingRight="@dimen/margin_normal_size"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@android:color/transparent" />
+                            android:background="@android:color/transparent"
+                            android:layout_toLeftOf="@+id/ic_arrow_down2" />
 
                         <ImageView
+                            android:id="@+id/ic_arrow_down2"
                             android:layout_alignParentEnd="true"
                             android:layout_width="30dp"
                             android:layout_height="30dp"

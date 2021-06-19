@@ -3,14 +3,17 @@ package com.example.mallcom.Activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mallcom.Data.Stateadata;
@@ -24,7 +27,9 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Interceptor;
@@ -42,16 +47,17 @@ public class Registration extends AppCompatActivity{
     AppCompatButton button;
     Spinner gender,state;
     EditText editTextFirstName,editTextSecondName,
-    editTextThirdName,editTextBirth,editTextRegion,editTextPhone
+    editTextThirdName,editTextRegion,editTextPhone
     ,agech;
     LinearLayout progressLay;
     ArrayList<String> arrayListid = new ArrayList<>();
     HashMap<String,String> hashMap =new HashMap<>();
 
     String phone="";
+    TextView editTextBirth;
 
-
-
+    final Calendar myCalendar = Calendar.getInstance();
+    DatePickerDialog.OnDateSetListener date;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -104,8 +110,29 @@ public class Registration extends AppCompatActivity{
 
             }
         });
-    }
 
+
+        date = new DatePickerDialog.OnDateSetListener() {
+
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear,
+                                  int dayOfMonth) {
+                // TODO Auto-generated method stub
+                myCalendar.set(Calendar.YEAR, year);
+                myCalendar.set(Calendar.MONTH, monthOfYear);
+                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                updateLabel();
+            }
+
+        };
+
+    }
+    private void updateLabel() {
+        String myFormat = "yyyy-MM-dd"; //In which you need put here
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+
+        editTextBirth.setText(sdf.format(myCalendar.getTime()));
+    }
     String gender_string="ذكر";
     RadioGroup radioGroupType;
     private void init() {
@@ -114,6 +141,16 @@ public class Registration extends AppCompatActivity{
         editTextSecondName=findViewById(R.id.secondName);
         editTextThirdName=findViewById(R.id.thirdName);
         editTextBirth = findViewById(R.id.birth);
+        editTextBirth.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                new DatePickerDialog(Registration.this, date, myCalendar
+//                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+//                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+                new DatePickerDialog(Registration.this, date, 1990, 1,
+                        1).show();
+            }
+        });
         editTextRegion = findViewById(R.id.region);
 
         radioGroupType = findViewById(R.id.radioGroupType);
@@ -330,7 +367,7 @@ public class Registration extends AppCompatActivity{
 
 
     public static boolean isValidDate(String inDate) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-yy-dd");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         dateFormat.setLenient(false);
         try {
             dateFormat.parse(inDate.trim());
