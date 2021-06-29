@@ -109,6 +109,30 @@
                     android:scaleType="centerInside"/>
 
             </LinearLayout>
+            <LinearLayout
+                android:id="@+id/layColor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+                <TextView
+                    android:layout_marginLeft="@dimen/margin_small_size"
+                    android:layout_marginRight="@dimen/margin_small_size"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="اللون "
+                    android:textSize="@dimen/txt_small_size"/>
+                <TextView
+                    android:id="@+id/color"
+                    android:layout_marginLeft="@dimen/margin_small_size"
+                    android:layout_marginRight="@dimen/margin_small_size"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="اخضر"
+                    android:textSize="@dimen/txt_small_size"/>
+
+            </LinearLayout>
+
 
         </LinearLayout>
         <LinearLayout

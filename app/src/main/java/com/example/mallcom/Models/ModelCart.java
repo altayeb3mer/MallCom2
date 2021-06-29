@@ -9,6 +9,15 @@ public class ModelCart {
     private String description;
     private String qty;
     private String image;
+    private String color;
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
 
     public String getImage() {
         return image;

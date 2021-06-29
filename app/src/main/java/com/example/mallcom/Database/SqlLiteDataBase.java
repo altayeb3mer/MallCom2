@@ -30,6 +30,7 @@ public class SqlLiteDataBase  extends SQLiteOpenHelper {
                 ",qty VARCHAR(255)" +
                 ",description VARCHAR(255)" +
                 ",rate VARCHAR(255)" +
+                ",color VARCHAR(255)" +
                 ",img_url VARCHAR(255)" +
                 ")");
     }
@@ -62,6 +63,7 @@ public class SqlLiteDataBase  extends SQLiteOpenHelper {
         contentValues.put("description", cartItem.getDescription());
         contentValues.put("rate", cartItem.getRate());
         contentValues.put("img_url", cartItem.getImage());
+        contentValues.put("color", cartItem.getColor());
 
 
         SQLiteDatabase db2 = this.getReadableDatabase();
@@ -168,6 +170,7 @@ public class SqlLiteDataBase  extends SQLiteOpenHelper {
                 cartItem.setRate(c.getString(c.getColumnIndex("rate")));
 
                 cartItem.setImage(c.getString(c.getColumnIndex("img_url")));
+                cartItem.setColor(c.getString(c.getColumnIndex("color")));
 
                 cartItemArrayList.add(cartItem);
             }

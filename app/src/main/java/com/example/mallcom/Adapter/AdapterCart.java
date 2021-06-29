@@ -101,7 +101,11 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.ViewHolder> {
         holder.textViewRate.setText(item.getRate());
         holder.textViewQty.setText(item.getQty());
 
-
+        if (item.getColor()!=null&&!item.getColor().isEmpty()){
+            holder.textViewColor.setText(item.getColor());
+        }else{
+            holder.layColor.setVisibility(View.GONE);
+        }
 
 //        holder.container.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -181,8 +185,9 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.ViewHolder> {
 
         ImageView imageView;
         LinearLayout container;
-        TextView textViewOldPrice, textViewPrice,textViewName,textViewDesc,textViewRate,textViewQty;
-        LinearLayout layDel,addToFavorite;
+        TextView textViewOldPrice, textViewPrice,textViewName,textViewDesc,
+                textViewRate,textViewQty,textViewColor;
+        LinearLayout layDel,addToFavorite,layColor;
         ImageButton increase,decrease;
 
         ViewHolder(View itemView) {
@@ -199,6 +204,8 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.ViewHolder> {
             increase = itemView.findViewById(R.id.increase);
             decrease = itemView.findViewById(R.id.decrease);
             addToFavorite = itemView.findViewById(R.id.addToFavorite);
+            layColor = itemView.findViewById(R.id.layColor);
+            textViewColor = itemView.findViewById(R.id.color);
 
         }
 
