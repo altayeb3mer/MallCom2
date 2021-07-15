@@ -60,6 +60,7 @@ public class ProductDetails extends AppCompatActivity implements View.OnClickLis
     RelativeLayout imgCart;
 
     ArrayList<String> listColor = new ArrayList<>();
+    ArrayList<String> listSize = new ArrayList<>();
     ImageView imgBack;
     ModelCart modelCart = null;
 
@@ -120,9 +121,15 @@ public class ProductDetails extends AppCompatActivity implements View.OnClickLis
                             new ArrayAdapter<String>(ProductDetails.this, android.R.layout.select_dialog_singlechoice,listColor);
                     chooseColor(arrayAdapter,false);
                 } else {
-                    modelCart.setColor("");
-                    addToCart(modelCart);
-                    startActivity(new Intent(getApplicationContext(), CartActivity.class));
+                    if (listSize.size()>0){
+                        final ArrayAdapter<String> arrayAdapter =
+                                new ArrayAdapter<String>(ProductDetails.this, android.R.layout.select_dialog_singlechoice,listSize);
+                        chooseSize(arrayAdapter,false);
+                    }else{
+                        modelCart.setColor("");
+                        addToCart(modelCart);
+                        startActivity(new Intent(getApplicationContext(), CartActivity.class));
+                    }
 
                 }
             }
@@ -156,8 +163,14 @@ public class ProductDetails extends AppCompatActivity implements View.OnClickLis
                             new ArrayAdapter<String>(ProductDetails.this, android.R.layout.select_dialog_singlechoice,listColor);
                     chooseColor(arrayAdapter,true);
                 } else {
-                    modelCart.setColor("");
-                    addToCart(modelCart);
+                    if (listSize.size()>0){
+                        final ArrayAdapter<String> arrayAdapter =
+                                new ArrayAdapter<String>(ProductDetails.this, android.R.layout.select_dialog_singlechoice,listSize);
+                        chooseSize(arrayAdapter,true);
+                    }else{
+                        modelCart.setColor("");
+                        addToCart(modelCart);
+                    }
                 }
                 break;
             }
@@ -203,6 +216,7 @@ public class ProductDetails extends AppCompatActivity implements View.OnClickLis
                 .build();
 
         Api.RetrofitProductDetails service = retrofit.create(Api.RetrofitProductDetails.class);
+//        Call<String> call = service.putParam("9");
         Call<String> call = service.putParam(id);
         call.enqueue(new Callback<String>() {
             @Override
@@ -275,21 +289,43 @@ public class ProductDetails extends AppCompatActivity implements View.OnClickLis
 //                            JSONObject additional_description = dataObj.getJSONObject("additional_description");
                             if (!additional_description1.equals("null")) {
                                 JSONObject additional_description = new JSONObject(additional_description1);
-                                JSONArray colorAr = additional_description.getJSONArray("color");
-                                String color = "";
+                                String coloString = additional_description.getString("color");
+                                if (!coloString.equals("null")){
+                                    JSONArray colorAr = new JSONArray(coloString);
+                                    String color = "";
 
-                                for (int i = 0; i < colorAr.length(); i++) {
-                                    color = color + " , " + colorAr.get(i);
-                                    listColor.add(colorAr.getString(i));
+                                    for (int i = 0; i < colorAr.length(); i++) {
+                                        color = color + " , " + colorAr.get(i);
+                                        listColor.add(colorAr.getString(i));
+                                    }
+                                    textViewDescription.append("\n" + "\n" + "اللون : " + " " + color);
+                                    textViewDescription.append("\n" + "الحجم : " + " " + additional_description.getString("weight"));
+                                    textViewDescription.append("\n" + "مخصص ل  : " + " " + additional_description.getString("for"));
+                                    textViewDescription.append("\n" + "الشركة المصنعة : " + " " + additional_description.getString("company"));
+                                    textViewDescription.append("\n" + "تاريخ انتهاء الصلاحية : " + " " + additional_description.getString("expireDate"));
+
                                 }
-                                textViewDescription.append("\n" + "\n" + "اللون : " + " " + color);
-                                textViewDescription.append("\n" + "الحجم : " + " " + additional_description.getString("weight"));
-                                textViewDescription.append("\n" + "مخصص ل  : " + " " + additional_description.getString("for"));
-                                textViewDescription.append("\n" + "الشركة المصنعة : " + " " + additional_description.getString("company"));
-                                textViewDescription.append("\n" + "تاريخ انتهاء الصلاحية : " + " " + additional_description.getString("expireDate"));
 
                             }
+//                            additional_description
+                            String product_sizes = dataObj.getString("product_sizes");
+//                            JSONObject additional_description = dataObj.getJSONObject("additional_description");
+                            if (!product_sizes.equals("[]")&&!product_sizes.equals("null")) {
+                                JSONArray product_sizesAr = new JSONArray(product_sizes);
+                                JSONObject object0 = product_sizesAr.getJSONObject(0);
+                                JSONArray sizeAr = object0.getJSONArray("sizes_array");
+                                String size = "";
 
+                                for (int i = 0; i < sizeAr.length(); i++) {
+                                    JSONObject item = sizeAr.getJSONObject(i);
+                                    size = item.getString("size") + " " + item.getString("unit") + " , ";
+                                    String sizeToArr = item.getString("size") + " " + item.getString("unit");
+
+                                    listSize.add(sizeToArr);
+                                }
+                                textViewDescription.append("\n" + "\n" + "الاحجام المتوفرة : " + " " + size);
+
+                            }
                             break;
                         }
 //                        case "false": {
@@ -454,6 +490,59 @@ public class ProductDetails extends AppCompatActivity implements View.OnClickLis
                     public void onClick(DialogInterface dialog, int which) {
                         modelCart.setColor(strName);
                         addToCart(modelCart);
+                        if (listSize.size()>0){
+                            final ArrayAdapter<String> arrayAdapter =
+                                    new ArrayAdapter<String>(ProductDetails.this, android.R.layout.select_dialog_singlechoice,listColor);
+                            chooseSize(arrayAdapter,add);
+                        }else {
+                            if (!add){
+                                startActivity(new Intent(getApplicationContext(), CartActivity.class));
+                            }
+                        }
+
+
+
+                        dialog.dismiss();
+                    }
+                });
+                builderInner.show();
+            }
+        });
+        builderSingle.show();
+    }
+
+    private void chooseSize(final ArrayAdapter<String> arrayAdapter, final boolean add) {
+        AlertDialog.Builder builderSingle = new AlertDialog.Builder(this);
+        builderSingle.setTitle("اختيار الحجم");
+
+//        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(DialogActivity.this, android.R.layout.select_dialog_singlechoice);
+//        arrayAdapter.add("Hardik");
+//        arrayAdapter.add("Archit");
+//        arrayAdapter.add("Jignesh");
+//        arrayAdapter.add("Umang");
+//        arrayAdapter.add("Gatti");
+
+        builderSingle.setNegativeButton("رجوع", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        builderSingle.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                final String strName = arrayAdapter.getItem(which);
+                AlertDialog.Builder builderInner = new AlertDialog.Builder(ProductDetails.this);
+                builderInner.setMessage(strName);
+                builderInner.setTitle("قمت باختيار الحجم : ");
+                builderInner.setPositiveButton("موافق", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        modelCart.setSize(strName);
+                        addToCart(modelCart);
+
+
                         if (!add){
                             startActivity(new Intent(getApplicationContext(), CartActivity.class));
                         }

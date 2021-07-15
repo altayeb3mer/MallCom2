@@ -19,6 +19,7 @@ import com.example.mallcom.Database.SqlLiteDataBase;
 import com.example.mallcom.Models.CreateOrderAll;
 import com.example.mallcom.Models.CreateOrderRequest;
 import com.example.mallcom.Models.ModelCart;
+import com.example.mallcom.Models.ModelOrder_props;
 import com.example.mallcom.Models.OrderData;
 import com.example.mallcom.Models.OrderItemRequest;
 import com.example.mallcom.R;
@@ -134,6 +135,13 @@ public class Payment2 extends ToolbarClass  implements View.OnClickListener {
                 orderItemRequest.setState_id(Integer.parseInt(hashMap.get("state_id")));
                 orderItemRequest.setProduct_id(Integer.parseInt(arrayList.get(i).getId()));
                 orderItemRequest.setAmount(Integer.parseInt(arrayList.get(i).getQty()));
+                //                        color && size
+                ModelOrder_props modelOrder_props = new ModelOrder_props();
+                modelOrder_props.setId(arrayList.get(i).getId());
+                modelOrder_props.setColor(arrayList.get(i).getColor());
+                modelOrder_props.setSize(arrayList.get(i).getSize());
+
+                orderItemRequest.setOrder_props(modelOrder_props);
                 list.add(orderItemRequest);
 
 

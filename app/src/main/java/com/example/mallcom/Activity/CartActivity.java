@@ -19,6 +19,7 @@ import com.example.mallcom.Adapter.AdapterCart;
 import com.example.mallcom.Database.SharedPrefManager;
 import com.example.mallcom.Database.SqlLiteDataBase;
 import com.example.mallcom.Models.ModelCart;
+import com.example.mallcom.Models.ModelOrder_props;
 import com.example.mallcom.Models.OrderData;
 import com.example.mallcom.R;
 import com.example.mallcom.Utils.Api;
@@ -125,6 +126,13 @@ public class CartActivity extends ToolbarClass {
                         orderData.setState_id(state_id);
                         orderData.setProduct_id(arrayList.get(i).getId());
                         orderData.setAmount(arrayList.get(i).getQty());
+//                        color && size
+                        ModelOrder_props modelOrder_props = new ModelOrder_props();
+                        modelOrder_props.setId(arrayList.get(i).getId());
+                        modelOrder_props.setColor(arrayList.get(i).getColor());
+                        modelOrder_props.setSize(arrayList.get(i).getSize());
+
+                        orderData.setOrder_props(modelOrder_props);
 
                         orders.put(orderData);
 

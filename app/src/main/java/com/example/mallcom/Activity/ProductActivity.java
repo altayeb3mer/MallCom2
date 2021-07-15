@@ -208,8 +208,10 @@ public class ProductActivity extends AppCompatActivity {
                         case "true": {
 //                            JSONObject data = object.getJSONObject("data");
                             JSONArray resultData = object.getJSONArray("data");
+                            JSONObject productsPropertyList =resultData.getJSONObject(0);
+                            JSONArray resultDataProduct = productsPropertyList.getJSONArray("result");
                             for (int i = 0; i < resultData.length(); i++) {
-                                JSONObject itemData = resultData.getJSONObject(i);
+                                JSONObject itemData = resultDataProduct.getJSONObject(i);
 
                                 ModelProducts departmentModel = new ModelProducts();
                                 departmentModel.setId(itemData.getString("id"));

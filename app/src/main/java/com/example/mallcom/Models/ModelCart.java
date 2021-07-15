@@ -10,6 +10,16 @@ public class ModelCart {
     private String qty;
     private String image;
     private String color;
+    private String size;
+
+
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
+    }
 
     public String getColor() {
         return color;

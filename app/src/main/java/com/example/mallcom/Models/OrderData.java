@@ -4,8 +4,16 @@ public class OrderData {
    private String state_id;
    private String product_id;
    private String amount;
+   private ModelOrder_props order_props;
 
 
+    public ModelOrder_props getOrder_props() {
+        return order_props;
+    }
+
+    public void setOrder_props(ModelOrder_props order_props) {
+        this.order_props = order_props;
+    }
 
     public String getState_id() {
         return state_id;

@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class SqlLiteDataBase  extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "mallcom.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
     //table
     private static final String TABLE_CART_ORDER = "cart_order";
 
@@ -31,6 +31,7 @@ public class SqlLiteDataBase  extends SQLiteOpenHelper {
                 ",description VARCHAR(255)" +
                 ",rate VARCHAR(255)" +
                 ",color VARCHAR(255)" +
+                ",size VARCHAR(255)" +
                 ",img_url VARCHAR(255)" +
                 ")");
     }
@@ -64,6 +65,7 @@ public class SqlLiteDataBase  extends SQLiteOpenHelper {
         contentValues.put("rate", cartItem.getRate());
         contentValues.put("img_url", cartItem.getImage());
         contentValues.put("color", cartItem.getColor());
+        contentValues.put("size", cartItem.getSize());
 
 
         SQLiteDatabase db2 = this.getReadableDatabase();
@@ -157,7 +159,7 @@ public class SqlLiteDataBase  extends SQLiteOpenHelper {
         ArrayList<ModelCart> cartItemArrayList = new ArrayList<>();
         SQLiteDatabase database = getReadableDatabase();
         Cursor c = database.rawQuery(query, null);
-        if (c != null) {
+        if (c != null&&c.getCount()>0) {
             while (c.moveToNext()) {
                 ModelCart cartItem = new ModelCart();
 
@@ -170,6 +172,7 @@ public class SqlLiteDataBase  extends SQLiteOpenHelper {
                 cartItem.setRate(c.getString(c.getColumnIndex("rate")));
 
                 cartItem.setImage(c.getString(c.getColumnIndex("img_url")));
+                cartItem.setSize(c.getString(c.getColumnIndex("size")));
                 cartItem.setColor(c.getString(c.getColumnIndex("color")));
 
                 cartItemArrayList.add(cartItem);
