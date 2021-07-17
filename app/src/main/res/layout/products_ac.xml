@@ -48,7 +48,6 @@
             android:layout_centerVertical="true"
             android:layout_alignParentLeft="true">
             <ImageView
-                android:layout_margin="@dimen/margin_small_size"
                 android:padding="@dimen/margin_small_size"
                 android:id="@+id/imgCart"
                 android:layout_alignParentEnd="true"

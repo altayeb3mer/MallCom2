@@ -48,7 +48,6 @@
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true">
                 <ImageView
-                    android:layout_margin="@dimen/margin_small_size"
                     android:padding="@dimen/margin_small_size"
                     android:id="@+id/imgCart"
                     android:layout_alignParentEnd="true"
@@ -128,7 +127,7 @@
         android:id="@+id/btn_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:labelVisibilityMode="auto"
+        app:labelVisibilityMode="labeled"
         app:menu="@menu/btn_nav"
         app:itemTextColor="@android:color/black"
         />

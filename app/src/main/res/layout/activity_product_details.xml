@@ -54,7 +54,6 @@
             android:layout_height="40dp"
             android:layout_centerVertical="true">
             <ImageView
-                android:layout_margin="@dimen/margin_small_size"
                 android:padding="@dimen/margin_small_size"
                 android:layout_alignParentEnd="true"
                 android:layout_width="match_parent"
