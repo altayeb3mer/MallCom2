@@ -36,6 +36,7 @@
                 android:textSize="10sp"
                 android:text="هاتف هواوي واي 7"
                 android:maxLines="1"
+                android:ellipsize="end"
                 />
 
             <RelativeLayout

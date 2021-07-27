@@ -17,6 +17,7 @@ import com.bumptech.glide.Glide;
 import com.example.mallcom.Activity.ProductDetails;
 import com.example.mallcom.Models.ModelItems;
 import com.example.mallcom.R;
+import com.example.mallcom.Utils.Global;
 
 import java.util.ArrayList;
 
@@ -69,7 +70,7 @@ public class AdapterProducts extends RecyclerView.Adapter<AdapterProducts.ViewHo
         holder.textViewName.setText(item.getName());
         holder.textViewDesc.setText(item.getDesc());
         holder.textViewRate.setText(item.getRate());
-        holder.textViewPrice.setText(item.getFinalPrice());
+        holder.textViewPrice.setText(new Global().formatNumber(item.getFinalPrice()));
         if (Integer.parseInt(item.getFinalPrice())>Integer.parseInt(item.getPrice1())){
             holder.textViewOldPrice.setText(item.getPrice1());
         }else{

@@ -44,7 +44,11 @@ public class MyOrders extends ToolbarClass {
         super.onCreate(R.layout.activity_my_orders, "طلباتي");
         new Global().changeStatusBarColor(this,getResources().getColor(R.color.colorPrimary));
         init();
-        getMyOrders();
+        if (SharedPrefManager.getInstance(this).getAppToken().isEmpty()){
+            findViewById(R.id.notRegister).setVisibility(View.VISIBLE);
+        }else{
+            getMyOrders();
+        }
     }
 
     private void init() {

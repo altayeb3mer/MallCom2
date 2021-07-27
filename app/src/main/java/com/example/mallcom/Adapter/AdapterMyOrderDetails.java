@@ -19,6 +19,7 @@ import com.example.mallcom.Activity.ProductDetails;
 import com.example.mallcom.Models.ModelItems;
 import com.example.mallcom.Models.ModelMyOrder;
 import com.example.mallcom.R;
+import com.example.mallcom.Utils.Global;
 
 import java.util.ArrayList;
 
@@ -69,9 +70,9 @@ public class AdapterMyOrderDetails extends RecyclerView.Adapter<AdapterMyOrderDe
         holder.textViewName.setText(item.getName());
         holder.textViewDesc.setText("عدد"+" "+item.getDesc());
         holder.textViewRate.setText(item.getRate());
-        holder.textViewPrice.setText(item.getFinalPrice());
+        holder.textViewPrice.setText(new Global().formatNumber(item.getFinalPrice()));
         if (Double.parseDouble(item.getFinalPrice())>Double.parseDouble(item.getPrice1())){
-            holder.textViewOldPrice.setText(item.getPrice1());
+            holder.textViewOldPrice.setText(new Global().formatNumber(item.getPrice1()));
         }else{
             holder.textViewOldPrice.setVisibility(View.GONE);
         }

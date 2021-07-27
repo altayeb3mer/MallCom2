@@ -162,7 +162,7 @@ public class Fragment1 extends Fragment {
     }
 
     private void initAdapterDept(ArrayList<DepartmentModel> list) {
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(context, 1, GridLayoutManager.HORIZONTAL, true);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(context, 1, GridLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(gridLayoutManager);
         adapterDepts = new AdapterDepts(getActivity(),list);
         recyclerView.setAdapter(adapterDepts);

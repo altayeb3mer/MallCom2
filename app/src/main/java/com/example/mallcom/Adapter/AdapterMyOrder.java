@@ -21,6 +21,7 @@ import com.example.mallcom.Activity.MyOrderDetails;
 import com.example.mallcom.Models.ModelCart;
 import com.example.mallcom.Models.ModelMyOrder;
 import com.example.mallcom.R;
+import com.example.mallcom.Utils.Global;
 
 import java.util.ArrayList;
 
@@ -56,7 +57,7 @@ public class AdapterMyOrder extends RecyclerView.Adapter<AdapterMyOrder.ViewHold
         holder.textViewDate.setText(item.getDate().substring(0,10));
         holder.textViewCount.setText(item.getItemCount());
         holder.textViewNumber.setText(item.getNumber());
-        holder.textViewTotal.setText(item.getTotal()+" "+"ج س");
+        holder.textViewTotal.setText(new Global().formatNumber(item.getTotal())+" "+"ج س");
         holder.textViewStatus.setText(item.getStatus());
 
         holder.container.setOnClickListener(new View.OnClickListener() {

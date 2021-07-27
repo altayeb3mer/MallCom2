@@ -46,7 +46,11 @@ RecyclerView recyclerView;
         layNoData = findViewById(R.id.layNoData);
         recyclerView = findViewById(R.id.recyclerfavorite);
 
-        favoritedata();
+        if (SharedPrefManager.getInstance(this).getAppToken().isEmpty()){
+            layNoData.setVisibility(View.VISIBLE);
+        }else{
+            favoritedata();
+        }
     }
     private void init() {
         arrayList = new ArrayList<>();

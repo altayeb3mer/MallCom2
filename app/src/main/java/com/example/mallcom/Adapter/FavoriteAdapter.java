@@ -19,6 +19,7 @@ import com.bumptech.glide.Glide;
 import com.example.mallcom.Activity.ProductDetails;
 import com.example.mallcom.Models.FavoriteModel;
 import com.example.mallcom.R;
+import com.example.mallcom.Utils.Global;
 
 import java.util.ArrayList;
 
@@ -49,11 +50,12 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHo
         mInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         final FavoriteModel item = newsPaperArrayList.get(position);
         mHolder.itemnamef.setText(item.getName());
+        mHolder.daten.setText(item.getUpdated_at().substring(0,10));
         if(item.getRate().equals(""))
-            mHolder.itemratef.setVisibility(View.GONE);
+        mHolder.itemratef.setText("0.0");
         else
             mHolder.itemratef.setText(item.getRate());
-        mHolder.itempricef.setText(item.getPrice());
+        mHolder.itempricef.setText(new Global().formatNumber(item.getPrice()));
         Glide.with(mContext).load(item.getPhoto()).into(mHolder.itemimgf);
 
         mHolder.container.setOnClickListener(new View.OnClickListener() {
