@@ -91,12 +91,12 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.ViewHolder> {
         DecimalFormat formatter = new DecimalFormat("#,###,###");
         if (item.getPrice1()!=null) {
 
-            holder.textViewPrice.setText(new Global().formatNumber(item.getPrice1()));
+            holder.textViewPrice.setText(new Global().formatNumber(item.getPrice2()));
 
         }
 //        holder.textViewOldPrice.setText(item.getPrice2());
         if (item.getPrice2()!=null)
-        holder.textViewOldPrice.setText(new Global().formatNumber(item.getPrice2()));
+        holder.textViewOldPrice.setText(new Global().formatNumber(item.getPrice1()));
         holder.textViewOldPrice.setPaintFlags( holder.textViewOldPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
         holder.textViewRate.setText(item.getRate());
         holder.textViewQty.setText(item.getQty());
@@ -206,7 +206,6 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.ViewHolder> {
             addToFavorite = itemView.findViewById(R.id.addToFavorite);
             layColor = itemView.findViewById(R.id.layColor);
             textViewColor = itemView.findViewById(R.id.color);
-
         }
 
         @Override

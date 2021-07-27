@@ -57,7 +57,8 @@ public class SlideShow_adapter extends PagerAdapter {
 
     @Override
     public int getCount() {
-        if (!urls2.isEmpty()){
+        if (urls2!=null){
+            if (!urls2.isEmpty())
             return urls2.size();
         }
             return urls.size();

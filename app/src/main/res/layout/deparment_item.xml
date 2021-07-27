@@ -5,31 +5,31 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layoutDirection="rtl"
     android:orientation="vertical"
-    android:background="@android:color/white"
-    android:layout_marginTop="@dimen/margin_normal_size"
     android:id="@+id/container"
-    android:layout_margin="@dimen/margin_small_size">
+    android:layout_margin="@dimen/margin_normal_size">
     <LinearLayout
         android:background="@drawable/roundbox"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     <ImageView
-        android:scaleType="centerCrop"
+        android:layout_margin="1dp"
         android:id="@+id/img"
         android:layout_width="match_parent"
-        android:layout_height="80dp"/>
-        <TextView
-            android:textSize="12sp"
-            android:ellipsize="end"
-            android:maxLines="2"
-            android:id="@+id/name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-             android:gravity="center"
-            android:textColor="@color/colorPrimaryDark"
-            android:text="ملابس">
+        android:layout_height="70dp"/>
 
-        </TextView>
     </LinearLayout>
+    <TextView
+        android:layout_marginTop="@dimen/margin_small_size"
+        android:textSize="12sp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/colorPrimaryDark"
+        android:text="ملابس">
+
+    </TextView>
 </LinearLayout>

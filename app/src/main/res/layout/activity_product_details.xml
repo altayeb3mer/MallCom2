@@ -132,6 +132,7 @@
                         android:layout_height="30dp"
                         android:src="@drawable/ic_bookmark"/>
                     <ImageView
+                        android:id="@+id/shareProduct"
                         android:background="@drawable/shape_circle"
                         android:layout_marginTop="@dimen/margin_small_size"
                         android:layout_width="30dp"
@@ -227,6 +228,7 @@
                     android:scaleType="center"/>
 
             </LinearLayout>
+
             <TextView
                 android:id="@+id/description"
                 android:layout_marginLeft="@dimen/margin_normal_size"
@@ -236,6 +238,9 @@
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/txt_normal_size"
                 android:text="حزاء نايك M7" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="20dp"/>
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

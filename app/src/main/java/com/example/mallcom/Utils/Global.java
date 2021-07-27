@@ -27,7 +27,6 @@ public class Global {
         DecimalFormat formatter = new DecimalFormat("#,###,###");
         String yourFormattedString = formatter.format(Double.parseDouble(number));
         return yourFormattedString;
-
     }
     public String formatNumber(double number){
         DecimalFormat formatter = new DecimalFormat("#,###,###");

@@ -46,14 +46,17 @@
             <item
                 android:title="تسجيل الدخول"
                 android:id="@+id/login"
+                android:visible="false"
                 />
             <item
                 android:title="تسجيل جديد"
                 android:id="@+id/reg"
+                android:visible="false"
                 />
             <item
                 android:title="تاكيد رقم الهاتف"
                 android:id="@+id/pinCode"
+                android:visible="false"
                 />
         </group>
     </group>

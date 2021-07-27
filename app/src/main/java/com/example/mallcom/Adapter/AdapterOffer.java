@@ -16,6 +16,7 @@ import com.bumptech.glide.Glide;
 import com.example.mallcom.Activity.ProductDetails;
 import com.example.mallcom.Models.ModelProducts;
 import com.example.mallcom.R;
+import com.example.mallcom.Utils.Global;
 
 import java.util.ArrayList;
 
@@ -54,9 +55,9 @@ public class AdapterOffer extends RecyclerView.Adapter<AdapterOffer.ViewHolder> 
             }
         });
 
-        holder.textViewPrice.setText(item.getPrice());
-        holder.textViewPriceCross.setText(item.getOldPrice());
-        holder.textViewPriceCross.setPaintFlags( holder.textViewPriceCross.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+        holder.textViewPrice.setText(new Global().formatNumber(item.getPrice()));
+        holder.textViewPriceCross.setText(new Global().formatNumber(item.getOldPrice()));
+        holder.textViewPriceCross.setPaintFlags(holder.textViewPriceCross.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 
         Glide.with(activity).load(item.getImage()).into(holder.imageView);
         holder.container.setOnClickListener(new View.OnClickListener() {

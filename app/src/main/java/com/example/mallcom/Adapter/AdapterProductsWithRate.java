@@ -16,6 +16,7 @@ import com.bumptech.glide.Glide;
 import com.example.mallcom.Activity.ProductDetails;
 import com.example.mallcom.Models.ModelProducts;
 import com.example.mallcom.R;
+import com.example.mallcom.Utils.Global;
 
 import java.util.ArrayList;
 
@@ -76,9 +77,9 @@ public class AdapterProductsWithRate extends RecyclerView.Adapter<AdapterProduct
         if (item.getRate()!=null){
             holder.textViewRate.setText(item.getRate());
         }else{
-            holder.cardRate.setVisibility(View.GONE);
+//            holder.cardRate.setVisibility(View.GONE);
         }
-        holder.textViewPrice.setText(item.getPrice());
+        holder.textViewPrice.setText(new Global().formatNumber(item.getPrice()));
 
 
 //        holder.textViewPriceCross.setPaintFlags( holder.textViewPriceCross.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);

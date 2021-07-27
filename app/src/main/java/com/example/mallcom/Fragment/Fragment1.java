@@ -300,8 +300,8 @@ public class Fragment1 extends Fragment {
                                 }
                                 //slider
                                 JSONArray sliderImg = itemData.getJSONArray("topProduct");
+                                ArrayList<ModelSlider> modelSliders = new ArrayList<>();
                                 if (sliderImg.length() > 0) {
-                                    ArrayList<ModelSlider> modelSliders = new ArrayList<>();
                                     for (int j = 0; j < sliderImg.length(); j++) {
                                         JSONObject jsonObjectSlider = sliderImg.getJSONObject(i);
                                         ModelSlider modelSlider = new ModelSlider();
@@ -309,9 +309,9 @@ public class Fragment1 extends Fragment {
                                         modelSlider.setImage(jsonObjectSlider.getString("photo"));
                                         modelSliders.add(modelSlider);
                                     }
-                                    modelStagger.setModelSliderArrayList(modelSliders);
-                                    staggerArrayList.add(modelStagger);
                                 }
+                                modelStagger.setModelSliderArrayList(modelSliders);
+                                staggerArrayList.add(modelStagger);
                             }
 
                             if (staggerArrayList.size()>0){

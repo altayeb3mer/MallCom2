@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.mallcom">
 
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -20,7 +21,29 @@
         <activity android:name=".Activity.DeliveryDetails" />
         <activity android:name=".Activity.FilterActivity" />
         <activity android:name=".Activity.SearchProducts" />
-        <activity android:name=".Activity.ProductDetails" />
+        <activity android:name=".Activity.ProductDetails" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- Accepts URIs that begin with "http://www.example.com/gizmos” -->
+                <data android:scheme="https"
+                    android:host="mallcom.app"
+                    android:pathPrefix="/dist/product-show.html"/>
+
+<!--                    />-->
+                <!-- note that the leading "/" is required for pathPrefix-->
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- Accepts URIs that begin with "example://gizmos” -->
+                <data android:scheme="http"
+                    android:host="mallcom.app"
+                    />
+            </intent-filter>
+        </activity>
         <activity android:name=".Activity.ConfirmPhone" />
         <activity android:name=".Activity.Registration" >
 
@@ -39,6 +62,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
     </application>
 
 

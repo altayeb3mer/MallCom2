@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -53,9 +54,14 @@ public class AdapterStagger extends RecyclerView.Adapter<AdapterStagger.ViewHold
         final ModelStagger item = arrayList.get(position);
 
 
-        SlideShow_adapter slideShow_adapter = new SlideShow_adapter(item.getModelSliderArrayList(),activity);
-        holder.viewPager.setAdapter(slideShow_adapter);
-        holder.circleIndicator.setViewPager(holder.viewPager);
+        if (item.getModelSliderArrayList().size()>0){
+            SlideShow_adapter slideShow_adapter = new SlideShow_adapter(item.getModelSliderArrayList(),activity);
+            holder.viewPager.setAdapter(slideShow_adapter);
+            holder.circleIndicator.setViewPager(holder.viewPager);
+        }else{
+            holder.laySlider.setVisibility(View.GONE);
+        }
+
 
         holder.cardShowMore.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,6 +123,7 @@ public class AdapterStagger extends RecyclerView.Adapter<AdapterStagger.ViewHold
         CardView cardShowMore;
         ViewPager viewPager;
         CircleIndicator circleIndicator;
+        RelativeLayout laySlider;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -127,6 +134,7 @@ public class AdapterStagger extends RecyclerView.Adapter<AdapterStagger.ViewHold
             imageView3 = itemView.findViewById(R.id.image3);
             textViewName = itemView.findViewById(R.id.name);
             cardShowMore = itemView.findViewById(R.id.cardShowMore);
+            laySlider = itemView.findViewById(R.id.laySlider);
 
 
         }

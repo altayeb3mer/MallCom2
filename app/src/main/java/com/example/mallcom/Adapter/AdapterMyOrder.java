@@ -56,7 +56,7 @@ public class AdapterMyOrder extends RecyclerView.Adapter<AdapterMyOrder.ViewHold
         holder.textViewDate.setText(item.getDate().substring(0,10));
         holder.textViewCount.setText(item.getItemCount());
         holder.textViewNumber.setText(item.getNumber());
-        holder.textViewTotal.setText(item.getTotal());
+        holder.textViewTotal.setText(item.getTotal()+" "+"ج س");
         holder.textViewStatus.setText(item.getStatus());
 
         holder.container.setOnClickListener(new View.OnClickListener() {
