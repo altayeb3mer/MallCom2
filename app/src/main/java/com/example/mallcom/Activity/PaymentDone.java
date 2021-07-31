@@ -3,6 +3,7 @@ package com.example.mallcom.Activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -33,7 +34,12 @@ public class PaymentDone extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (new SqlLiteDataBase(getApplicationContext()).deleteAllTableData("cart_order"))
-                finish();
+                {
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                    finish();
+                }
             }
         });
     }

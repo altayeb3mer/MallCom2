@@ -80,9 +80,26 @@ public class Payment2 extends ToolbarClass  implements View.OnClickListener {
         address = findViewById(R.id.address);
         method = findViewById(R.id.method);
         address.setText(hashMap.get("state") +" "+ hashMap.get("city")+" "+hashMap.get("region"));
-        method.setText(hashMap.get("payment_method"));
         button = findViewById(R.id.btn);
         button.setOnClickListener(this);
+
+        switch (hashMap.get("payment_method")){
+            case "cash":{
+                method.setText("كاش");
+                break;
+            }
+            case "credit":{
+                method.setText("بطاقة");
+                break;
+            }
+            case "bok":{
+                method.setText("بنكك");
+                break;
+            }
+            default:{
+                method.setText(hashMap.get("payment_method"));
+            }
+        }
 
     }
 

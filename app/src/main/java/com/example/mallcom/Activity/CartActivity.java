@@ -86,7 +86,7 @@ public class CartActivity extends ToolbarClass {
     public static double getTotal(ArrayList<ModelCart> list){
         double total = 0;
         for (int i = 0; i < list.size(); i++) {
-            total = total + (Double.parseDouble(list.get(i).getPrice1())*Double.parseDouble(list.get(i).getQty()));
+            total = total + (Double.parseDouble(list.get(i).getPrice2())*Double.parseDouble(list.get(i).getQty()));
 
             textViewTotal.setText(new Global().formatNumber(total));
         }

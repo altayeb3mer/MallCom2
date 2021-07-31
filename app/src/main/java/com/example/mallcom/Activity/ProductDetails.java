@@ -302,7 +302,7 @@ public class ProductDetails extends AppCompatActivity implements View.OnClickLis
                             discount = dataObj.getString("discount");
                             price1 = dataObj.getString("price");
                             price2 = String.valueOf(Integer.parseInt(price1) - Integer.parseInt(discount));
-                            textViewPrice.setText(new Global().formatNumber(price1));
+                            textViewPrice.setText(new Global().formatNumber(price2));
                             desc = dataObj.getString("description");
                             textViewDescription.setText(desc);
                             JSONArray rateArray = dataObj.getJSONArray("rate");
@@ -358,8 +358,8 @@ public class ProductDetails extends AppCompatActivity implements View.OnClickLis
                                     CharSequence color = "";
 
                                     for (int i = 0; i < colorAr.length(); i++) {
-                                        color = TextUtils.concat(color, getColorFromCode(colorAr.getString(i)));
-//                                        color = color + " , " + getColorFromCode(colorAr.getString(i)) ;
+//                                        color = TextUtils.concat(color, getColorFromCode(colorAr.getString(i)));
+                                        color = color + " , " + colorAr.getString(i) ;
 //                                        txtColor.append(getColorFromCode(getColorFromCode(colorAr.getString(i)));
                                         listColor.add(colorAr.getString(i));
                                     }
@@ -561,16 +561,16 @@ public class ProductDetails extends AppCompatActivity implements View.OnClickLis
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
-                CharSequence itemChars = "";
-                itemChars = TextUtils.concat(itemChars,getColorFromCode(_listColor.get(which)));
-                builderSingle.setTitle(itemChars);
+//                CharSequence itemChars = "";
+//                itemChars = TextUtils.concat(itemChars,getColorFromCode(_listColor.get(which)));
+                builderSingle.setTitle(_listColor.get(which));
 
 
                 final String strName = arrayAdapter.getItem(which);
                 final AlertDialog.Builder builderInner = new AlertDialog.Builder(ProductDetails.this);
-                CharSequence charSequence = "";
-                charSequence = TextUtils.concat(charSequence,getColorFromCode(strName));
-                builderInner.setMessage(charSequence);
+//                CharSequence charSequence = "";
+//                charSequence = TextUtils.concat(charSequence,getColorFromCode(strName));
+                builderInner.setMessage(strName);
                 builderInner.setTitle("قمت باختيار اللون : ");
                 builderInner.setPositiveButton("موافق", new DialogInterface.OnClickListener() {
                     @Override

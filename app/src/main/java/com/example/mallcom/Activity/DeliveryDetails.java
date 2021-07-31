@@ -42,6 +42,7 @@ public class DeliveryDetails extends ToolbarClass implements View.OnClickListene
     JSONArray orders = new JSONArray();
 
     CheckBox checkbox;
+    boolean ok = true;
 
     protected final void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,7 +60,6 @@ public class DeliveryDetails extends ToolbarClass implements View.OnClickListene
         getProfile();
     }
 
-    boolean ok=true;
     private void init() {
         phone = findViewById(R.id.phone);
         checkbox = findViewById(R.id.checkbox);
@@ -138,11 +138,11 @@ public class DeliveryDetails extends ToolbarClass implements View.OnClickListene
                             phone.setText(dataObj.getString("phone"));
 
 //                            hashMap.put("orders[0][state_id]",state_id);
-                            hashMap.put("account_id",dataObj.getString("id"));
+                            hashMap.put("account_id", dataObj.getString("id"));
 
-                            hashMap.put("state",stateObj.getString("name"));
-                            hashMap.put("city",stateObj.getString("city"));
-                            hashMap.put("region",dataObj.getString("address"));
+//                            hashMap.put("state", stateObj.getString("name"));
+//                            hashMap.put("city", stateObj.getString("city"));
+//                            hashMap.put("region", dataObj.getString("address"));
 
                             break;
                         }
@@ -173,11 +173,26 @@ public class DeliveryDetails extends ToolbarClass implements View.OnClickListene
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn: {
-                if (ok){
-                    Intent intent = new Intent(getApplicationContext(),Payment1.class);
-                    intent.putExtra("hashMap",hashMap);
+                if (ok) {
+                    if (state.getText().toString().trim().isEmpty()){
+                        Toast.makeText(this, "الرجاء التاكد من تبئة كل الحقول", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if (city.getText().toString().trim().isEmpty()){
+                        Toast.makeText(this, "الرجاء التاكد من تبئة كل الحقول", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if (region.getText().toString().trim().isEmpty()){
+                        Toast.makeText(this, "الرجاء التاكد من تبئة كل الحقول", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    Intent intent = new Intent(getApplicationContext(), Payment1.class);
+                    hashMap.put("state", state.getText().toString().trim());
+                    hashMap.put("city", city.getText().toString().trim());
+                    hashMap.put("region",region.getText().toString().trim());
+                    intent.putExtra("hashMap", hashMap);
                     startActivity(intent);
-                }else{
+                } else {
                     Toast.makeText(this, "الرجاء الموافقة على معلومات التوصيل في الاعلى", Toast.LENGTH_SHORT).show();
                 }
 
@@ -185,7 +200,6 @@ public class DeliveryDetails extends ToolbarClass implements View.OnClickListene
             }
         }
     }
-
 
 
 }
