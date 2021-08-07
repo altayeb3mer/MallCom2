@@ -11,7 +11,15 @@ public class ModelCart {
     private String image;
     private String color;
     private String size;
+    private int availability;
 
+    public int getAvailability() {
+        return availability;
+    }
+
+    public void setAvailability(int availability) {
+        this.availability = availability;
+    }
 
     public String getSize() {
         return size;

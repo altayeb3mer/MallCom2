@@ -74,7 +74,7 @@ public class AdapterFilter2 extends RecyclerView.Adapter<AdapterFilter2.ViewHold
                     returnIntent.putExtra("price1","");
                     returnIntent.putExtra("price2","");
                     returnIntent.putExtra("color","");
-                    returnIntent.putExtra("rate",item.getValue());
+                    returnIntent.putExtra("rate",String.valueOf(position+1));
                     activity.setResult(Activity.RESULT_OK,returnIntent);
                     activity.finish();
                 }

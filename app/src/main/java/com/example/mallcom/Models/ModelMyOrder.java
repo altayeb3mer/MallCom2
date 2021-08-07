@@ -7,6 +7,15 @@ public class ModelMyOrder {
     private String number;
     private String total;
     private String status;
+    private String deliverPrice;
+
+    public String getDeliverPrice() {
+        return deliverPrice;
+    }
+
+    public void setDeliverPrice(String deliverPrice) {
+        this.deliverPrice = deliverPrice;
+    }
 
     public String getDate() {
         return date;

@@ -24,8 +24,16 @@ public class Global {
     }
 
     public String formatNumber(String number){
-        DecimalFormat formatter = new DecimalFormat("#,###,###");
-        String yourFormattedString = formatter.format(Double.parseDouble(number));
+        DecimalFormat formatter = null;
+        String yourFormattedString;
+        try {
+            formatter = new DecimalFormat("#,###,###");
+            yourFormattedString = formatter.format(Double.parseDouble(number));
+        } catch (Exception e) {
+            yourFormattedString = "0";
+            e.printStackTrace();
+        }
+
         return yourFormattedString;
     }
     public String formatNumber(double number){

@@ -32,6 +32,7 @@ public class SqlLiteDataBase  extends SQLiteOpenHelper {
                 ",rate VARCHAR(255)" +
                 ",color VARCHAR(255)" +
                 ",size VARCHAR(255)" +
+                ",availability INTEGER" +
                 ",img_url VARCHAR(255)" +
                 ")");
     }
@@ -66,7 +67,12 @@ public class SqlLiteDataBase  extends SQLiteOpenHelper {
         contentValues.put("img_url", cartItem.getImage());
         contentValues.put("color", cartItem.getColor());
         contentValues.put("size", cartItem.getSize());
+        contentValues.put("availability", cartItem.getAvailability());
 
+
+        if (cartItem.getAvailability()==0){
+            return false;
+        }
 
         SQLiteDatabase db2 = this.getReadableDatabase();
         Cursor res = db2.rawQuery("select qty from "+TABLE_CART_ORDER+" where id='" + cartItem.getId() + "'", null);
@@ -76,13 +82,15 @@ public class SqlLiteDataBase  extends SQLiteOpenHelper {
             //do update
             int db_count = res.getInt(0);
             ContentValues contentValues2 = new ContentValues();
+            if (db_count>=cartItem.getAvailability()){
+                return false;
+            }
             contentValues2.put("qty",db_count+Integer.parseInt(cartItem.getQty()));
             long result1 = db2.update(TABLE_CART_ORDER, contentValues2, "id='" + cartItem.getId() + "'", null);
             if (result1 == -1) {
                 return false;
             } else {
                 return true;
-
             }
 
         }else{
@@ -91,7 +99,6 @@ public class SqlLiteDataBase  extends SQLiteOpenHelper {
                 return false;
             } else {
                 return true;
-
             }
         }
 
@@ -109,6 +116,21 @@ public class SqlLiteDataBase  extends SQLiteOpenHelper {
         contentValues.put("description", cartItem.getDescription());
         contentValues.put("rate", cartItem.getRate());
         contentValues.put("img_url", cartItem.getImage());
+        contentValues.put("availability", cartItem.getAvailability());
+
+
+        SQLiteDatabase db2 = this.getReadableDatabase();
+        Cursor res = db2.rawQuery("select qty from "+TABLE_CART_ORDER+" where id='" + cartItem.getId() + "'", null);
+        res.moveToFirst();
+
+        if (!res.isAfterLast()) {
+            //do update
+            int db_count = res.getInt(0);
+            if (db_count>=cartItem.getAvailability()){
+                return false;
+            }
+
+        }
 
         try {
             long result1 = db.update(TABLE_CART_ORDER, contentValues, "id='" + cartItem.getId() + "'", null);
@@ -150,6 +172,73 @@ public class SqlLiteDataBase  extends SQLiteOpenHelper {
 //            }
 //        }
 
+    }    //update cart item
+    public boolean updateToCart(ModelCart cartItem,boolean decrease) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("id", cartItem.getId());
+        contentValues.put("name", cartItem.getName());
+        contentValues.put("price1", cartItem.getPrice1());
+        contentValues.put("price2", cartItem.getPrice2());
+        contentValues.put("qty", cartItem.getQty());
+        contentValues.put("description", cartItem.getDescription());
+        contentValues.put("rate", cartItem.getRate());
+        contentValues.put("img_url", cartItem.getImage());
+        contentValues.put("availability", cartItem.getAvailability());
+
+
+        SQLiteDatabase db2 = this.getReadableDatabase();
+        Cursor res = db2.rawQuery("select qty from "+TABLE_CART_ORDER+" where id='" + cartItem.getId() + "'", null);
+        res.moveToFirst();
+
+        if (!res.isAfterLast()&&!decrease) {
+            //do update
+            int db_count = res.getInt(0);
+            if (db_count>=cartItem.getAvailability()){
+                return false;
+            }
+
+        }
+
+        try {
+            long result1 = db.update(TABLE_CART_ORDER, contentValues, "id='" + cartItem.getId() + "'", null);
+            if (result1 == -1) {
+                return false;
+            } else {
+                return true;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+
+//        SQLiteDatabase db2 = this.getReadableDatabase();
+
+
+//        Cursor res = db2.rawQuery("select qty from "+TABLE_CART_ORDER+" where id='" + cartItem.getId() + "'", null);
+//        res.moveToFirst();
+
+//        if (!res.isAfterLast()) {
+//            //do update
+//            ContentValues contentValues2 = new ContentValues();
+//            contentValues2.put("qty",Integer.parseInt(cartItem.getQty()));
+//            long result1 = db2.update(TABLE_CART_ORDER, contentValues2, "id='" + cartItem.getId() + "'", null);
+//            if (result1 == -1) {
+//                return false;
+//            } else {
+//                return true;
+//
+//            }
+//
+//        }else{
+//            long result1 = db.insert(TABLE_CART_ORDER, null, contentValues);
+//            if (result1 == -1) {
+//                return false;
+//            } else {
+//                return true;
+//
+//            }
+//        }
 
     }
 
@@ -174,6 +263,7 @@ public class SqlLiteDataBase  extends SQLiteOpenHelper {
                 cartItem.setImage(c.getString(c.getColumnIndex("img_url")));
                 cartItem.setSize(c.getString(c.getColumnIndex("size")));
                 cartItem.setColor(c.getString(c.getColumnIndex("color")));
+                cartItem.setAvailability(c.getInt(c.getColumnIndex("availability")));
 
                 cartItemArrayList.add(cartItem);
             }

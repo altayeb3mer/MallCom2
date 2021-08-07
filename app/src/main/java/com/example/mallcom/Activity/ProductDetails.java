@@ -72,6 +72,8 @@ public class ProductDetails extends AppCompatActivity implements View.OnClickLis
 //    boolean add = false;
     SingleChoiceDialogFragment singleChoiceDialogFragment;
 
+    int availability = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -242,12 +244,15 @@ public class ProductDetails extends AppCompatActivity implements View.OnClickLis
 
     private void addToCart(ModelCart modelCart) {
         try {
-            new SqlLiteDataBase(getApplicationContext()).addToCart(modelCart);
+           if (new SqlLiteDataBase(getApplicationContext()).addToCart(modelCart)){
             Toast.makeText(this, "تمت الاضافة", Toast.LENGTH_SHORT).show();
             setBadgeCount();
+           }else {
+               dialogMsg("الكمية المتاحة في المتجر "+modelCart.getAvailability(),"اضافة للسلة!");
+           }
 
         } catch (Exception e) {
-            Toast.makeText(this, "حدث خطأ", Toast.LENGTH_SHORT).show();
+            dialogMsg("الكمية المتاحة في المتجر "+modelCart.getAvailability(),"اضافة للسلة!");
             e.printStackTrace();
         }
     }
@@ -300,8 +305,9 @@ public class ProductDetails extends AppCompatActivity implements View.OnClickLis
                             name = dataObj.getString("name");
                             textViewName.setText(name);
                             discount = dataObj.getString("discount");
+                            availability = dataObj.getInt("inventory");
                             price1 = dataObj.getString("price");
-                            price2 = String.valueOf(Integer.parseInt(price1) - Integer.parseInt(discount));
+                            price2 = dataObj.getString("final_price");
                             textViewPrice.setText(new Global().formatNumber(price2));
                             desc = dataObj.getString("description");
                             textViewDescription.setText(desc);
@@ -343,6 +349,7 @@ public class ProductDetails extends AppCompatActivity implements View.OnClickLis
                             modelCart.setQty(qty);
                             modelCart.setRate(rate);
                             modelCart.setImage(image);
+                            modelCart.setAvailability(availability);
 
 
                             container.setVisibility(View.VISIBLE);

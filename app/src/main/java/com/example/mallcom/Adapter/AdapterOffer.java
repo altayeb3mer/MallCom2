@@ -55,6 +55,12 @@ public class AdapterOffer extends RecyclerView.Adapter<AdapterOffer.ViewHolder> 
             }
         });
 
+        if (item.getPrice().equals("null")){
+            item.setPrice("0");
+        }
+        if (item.getOldPrice().equals("null")){
+            item.setPrice("0");
+        }
         holder.textViewPrice.setText(new Global().formatNumber(item.getPrice()));
         holder.textViewPriceCross.setText(new Global().formatNumber(item.getOldPrice()));
         holder.textViewPriceCross.setPaintFlags(holder.textViewPriceCross.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);

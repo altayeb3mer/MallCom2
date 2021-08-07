@@ -139,11 +139,16 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.ViewHolder> {
         holder.increase.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               int qty = Integer.parseInt(item.getQty())+1;
+                int qty = Integer.parseInt(item.getQty())+1;
+                item.setQty(String.valueOf(qty));
+                if (updateQty(item,false)){
                holder.textViewQty.setText(qty+"");
-               item.setQty(String.valueOf(qty));
-               updateQty(item);
-                CartActivity.getTotal(arrayList);
+//               updateQty(item);
+               CartActivity.getTotal(arrayList);
+                }
+                else {
+                    item.setQty(String.valueOf(qty-1));
+                }
             }
         });
 
@@ -154,7 +159,7 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.ViewHolder> {
                     int qty = Integer.parseInt(item.getQty())-1;
                     holder.textViewQty.setText(qty+"");
                     item.setQty(String.valueOf(qty));
-                    updateQty(item);
+                    updateQty(item,true);
                     CartActivity.getTotal(arrayList);
                 }
 
@@ -214,11 +219,14 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.ViewHolder> {
         }
     }
 
-    private void updateQty(ModelCart modelCart){
-        if (new SqlLiteDataBase(activity).updateToCart(modelCart)){
+    private boolean updateQty(ModelCart modelCart,boolean dec){
+        if (new SqlLiteDataBase(activity).updateToCart(modelCart,dec)){
 //            Toast.makeText(activity, "done", Toast.LENGTH_SHORT).show();
+            return true;
         }else{
-//            Toast.makeText(activity, "error", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(activity, "الكمية المتاحة في المتجر "+modelCart.getAvailability(), Toast.LENGTH_SHORT).show();
+            dialogMsg("الكمية المتاحة في المتجر "+modelCart.getAvailability(),"لايمكن الاضافة!");
+            return false;
         }
 
     }

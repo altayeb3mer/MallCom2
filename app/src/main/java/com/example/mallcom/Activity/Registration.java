@@ -17,7 +17,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mallcom.Data.Stateadata;
-import com.example.mallcom.Database.SharedPrefManager;
 import com.example.mallcom.R;
 import com.example.mallcom.Utils.Api;
 
@@ -201,7 +200,7 @@ public class Registration extends AppCompatActivity{
             editTextThirdName.requestFocus();
             return;
         }
-//        if (birthDate.isEmpty()||!isValidDate(birthDate)){
+//        if (birthDate.isEmpty()||!fisValidDate(birthDate)){
 //            editTextBirth.setError("هذا الحقل مطلوب ،الرجاء التاكد من الصيغة");
 //            editTextBirth.requestFocus();
 //            return;
@@ -330,7 +329,7 @@ public class Registration extends AppCompatActivity{
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        Api.RetrofitGetstate service = retrofit.create(Api.RetrofitGetstate.class);
+        Api.RetrofitGetState service = retrofit.create(Api.RetrofitGetState.class);
 
         Call<Stateadata.Stateresponse> call = service.putParam();
         call.enqueue(new Callback<Stateadata.Stateresponse>() {

@@ -57,7 +57,8 @@ public class AdapterMyOrder extends RecyclerView.Adapter<AdapterMyOrder.ViewHold
         holder.textViewDate.setText(item.getDate().substring(0,10));
         holder.textViewCount.setText(item.getItemCount());
         holder.textViewNumber.setText(item.getNumber());
-        holder.textViewTotal.setText(new Global().formatNumber(item.getTotal())+" "+"ج س");
+        holder.textViewTotal.setText(new Global().formatNumber(item.getTotal())+" "+"ج س"+"\n"+
+                "سعر التوصيل"+" "+new Global().formatNumber(item.getDeliverPrice())+" "+"ج س");
         holder.textViewStatus.setText(item.getStatus());
 
         holder.container.setOnClickListener(new View.OnClickListener() {

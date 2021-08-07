@@ -81,7 +81,7 @@ public class Api {
         Call<String> putParam();
     }
 
-    public interface RetrofitGetstate {
+    public interface RetrofitGetState {
         @GET("api/v1/public/states")
         Call<Stateadata.Stateresponse> putParam();
     }

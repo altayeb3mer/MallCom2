@@ -26,6 +26,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -33,6 +34,7 @@ import androidx.loader.content.CursorLoader;
 
 import com.bumptech.glide.Glide;
 import com.example.mallcom.Activity.Login;
+import com.example.mallcom.Activity.MainActivity;
 import com.example.mallcom.Database.SharedPrefManager;
 import com.example.mallcom.R;
 import com.example.mallcom.Utils.Api;
@@ -77,6 +79,7 @@ public class Fragment5 extends Fragment implements View.OnClickListener {
     Context context;
     String state_id="";
     AppCompatButton button;
+    CardView cardLogout;
 
     public Fragment5() {
         // Required empty public constructor
@@ -113,6 +116,8 @@ public class Fragment5 extends Fragment implements View.OnClickListener {
         icEdit.setOnClickListener(this);
         button = view.findViewById(R.id.btn);
         button.setOnClickListener(this);
+        cardLogout = view.findViewById(R.id.cardLogout);
+        cardLogout.setOnClickListener(this);
 
         textViewName.setOnClickListener(this);
         textViewState.setOnClickListener(this);
@@ -410,6 +415,14 @@ public class Fragment5 extends Fragment implements View.OnClickListener {
             case R.id.btn: {
                 startActivity(new Intent(getActivity(), Login.class));
 
+                break;
+            }
+            case R.id.cardLogout: {
+                SharedPrefManager.getInstance(context).storeAppToken("");
+                Intent intent = new Intent(context, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                getActivity().finish();
                 break;
             }
         }

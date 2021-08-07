@@ -113,6 +113,7 @@ public class MyOrders extends ToolbarClass {
                                 modelMyOrder.setItemCount(jsonObject.getString("products"));
                                 modelMyOrder.setTotal(jsonObject.getString("total"));
                                 modelMyOrder.setStatus(jsonObject.getString("status"));
+                                modelMyOrder.setDeliverPrice(jsonObject.getString("deliverPrice"));
 
                                 arrayList.add(modelMyOrder);
                             }
