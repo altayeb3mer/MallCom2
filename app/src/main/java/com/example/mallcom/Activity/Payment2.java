@@ -195,16 +195,16 @@ public class Payment2 extends ToolbarClass  implements View.OnClickListener {
 //        hashMap.remove("region");
 //        hashMap.remove("city");
 //        hashMap.remove("total");
-        JSONObject params = new JSONObject();
-        try {
-            params.put("payment_method","cash");
-            params.put("orders",orders);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        HashMap<String , Object> hashMap2 = new HashMap<>();
-        hashMap2.put("orders",orders);
-        hashMap2.put("payment_method",hashMap.get("payment_method"));
+//        JSONObject params = new JSONObject();
+//        try {
+//            params.put("payment_method","cash");
+//            params.put("orders",orders);
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//        HashMap<String , Object> hashMap2 = new HashMap<>();
+//        hashMap2.put("orders",orders);
+//        hashMap2.put("payment_method",hashMap.get("payment_method"));
 
         CreateOrderAll createOrderAll = new CreateOrderAll();
 //        createOrderAll.setAccount_id(1);

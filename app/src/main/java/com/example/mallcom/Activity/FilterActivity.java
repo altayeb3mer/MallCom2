@@ -69,12 +69,12 @@ public class FilterActivity extends ToolbarClass {
                 modelFilter1.setTitle("السعر");
                 arrayList1.add(modelFilter1);
             }
-            if (i == 1) {
-                ModelFilter1 modelFilter1 = new ModelFilter1();
-                modelFilter1.setId(i + "");
-                modelFilter1.setTitle("اللون");
-                arrayList1.add(modelFilter1);
-            }
+//            if (i == 1) {
+//                ModelFilter1 modelFilter1 = new ModelFilter1();
+//                modelFilter1.setId(i + "");
+//                modelFilter1.setTitle("اللون");
+//                arrayList1.add(modelFilter1);
+//            }
             if (i == 2) {
                 ModelFilter1 modelFilter1 = new ModelFilter1();
                 modelFilter1.setId(i + "");

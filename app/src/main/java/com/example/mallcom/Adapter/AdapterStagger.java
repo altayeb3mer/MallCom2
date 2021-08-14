@@ -12,11 +12,13 @@ import android.widget.TextView;
 
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import com.bumptech.glide.Glide;
 import com.example.mallcom.Activity.SubDept;
+import com.example.mallcom.Models.ModelProducts;
 import com.example.mallcom.Models.ModelStagger;
 import com.example.mallcom.R;
 
@@ -96,6 +98,14 @@ public class AdapterStagger extends RecyclerView.Adapter<AdapterStagger.ViewHold
         holder.textViewName.setText(item.getName());
 
 
+        if (item.getModelProducts().size()>0){
+            initAdapterProduct(item.getModelProducts(),holder.recyclerProduct);
+        }else{
+            holder.recyclerProduct.setVisibility(View.GONE);
+        }
+
+
+
     }
 
 
@@ -124,6 +134,7 @@ public class AdapterStagger extends RecyclerView.Adapter<AdapterStagger.ViewHold
         ViewPager viewPager;
         CircleIndicator circleIndicator;
         RelativeLayout laySlider;
+        RecyclerView recyclerProduct;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -135,6 +146,7 @@ public class AdapterStagger extends RecyclerView.Adapter<AdapterStagger.ViewHold
             textViewName = itemView.findViewById(R.id.name);
             cardShowMore = itemView.findViewById(R.id.cardShowMore);
             laySlider = itemView.findViewById(R.id.laySlider);
+            recyclerProduct = itemView.findViewById(R.id.recyclerProduct);
 
 
         }
@@ -145,6 +157,13 @@ public class AdapterStagger extends RecyclerView.Adapter<AdapterStagger.ViewHold
         }
     }
 
+    private void initAdapterProduct(ArrayList<ModelProducts> list,RecyclerView recyclerView) {
+//        GridLayoutManager gridLayoutManager = new GridLayoutManager(activity, 1, GridLayoutManager.HORIZONTAL, false);
+//        recyclerView.setLayoutManager(gridLayoutManager);
 
+        AdapterOffer adapterProducts = new AdapterOffer(activity, list);
+        recyclerView.setAdapter(adapterProducts);
+
+    }
 
 }

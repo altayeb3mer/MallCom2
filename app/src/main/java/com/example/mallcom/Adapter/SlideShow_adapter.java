@@ -15,6 +15,7 @@ import androidx.viewpager.widget.PagerAdapter;
 
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.mallcom.Activity.ProductDetails;
 import com.example.mallcom.Models.ModelSlider;
 import com.example.mallcom.R;
@@ -80,10 +81,12 @@ public class SlideShow_adapter extends PagerAdapter {
         ImageView imgView=view.findViewById(R.id.img);
 
         if(!urls2.isEmpty()){
-            Glide.with(activity).load(urls2.get(position).getImage())
+            Glide.with(activity).load(urls2.get(position).getImage()).diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .skipMemoryCache(true)
                     .into(imgView);
         }else {
-            Glide.with(activity).load(urls.get(position))
+            Glide.with(activity).load(urls.get(position)).diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .skipMemoryCache(true)
                     .into(imgView);
         }
 

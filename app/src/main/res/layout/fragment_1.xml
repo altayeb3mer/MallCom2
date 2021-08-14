@@ -99,10 +99,53 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:id="@+id/progressLay"
-        android:visibility="gone">
+        android:visibility="gone"
+        android:background="@android:color/white">
         <ProgressBar
+            android:layout_margin="@dimen/margin_normal_size"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            style="?android:attr/progressBarStyleHorizontal"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/txt_normal_size"
+            android:textColor="@color/colorPrimaryDark"
+            android:text="جاري التحميل.."/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:id="@+id/tryAgainLay"
+        android:visibility="gone"
+        android:background="@android:color/white">
+        <ImageView
             android:layout_width="60dp"
-            android:layout_height="60dp"/>
+            android:layout_height="60dp"
+            android:src="@drawable/ic_baseline_signal"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/txt_normal_size"
+            android:text=" خطأ في التحميل الرجاء المحاولة مره اخري"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/tryAgainBtn"
+            android:paddingRight="@dimen/margin_large_size"
+            android:paddingLeft="@dimen/margin_large_size"
+            android:background="@color/colorPrimary"
+            android:layout_margin="@dimen/margin_large_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/txt_normal_size"
+            android:textColor="@android:color/white"
+            android:text="اعادة المحاولة"/>
+
     </LinearLayout>
 
 

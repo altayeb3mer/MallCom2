@@ -79,29 +79,29 @@ public class AdapterFilter1 extends RecyclerView.Adapter<AdapterFilter1.ViewHold
                         recyclerView.setVisibility(View.GONE);
                         break;
                     }
-                    case 1: {
-                        ArrayList<ModelFilter2> arrayList2 = new ArrayList<>();
-                        ModelFilter2 modelFilter1 = new ModelFilter2();
-                        modelFilter1.setId(0 + "");
-                        modelFilter1.setValue("red");
-                        arrayList2.add(modelFilter1);
-
-                        ModelFilter2 modelFilter2 = new ModelFilter2();
-                        modelFilter2.setId(1 + "");
-                        modelFilter2.setValue("blue");
-                        arrayList2.add(modelFilter2);
-
-                        ModelFilter2 modelFilter3 = new ModelFilter2();
-                        modelFilter3.setId(2 + "");
-                        modelFilter3.setValue("grey");
-                        arrayList2.add(modelFilter3);
-
-                        FilterActivity.initAdapter2(activity,arrayList2,"color");
-                        priceLay.setVisibility(View.GONE);
-                        recyclerView.setVisibility(View.VISIBLE);
-                        break;
-                    }
-                    case 2:{
+//                    case 1: {
+//                        ArrayList<ModelFilter2> arrayList2 = new ArrayList<>();
+//                        ModelFilter2 modelFilter1 = new ModelFilter2();
+//                        modelFilter1.setId(0 + "");
+//                        modelFilter1.setValue("red");
+//                        arrayList2.add(modelFilter1);
+//
+//                        ModelFilter2 modelFilter2 = new ModelFilter2();
+//                        modelFilter2.setId(1 + "");
+//                        modelFilter2.setValue("blue");
+//                        arrayList2.add(modelFilter2);
+//
+//                        ModelFilter2 modelFilter3 = new ModelFilter2();
+//                        modelFilter3.setId(2 + "");
+//                        modelFilter3.setValue("grey");
+//                        arrayList2.add(modelFilter3);
+//
+//                        FilterActivity.initAdapter2(activity,arrayList2,"color");
+//                        priceLay.setVisibility(View.GONE);
+//                        recyclerView.setVisibility(View.VISIBLE);
+//                        break;
+//                    }
+                    case 1:{
                         ArrayList<ModelFilter2> arrayList2 = new ArrayList<>();
 
                         for (int i = 0; i < 10; i++) {

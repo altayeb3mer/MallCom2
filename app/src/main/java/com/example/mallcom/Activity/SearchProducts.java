@@ -24,6 +24,9 @@ import android.widget.Toast;
 
 import com.example.mallcom.Adapter.AdapterProducts;
 import com.example.mallcom.Models.ModelItems;
+import com.example.mallcom.Models.ModelSearchFilter;
+import com.example.mallcom.Models.PriceModel;
+import com.example.mallcom.Models.SearchHallModel;
 import com.example.mallcom.R;
 import com.example.mallcom.Utils.Api;
 import com.example.mallcom.Utils.Global;
@@ -35,6 +38,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Interceptor;
@@ -141,6 +145,10 @@ public class SearchProducts extends AppCompatActivity {
                 editTextSearch.setText("");
                 showKeyboard(SearchProducts.this);
                 query = "";
+                sort="";
+                price1="";
+                color="";
+                rate="";
             }
         });
 
@@ -266,23 +274,36 @@ public class SearchProducts extends AppCompatActivity {
                 .build();
 
         Api.RetrofitSearch service = retrofit.create(Api.RetrofitSearch.class);
-        HashMap<String,String> hashMap =new HashMap<>();
+        HashMap hashMap =new HashMap<>();
+        SearchHallModel searchHallModel = new SearchHallModel();
+//        ModelSearchFilter modelSearchFilter = new ModelSearchFilter();
+//        PriceModel priceModel = new PriceModel();
+
         hashMap.put("search",query);
+        searchHallModel.setSearch(query);
         if (!sort.isEmpty()){
             hashMap.put("sort",sort);
+            searchHallModel.setSort(sort);
         }
         if (!price1.isEmpty()){
-            hashMap.put("filter[price][from]",price1);
+            hashMap.put("price_from",Integer.valueOf(price1));
+            searchHallModel.setPrice_from(Integer.parseInt(price1));
         }
         if (!price2.isEmpty()){
-            hashMap.put("filter[price][to]",price2);
+            hashMap.put("price_to",Integer.valueOf(price2));
+            searchHallModel.setPrice_to(Integer.parseInt(price2));
         }
         if (!rate.isEmpty()){
-            hashMap.put("filter[rate]",rate);
+            hashMap.put("rate",Integer.valueOf(rate));
+            searchHallModel.setRate(Integer.parseInt(rate));
         }
         if (!color.isEmpty()){
-            hashMap.put("filter[color]",color);
+            hashMap.put("color",color);
+            searchHallModel.setColor(color);
         }
+
+
+
 
         Call<String> call = service.putParam(hashMap);
         call.enqueue(new Callback<String>() {
@@ -361,6 +382,7 @@ public class SearchProducts extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (resultCode == Activity.RESULT_OK) {
+            hideKeyboard(SearchProducts.this);
             initAdapter(arrayList);
             hideKeyboard(SearchProducts.this);
             price1 = data.getStringExtra("price1");

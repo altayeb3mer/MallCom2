@@ -4,6 +4,8 @@ import com.example.mallcom.Data.Favoritedata;
 import com.example.mallcom.Data.Notification;
 import com.example.mallcom.Data.Stateadata;
 import com.example.mallcom.Models.CreateOrderAll;
+import com.example.mallcom.Models.ModelSearchFilter;
+import com.example.mallcom.Models.SearchHallModel;
 
 import java.util.HashMap;
 
@@ -43,7 +45,7 @@ public class Api {
     //search
     public interface RetrofitSearch {
         @POST("api/v1/public/search")
-        Call<String> putParam(@Body HashMap<String, String> param);
+        Call<String> putParam(@Body HashMap param);
     }
 
     //checkAccount

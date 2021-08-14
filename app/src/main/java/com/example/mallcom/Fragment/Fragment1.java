@@ -20,6 +20,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -79,6 +80,7 @@ public class Fragment1 extends Fragment {
     ArrayList<String> arrayListImg;
     ViewPager viewPager;
     CircleIndicator circleIndicator;
+    AppCompatButton tryAgainBtn;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -139,10 +141,29 @@ public class Fragment1 extends Fragment {
     }
 
     private void init() {
+        tryAgainBtn = view.findViewById(R.id.tryAgainBtn);
         progressLay = view.findViewById(R.id.progressLay);
+        tryAgainLay = view.findViewById(R.id.tryAgainLay);
         recyclerView = view.findViewById(R.id.recyclerDept);
         recyclerProduct = view.findViewById(R.id.recyclerProduct);
         recyclerStagger = view.findViewById(R.id.recyclerStagger);
+
+//        tryAgainLay.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                getTopSuggestions();
+//                getCategory();
+//                getSuggestions();
+//            }
+//        });
+        tryAgainBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getTopSuggestions();
+                getCategory();
+                getSuggestions();
+            }
+        });
     }
 
     private void initAdapterStagger(ArrayList<ModelStagger> list) {
@@ -170,7 +191,7 @@ public class Fragment1 extends Fragment {
     }
 
 
-    LinearLayout progressLay;
+    LinearLayout progressLay,tryAgainLay;
     private void getCategory() {
         arrayList = new ArrayList<>();
         progressLay.setVisibility(View.VISIBLE);
@@ -248,6 +269,7 @@ public class Fragment1 extends Fragment {
         });
     }
     private void getSuggestions() {
+        tryAgainLay.setVisibility(View.GONE);
         final ArrayList<ModelStagger>  staggerArrayList = new ArrayList<>();
         progressLay.setVisibility(View.VISIBLE);
         OkHttpClient httpClient = new OkHttpClient.Builder()
@@ -303,26 +325,49 @@ public class Fragment1 extends Fragment {
                                 ArrayList<ModelSlider> modelSliders = new ArrayList<>();
                                 if (sliderImg.length() > 0) {
                                     for (int j = 0; j < sliderImg.length(); j++) {
-                                        JSONObject jsonObjectSlider = sliderImg.getJSONObject(i);
+                                        JSONObject jsonObjectSlider = sliderImg.getJSONObject(j);
                                         ModelSlider modelSlider = new ModelSlider();
                                         modelSlider.setId(jsonObjectSlider.getString("id"));
                                         modelSlider.setImage(jsonObjectSlider.getString("photo"));
                                         modelSliders.add(modelSlider);
                                     }
                                 }
+
                                 modelStagger.setModelSliderArrayList(modelSliders);
+
+
+                                ArrayList<ModelProducts> discountedProduct = new ArrayList<>();
+                                JSONArray discountedArray = itemData.getJSONArray("product");
+                                for (int x = 0; x <discountedArray.length() ; x++) {
+                                    ModelProducts modelProducts = new ModelProducts();
+                                    JSONObject item = discountedArray.getJSONObject(x);
+                                    modelProducts.setId(item.getString("id"));
+                                    modelProducts.setImage(item.getString("photo"));
+                                    modelProducts.setPrice(item.getString("discounted_price"));
+                                    modelProducts.setOldPrice(item.getString("price"));
+                                    modelProducts.setName(item.getString("name"));
+                                    discountedProduct.add(modelProducts);
+                                }
+
+                                modelStagger.setModelProducts(discountedProduct);
+
+
                                 staggerArrayList.add(modelStagger);
+
                             }
 
                             if (staggerArrayList.size()>0){
                                 initAdapterStagger(staggerArrayList);
+                                tryAgainLay.setVisibility(View.GONE);
                             }
 
+                            tryAgainLay.setVisibility(View.GONE);
                             break;
                         }
 
                         default: {
                             Toast.makeText(context, "حدث خطأ حاول مجددا", Toast.LENGTH_SHORT).show();
+                            tryAgainLay.setVisibility(View.VISIBLE);
                             break;
                         }
                     }
@@ -330,6 +375,7 @@ public class Fragment1 extends Fragment {
                 } catch (Exception e) {
                     e.printStackTrace();
                     Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    tryAgainLay.setVisibility(View.VISIBLE);
                 }
                 progressLay.setVisibility(View.GONE);
             }
@@ -337,6 +383,7 @@ public class Fragment1 extends Fragment {
             @Override
             public void onFailure(Call<String> call, Throwable throwable) {
                 progressLay.setVisibility(View.GONE);
+                tryAgainLay.setVisibility(View.VISIBLE);
             }
         });
     }

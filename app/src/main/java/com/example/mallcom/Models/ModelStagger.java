@@ -10,6 +10,16 @@ public class ModelStagger {
     private String product2;
     private String product3;
     private ArrayList<ModelSlider> modelSliderArrayList;
+    private ArrayList<ModelProducts> modelProducts;
+
+
+    public ArrayList<ModelProducts> getModelProducts() {
+        return modelProducts;
+    }
+
+    public void setModelProducts(ArrayList<ModelProducts> modelProducts) {
+        this.modelProducts = modelProducts;
+    }
 
     public String getName() {
         return name;

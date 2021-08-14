@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -70,9 +71,15 @@ public class AdapterProducts extends RecyclerView.Adapter<AdapterProducts.ViewHo
         holder.textViewName.setText(item.getName());
         holder.textViewDesc.setText(item.getDesc());
         holder.textViewRate.setText(item.getRate());
+        if (item.getRate().isEmpty()){
+            holder.imageViewStarRate.setVisibility(View.GONE);
+        }else{
+           holder.imageViewStarRate.setImageDrawable(ResourcesCompat.getDrawable(activity.getResources(),R.drawable.ic_star_24,null));
+        }
+
         holder.textViewPrice.setText(new Global().formatNumber(item.getFinalPrice()));
-        if (Integer.parseInt(item.getFinalPrice())>Integer.parseInt(item.getPrice1())){
-            holder.textViewOldPrice.setText(item.getPrice1());
+        if (Integer.parseInt(item.getFinalPrice())<Integer.parseInt(item.getPrice1())){
+            holder.textViewOldPrice.setText(new Global().formatNumber(item.getPrice1())+" "+"ج س");
         }else{
            holder.textViewOldPrice.setVisibility(View.GONE);
         }
@@ -99,7 +106,7 @@ public class AdapterProducts extends RecyclerView.Adapter<AdapterProducts.ViewHo
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        ImageView imageView;
+        ImageView imageView,imageViewStarRate;
         LinearLayout container;
         TextView textViewOldPrice, textViewPrice,textViewName,textViewDesc,
         textViewRate;
@@ -113,6 +120,7 @@ public class AdapterProducts extends RecyclerView.Adapter<AdapterProducts.ViewHo
             textViewPrice = itemView.findViewById(R.id.price1);
             textViewOldPrice = itemView.findViewById(R.id.oldPrice);
             textViewRate = itemView.findViewById(R.id.rate);
+            imageViewStarRate = itemView.findViewById(R.id.starRate);
 
 
         }
